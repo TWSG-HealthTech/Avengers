@@ -12,7 +12,9 @@ Task("Build")
 Task("Test")
   .Does(() =>
 {
-  NUnit3("./**/bin/**/*.Tests.dll");
+  NUnit3("./**/bin/**/*.Tests.dll", new NUnit3Settings {
+    ResultFormat = "AppVeyor"
+    });
 });
 
 Task("Default")
