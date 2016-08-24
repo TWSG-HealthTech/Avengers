@@ -1,0 +1,7 @@
+version: '0.0.{build}'
+
+build_script:
+	ps: ./build.ps1 -Target Build
+
+test_script:
+	ps: ./build.ps1 -Target Test

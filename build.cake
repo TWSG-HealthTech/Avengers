@@ -2,17 +2,20 @@
 
 var target = Argument("target", "Default");
 
-Task("Default")
+Task("Build")
   .Does(() =>
 {
   MSBuild("Avengers.sln");
 });
 
 Task("Test")
-  .IsDependentOn("Default")
   .Does(() =>
 {
   NUnit3("./**/bin/**/*.Tests.dll");
 });
+
+Task("Default")
+  .IsDependentOn("Build")
+  .IsDependentOn("Test");
 
 RunTarget(target);
