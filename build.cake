@@ -5,6 +5,7 @@ var target = Argument("target", "Default");
 Task("Build")
   .Does(() =>
 {
+  NuGetRestore("Avengers.sln");
   MSBuild("Avengers.sln");
 });
 
