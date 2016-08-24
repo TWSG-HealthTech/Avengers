@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Autofac;
+using BlackWidow.Logging;
 using Prism.Autofac;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -28,6 +29,7 @@ namespace PowerPuff
             base.ConfigureContainerBuilder(builder);
 
             builder.RegisterType<ShellViewModel>();
+            builder.RegisterType<NLogAdapter>().As<ILogger>();
 
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => Container.Resolve(type));
         }
