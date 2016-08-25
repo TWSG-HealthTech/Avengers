@@ -1,7 +1,7 @@
 ﻿using System;
 using NLog;
 
-namespace BlackWidow.Logging
+namespace PowerPuff.Common.Logging
 {
     public class NLogAdapter : ILogger
     {

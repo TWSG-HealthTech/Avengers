@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using Autofac;
-using BlackWidow.Logging;
+using PowerPuff.Common.Logging;
 using Prism.Autofac;
 using Prism.Mvvm;
 using Prism.Regions;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BlackWidow.Logging
+namespace PowerPuff.Common.Logging
 {
     public interface ILogger
     {

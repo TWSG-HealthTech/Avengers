@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BlackWidow.Tests")]
+[assembly: AssemblyTitle("PowerPuff.Common")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BlackWidow.Tests")]
+[assembly: AssemblyProduct("PowerPuff.Common")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("de1a8946-82cd-4f8f-a96e-bcf19b390f35")]
+[assembly: Guid("c87feaf5-a74f-44b0-8b90-a0ce1674ae2a")]
 
 // Version information for an assembly consists of the following four values:
 //

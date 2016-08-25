@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace BlackWidow.Tests
+namespace PowerPuff.Common.Tests
 {
     [TestFixture]
     public class SampleTest
