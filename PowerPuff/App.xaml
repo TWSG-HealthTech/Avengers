@@ -3,6 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:PowerPuff">
     <Application.Resources>
-         
+         <ResourceDictionary Source="Resources/Styles/MainStyle.xaml"></ResourceDictionary>
     </Application.Resources>
 </Application>

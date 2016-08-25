@@ -6,9 +6,6 @@
              xmlns:local="clr-namespace:PowerPuff.Features.VideoCall.Views"
              mc:Ignorable="d" 
              Content="Video Call"
-             Width="310"
-             Height="150"
-             Margin="15 10"
-             d:DesignHeight="100" d:DesignWidth="200"
-             Background="PaleGoldenrod">
+             Style="{DynamicResource MainButtonStyle}"
+             d:DesignHeight="100" d:DesignWidth="200">
 </Button>
