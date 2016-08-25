@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PowerPuff"
         mc:Ignorable="d"
-        Title="Shell" Height="300" Width="300">
+        Title="PowerPuff" Height="720" Width="1280">
     <Grid>
-        
+        <Image x:Name="Meow" Source="https://i.ytimg.com/vi/-bQYBt5BoY4/maxresdefault.jpg" Opacity="0.5" Stretch="UniformToFill" VerticalAlignment="Center" />
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="518,111,521.333,467.667" TextWrapping="Wrap" Text="Menu" VerticalAlignment="Center" Height="112" Width="234" FontSize="72" FontFamily="Arial Black" TextAlignment="Center" Background="Transparent"/>
+        <Button x:Name="button1" Content="Function1" HorizontalAlignment="Left" Margin="93,397,0,0" VerticalAlignment="Top" Width="310" Height="150" Background="PaleGoldenrod"/>
+        <Button x:Name="button3" Content="Function2" HorizontalAlignment="Left" Margin="476,397,0,0" VerticalAlignment="Top" Width="310" Height="150" Background="AntiqueWhite"/>
+        <Button x:Name="button2" Content="Function3" HorizontalAlignment="Left" Margin="862,397,0,0" VerticalAlignment="Top" Width="310" Height="150" Background="LightBlue"/>
     </Grid>
 </Window>
