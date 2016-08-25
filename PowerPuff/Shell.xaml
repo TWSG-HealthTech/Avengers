@@ -3,14 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/" 
         xmlns:local="clr-namespace:PowerPuff"
+        xmlns:common="clr-namespace:PowerPuff.Common;assembly=PowerPuff.Common"
         mc:Ignorable="d"
         Title="PowerPuff" Height="720" Width="1280">
-    <Grid>
-        <Image x:Name="Meow" Source="/Images/cat.jpg" Opacity="0.5" Stretch="UniformToFill" VerticalAlignment="Center" />
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="518,111,521.333,467.667" TextWrapping="Wrap" Text="Menu" VerticalAlignment="Center" Height="112" Width="234" FontSize="72" FontFamily="Arial Black" TextAlignment="Center" Background="Transparent"/>
-        <Button x:Name="button1" Content="Function1" Margin="89,469,874.333,71.667" Width="310" Height="150" Background="PaleGoldenrod"/>
-        <Button x:Name="button3" Content="Function2" Margin="482,469,481.333,71.667" Width="310" Height="150" Background="AntiqueWhite"/>
-        <Button x:Name="button2" Content="Function3" Margin="873,469,90.333,71.667" Width="310" Height="150" Background="LightBlue"/>
+    <Window.Resources>
+        <ImageBrush x:Key="BackgroundBrush" ImageSource="/Images/cat.jpg" Opacity="0.5"/>
+    </Window.Resources>
+    <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Menu" VerticalAlignment="Center" FontSize="72" FontFamily="Arial Black" TextAlignment="Center" Background="Transparent"/>
+
+        <ItemsControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static common:RegionNames.MainButtonsRegion}" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
     </Grid>
 </Window>

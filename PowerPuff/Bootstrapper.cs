@@ -2,6 +2,7 @@
 using Autofac;
 using PowerPuff.Common.Logging;
 using Prism.Autofac;
+using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -32,6 +33,14 @@ namespace PowerPuff
             builder.RegisterType<NLogAdapter>().As<ILogger>();
 
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => Container.Resolve(type));
+        }
+
+        protected override IModuleCatalog CreateModuleCatalog()
+        {
+            return new DirectoryModuleCatalog
+            {
+                ModulePath = @".\Features"
+            };
         }
 
         private IComponentContext ComponentContext => Container;
