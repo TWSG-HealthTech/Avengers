@@ -92,6 +92,9 @@
     <Compile Include="Views\ActiveListenerView.xaml.cs">
       <DependentUpon>ActiveListenerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainButtonsView.xaml.cs">
+      <DependentUpon>MainButtonsView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\Styles\MainStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -101,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ActiveListenerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainButtonsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

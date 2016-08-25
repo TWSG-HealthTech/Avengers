@@ -70,8 +70,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VideoCallModule.cs" />
+    <Compile Include="ViewModels\MainButtonViewModel.cs" />
+    <Compile Include="ViewModels\VideoMainViewModel.cs" />
     <Compile Include="Views\MainButtonView.xaml.cs">
       <DependentUpon>MainButtonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VideoMainView.xaml.cs">
+      <DependentUpon>VideoMainView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +85,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MainButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VideoMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

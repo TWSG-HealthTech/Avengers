@@ -1,12 +1,15 @@
-﻿<Button x:Class="PowerPuff.Features.VideoCall.Views.MainButtonView"
+﻿<UserControl x:Class="PowerPuff.Features.VideoCall.Views.VideoMainView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PowerPuff.Features.VideoCall.Views"
              mc:Ignorable="d" 
-             Content="Video Call"
-             Style="{DynamicResource MainButtonStyle}"
-             Command="{Binding GoToVideoPageCommand}"
-             d:DesignHeight="100" d:DesignWidth="200">
-</Button>
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid HorizontalAlignment="Stretch" 
+          VerticalAlignment="Stretch" 
+          Margin="10"
+          Background="White">
+            <TextBlock>Main Video Page</TextBlock>
+    </Grid>
+</UserControl>

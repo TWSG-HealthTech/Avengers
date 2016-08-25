@@ -14,18 +14,12 @@
     </Window.Resources>
     <Grid Background="{StaticResource BackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         
         <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static common:RegionNames.ActiveListenerRegion}" />
-        
-        <ItemsControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static common:RegionNames.MainButtonsRegion}" >
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
+
+        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static common:RegionNames.MainContentRegion}" />
     </Grid>
 </Window>

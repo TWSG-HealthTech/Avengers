@@ -1,7 +1,9 @@
 ﻿using System.Windows;
 using Autofac;
+using PowerPuff.Common;
 using PowerPuff.Common.Logging;
 using PowerPuff.Modules;
+using PowerPuff.Views;
 using Prism.Autofac;
 using Prism.Modularity;
 using Prism.Mvvm;
@@ -21,6 +23,9 @@ namespace PowerPuff
             base.InitializeShell();
 
             ComponentContext.Resolve<ActiveListenerModule>().Initialize();
+
+            var regionManager = ComponentContext.Resolve<IRegionManager>();
+            regionManager.RegisterViewWithRegion(RegionNames.MainContentRegion, typeof(MainButtonsView));
 
             Application.Current.MainWindow = (Window)Shell;
             Application.Current.MainWindow.Show();

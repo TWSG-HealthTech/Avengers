@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using PowerPuff.Common;
+using PowerPuff.Features.VideoCall.ViewModels;
 using PowerPuff.Features.VideoCall.Views;
+using Prism.Autofac;
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -31,8 +33,10 @@ namespace PowerPuff.Features.VideoCall
         {
             var updater = new ContainerBuilder();
 
-            //updater.RegisterType<MenuViewModel>();
-            
+            updater.RegisterType<MainButtonViewModel>();
+
+            updater.RegisterTypeForNavigation<VideoMainView>(typeof(VideoMainView).FullName);
+
             updater.Update(_container);
         }
     }
