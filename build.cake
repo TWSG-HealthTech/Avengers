@@ -28,7 +28,7 @@ Task("Test")
     UseShellExecute = false,
     RedirectStandardOutput = true,
     CreateNoWindow = true,
-    Arguments = string.Join(" ", testDlls)
+    Arguments = "--xml=\"./TestResult.xml\" " + string.Join(" ", testDlls)
   };
 
   var mspecProcess = Process.Start(startInfo);
