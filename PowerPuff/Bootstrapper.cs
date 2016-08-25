@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Autofac;
 using PowerPuff.Common.Logging;
+using PowerPuff.Modules;
 using Prism.Autofac;
 using Prism.Modularity;
 using Prism.Mvvm;
@@ -19,7 +20,7 @@ namespace PowerPuff
         {
             base.InitializeShell();
 
-            var regionManager = ComponentContext.Resolve<IRegionManager>();
+            ComponentContext.Resolve<ActiveListenerModule>().Initialize();
 
             Application.Current.MainWindow = (Window)Shell;
             Application.Current.MainWindow.Show();
@@ -31,7 +32,8 @@ namespace PowerPuff
 
             builder.RegisterType<ShellViewModel>();
             builder.RegisterType<NLogAdapter>().As<ILogger>();
-
+            builder.RegisterType<ActiveListenerModule>();
+            
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => Container.Resolve(type));
         }
 
