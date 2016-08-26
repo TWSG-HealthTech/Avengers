@@ -36,6 +36,10 @@ Task("Test")
       string line = mspecProcess.StandardOutput.ReadLine();
       Console.WriteLine(line);
   }
+  if (mspecProcess.ExitCode != 0)
+  {
+    throw new CakeException(string.Format("mSpec test failure... exit code: {0}", mspecProcess.ExitCode));
+  }
 });
 
 Task("Default")
