@@ -21,7 +21,7 @@ Task("Test")
   .Does(() =>
 {
   var binFolders = IO.Directory.GetDirectories(IO.Directory.GetCurrentDirectory(), "*.Tests").SelectMany(d => IO.Directory.GetDirectories(d, "bin"));
-  var testDlls = binFolders.SelectMany(f => IO.Directory.GetFiles(IO.Path.Combine(f, buildConfiguration), "*.Tests.dll", SearchOption.AllDirectories));
+  var testDlls = binFolders.SelectMany(f => IO.Directory.GetFiles(IO.Path.Combine(f, buildConfiguration), "*.Tests.dll", SearchOption.AllDirectories)).Select(p => "\"" + p + "\"");
 
   var startInfo = new ProcessStartInfo(IO.Path.Combine(IO.Directory.GetCurrentDirectory(), "tools/Machine.Specifications.Runner.Console/tools/mspec-clr4.exe"))
   {
