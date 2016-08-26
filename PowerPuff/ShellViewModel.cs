@@ -1,6 +1,7 @@
 ﻿using System;
 using PowerPuff.Common;
 using PowerPuff.Common.Events;
+using PowerPuff.Views;
 using Prism.Events;
 using Prism.Regions;
 
@@ -14,11 +15,17 @@ namespace PowerPuff
         {
             _regionManager = regionManager;
             eventAggregator.SubscribeToMainContentNavigationEvent(NavigateTo);
+            eventAggregator.GetEvent<HomeNavigationEvent>().Subscribe(BackToHome);
         }
 
         private void NavigateTo(NavigationEventPayload payload)
         {
             _regionManager.RequestNavigate(RegionNames.MainContentRegion, payload.DestinationViewType.FullName);
+        }
+
+        private void BackToHome()
+        {
+            _regionManager.RequestNavigate(RegionNames.MainContentRegion, typeof(MainButtonsView).FullName);
         }
     }
 }
