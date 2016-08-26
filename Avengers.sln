@@ -11,7 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff.Tests", "PowerPuf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{A6B2F99A-8FB1-4AC7-A670-6236904A90EF}"
 	ProjectSection(SolutionItems) = preProject
-		build.cake = build.cake
+		appveyor.yml = appveyor.yml
+		build.cake.cs = build.cake.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{C152277E-B969-4E1D-B03B-3B320EA60CF7}"

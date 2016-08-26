@@ -89,9 +89,12 @@
     </Compile>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="ShellViewModel.cs" />
+    <Compile Include="Speech\ActiveListener.cs" />
+    <Compile Include="Speech\IActiveListener.cs" />
     <Compile Include="Views\ActiveListenerView.xaml.cs">
       <DependentUpon>ActiveListenerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\IActiveListenerView.cs" />
     <Compile Include="Views\MainButtonsView.xaml.cs">
       <DependentUpon>MainButtonsView.xaml</DependentUpon>
     </Compile>

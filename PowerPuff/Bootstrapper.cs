@@ -3,6 +3,7 @@ using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Logging;
 using PowerPuff.Modules;
+using PowerPuff.Speech;
 using PowerPuff.Views;
 using Prism.Autofac;
 using Prism.Modularity;
@@ -38,7 +39,8 @@ namespace PowerPuff
             builder.RegisterType<ShellViewModel>();
             builder.RegisterType<NLogAdapter>().As<ILogger>();
             builder.RegisterType<ActiveListenerModule>();
-            builder.RegisterType<ActiveListenerView>();
+            builder.RegisterType<ActiveListenerView>().As<IActiveListenerView>();
+            builder.RegisterType<ActiveListener>().As<IActiveListener>();
 
             builder.RegisterTypeForNavigation<MainButtonsView>(typeof(MainButtonsView).FullName);
             

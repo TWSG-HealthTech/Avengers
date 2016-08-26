@@ -1,25 +1,26 @@
 ﻿using PowerPuff.Common;
+using PowerPuff.Speech;
 using PowerPuff.Views;
 using Prism.Modularity;
 using Prism.Regions;
 
 namespace PowerPuff.Modules
 {
-    class ActiveListenerModule : IModule
+    public class ActiveListenerModule : IModule
     {
         private readonly IRegionManager _regionManager;
-        private readonly ActiveListenerView _view;
+        private readonly IActiveListenerView _view;
 
-        public ActiveListenerModule(IRegionManager regionManager, ActiveListenerView view)
+        public ActiveListenerModule(IRegionManager regionManager, IActiveListenerView view, IActiveListener activeListener)
         {
             _regionManager = regionManager;
             _view = view;
+            _view.OnListnerActivatorClick += activeListener.BeginActiveListening;
         }
 
         public void Initialize()
         {
-            IRegion activeListenerRegion = _regionManager.Regions[RegionNames.ActiveListenerRegion];
-            activeListenerRegion.Add(_view);
+            _regionManager.RegisterViewWithRegion(RegionNames.ActiveListenerRegion, () => _view);
         }
     }
 }

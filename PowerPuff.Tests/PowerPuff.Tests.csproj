@@ -78,6 +78,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modules\ActiveListenerModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShellViewModel\When_received_event_to_navigate_main_content.cs" />
   </ItemGroup>
@@ -90,11 +91,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PowerPuff.Common\PowerPuff.Common.csproj">
-      <Project>{c87feaf5-a74f-44b0-8b90-a0ce1674ae2a}</Project>
+      <Project>{C87FEAF5-A74F-44B0-8B90-A0CE1674AE2A}</Project>
       <Name>PowerPuff.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\PowerPuff\PowerPuff.csproj">
-      <Project>{6e0fd199-31b5-4361-ae08-e5d07603d0aa}</Project>
+      <Project>{6E0FD199-31B5-4361-AE08-E5D07603D0AA}</Project>
       <Name>PowerPuff</Name>
     </ProjectReference>
   </ItemGroup>
