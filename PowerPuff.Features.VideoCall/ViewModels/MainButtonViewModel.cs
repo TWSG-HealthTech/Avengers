@@ -20,7 +20,7 @@ namespace PowerPuff.Features.VideoCall.ViewModels
 
         private void GoToVideoPage()
         {
-            _eventAggregator.GetEvent<NavigationEvent>().Publish(typeof(VideoMainView));
+            _eventAggregator.PublishMainContentNavigationEvent(typeof(VideoMainView));
         }
     }
 }

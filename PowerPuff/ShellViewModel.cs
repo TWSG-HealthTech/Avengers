@@ -8,17 +8,17 @@ namespace PowerPuff
 {
     public class ShellViewModel
     {
-        private readonly IRegionManager _regoinManager;
+        private readonly IRegionManager _regionManager;
 
-        public ShellViewModel(IRegionManager regoinManager, IEventAggregator eventAggregator)
+        public ShellViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
-            _regoinManager = regoinManager;
-            eventAggregator.GetEvent<NavigationEvent>().Subscribe(NavigateTo);
+            _regionManager = regionManager;
+            eventAggregator.SubscribeToMainContentNavigationEvent(NavigateTo);
         }
 
-        private void NavigateTo(Type destinationPageType)
+        private void NavigateTo(NavigationEventPayload payload)
         {
-            _regoinManager.RequestNavigate(RegionNames.MainContentRegion, destinationPageType.FullName);
+            _regionManager.RequestNavigate(RegionNames.MainContentRegion, payload.DestinationViewType.FullName);
         }
     }
 }

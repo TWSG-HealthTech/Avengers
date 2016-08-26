@@ -1,9 +1,8 @@
-﻿using System;
-using Prism.Events;
+﻿using Prism.Events;
 
 namespace PowerPuff.Common.Events
 {
-    public class NavigationEvent : PubSubEvent<Type>
+    public class NavigationEvent : PubSubEvent<NavigationEventPayload>
     {
     }
 }

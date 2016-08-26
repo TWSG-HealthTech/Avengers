@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\EventAggregatorExtensions.cs" />
     <Compile Include="Events\NavigationEvent.cs" />
+    <Compile Include="Events\NavigationEventPayload.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\NLogAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
