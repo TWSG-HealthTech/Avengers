@@ -80,7 +80,6 @@
   <ItemGroup>
     <Compile Include="Modules\ActiveListenerModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShellViewModel\When_received_event_to_navigate_main_content.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

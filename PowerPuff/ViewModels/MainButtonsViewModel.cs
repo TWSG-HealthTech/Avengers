@@ -1,11 +1,11 @@
 ﻿using PowerPuff.Common;
-using PowerPuff.Views;
+using PowerPuff.Common.Helpers;
 using Prism.Commands;
 using Prism.Regions;
 
 namespace PowerPuff.ViewModels
 {
-    public class MainButtonsViewModel
+    public class MainButtonsViewModel : IRegionMemberLifetime
     {
         private readonly IRegionManager _regionManager;
 
@@ -19,7 +19,9 @@ namespace PowerPuff.ViewModels
         public DelegateCommand GoToSettingsCommand { get; private set; }
         private void GoToSettings()
         {
-            _regionManager.RequestNavigate(RegionNames.MainContentRegion, typeof(SettingsView).FullName);
+            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.SettingsView.GetFullName());
         }
+
+        public bool KeepAlive { get; } = false;
     }
 }

@@ -1,15 +1,16 @@
 ﻿using System.Collections.ObjectModel;
-using PowerPuff.Common.Events;
+using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
 using PowerPuff.Features.VideoCall.Models;
 using Prism.Commands;
-using Prism.Events;
 using Prism.Mvvm;
+using Prism.Regions;
 
 namespace PowerPuff.Features.VideoCall.ViewModels
 {
     public class VideoMainViewModel : BindableBase
     {
-        private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
         private readonly IVideoCallService _videoCallService;
 
         public ObservableCollection<SocialConnection> SocialConnections { get; set; }
@@ -22,9 +23,9 @@ namespace PowerPuff.Features.VideoCall.ViewModels
             set { SetProperty(ref _selectedConnection, value); }
         }
 
-        public VideoMainViewModel(IEventAggregator eventAggregator, IVideoCallService videoCallService)
+        public VideoMainViewModel(IRegionManager regionManager, IVideoCallService videoCallService)
         {
-            _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
             _videoCallService = videoCallService;
 
             SocialConnections = new ObservableCollection<SocialConnection>();
@@ -37,7 +38,7 @@ namespace PowerPuff.Features.VideoCall.ViewModels
 
         private void GoBack()
         {
-            _eventAggregator.GetEvent<HomeNavigationEvent>().Publish();
+            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.HomeView.GetFullName());
         }
 
         public DelegateCommand CallCommand { get; private set; }

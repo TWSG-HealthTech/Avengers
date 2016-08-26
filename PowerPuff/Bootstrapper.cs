@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Autofac;
 using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
 using PowerPuff.Common.Logging;
 using PowerPuff.Modules;
 using PowerPuff.Speech;
@@ -45,8 +46,8 @@ namespace PowerPuff
             builder.RegisterType<ActiveListenerView>().As<IActiveListenerView>();
             builder.RegisterType<ActiveListener>().As<IActiveListener>();
 
-            RegisterTypeForNavigation<MainButtonsView>(builder);
-            RegisterTypeForNavigation<SettingsView>(builder);
+            builder.RegisterTypeForNavigation<MainButtonsView>(NavigableViews.Main.HomeView.GetFullName());
+            builder.RegisterTypeForNavigation<SettingsView>(NavigableViews.Main.SettingsView.GetFullName());            
             
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => Container.Resolve(type));
         }
@@ -57,11 +58,6 @@ namespace PowerPuff
             {
                 ModulePath = @".\Features"
             };
-        }
-
-        private void RegisterTypeForNavigation<T>(ContainerBuilder builder)
-        {
-            builder.RegisterTypeForNavigation<T>(typeof(T).FullName);
         }
 
         private IComponentContext ComponentContext => Container;

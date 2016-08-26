@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
 using PowerPuff.Features.Timer.ViewModels;
 using PowerPuff.Features.Timer.Views;
 using Prism.Autofac;
@@ -35,7 +36,7 @@ namespace PowerPuff.Features.Timer
 
             updater.RegisterType<TimerMainButtonViewModel>();
 
-            updater.RegisterTypeForNavigation<TimerMainView>(typeof(TimerMainView).FullName);
+            updater.RegisterTypeForNavigation<TimerMainView>(NavigableViews.Timer.MainView.GetFullName());
 
             updater.Update(_container);
         }

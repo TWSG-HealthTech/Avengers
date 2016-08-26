@@ -1,17 +1,17 @@
-﻿using PowerPuff.Common.Events;
-using PowerPuff.Features.VideoCall.Views;
+﻿using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
 using Prism.Commands;
-using Prism.Events;
+using Prism.Regions;
 
 namespace PowerPuff.Features.VideoCall.ViewModels
 {
     public class MainButtonViewModel
     {
-        private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
 
-        public MainButtonViewModel(IEventAggregator eventAggregator)
+        public MainButtonViewModel(IRegionManager regionManager)
         {
-            _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
 
             GoToVideoPageCommand = new DelegateCommand(GoToVideoPage);
         }
@@ -20,7 +20,7 @@ namespace PowerPuff.Features.VideoCall.ViewModels
 
         private void GoToVideoPage()
         {
-            _eventAggregator.PublishMainContentNavigationEvent(typeof(VideoMainView));
+            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.VideoCall.MainView.GetFullName());
         }
     }
 }

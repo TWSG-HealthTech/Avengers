@@ -1,17 +1,17 @@
-﻿using PowerPuff.Common.Events;
-using PowerPuff.Features.Timer.Views;
+﻿using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
 using Prism.Commands;
-using Prism.Events;
+using Prism.Regions;
 
 namespace PowerPuff.Features.Timer.ViewModels
 {
     public class TimerMainButtonViewModel
     {
-        private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
 
-        public TimerMainButtonViewModel(IEventAggregator eventAggregator)
+        public TimerMainButtonViewModel(IRegionManager regionManager)
         {
-            _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
 
             GoToTimerPageCommand = new DelegateCommand(GoToTimerPage);
         }
@@ -20,7 +20,7 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         private void GoToTimerPage()
         {
-            _eventAggregator.PublishMainContentNavigationEvent(typeof(TimerMainView));
+            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Timer.MainView.GetFullName());
         }
     }
 }

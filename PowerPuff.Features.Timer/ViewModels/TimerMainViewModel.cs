@@ -1,16 +1,17 @@
-﻿using PowerPuff.Common.Events;
+﻿using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
 using Prism.Commands;
-using Prism.Events;
+using Prism.Regions;
 
 namespace PowerPuff.Features.Timer.ViewModels
 {
     public class TimerMainViewModel
     {
-        private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
 
-        public TimerMainViewModel(IEventAggregator eventAggregator)
+        public TimerMainViewModel(IRegionManager regionManager)
         {
-            _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
 
             GoBackCommand = new DelegateCommand(GoBack);
         }
@@ -19,7 +20,7 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         private void GoBack()
         {
-            _eventAggregator.GetEvent<HomeNavigationEvent>().Publish();
+            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.HomeView.GetFullName());
         }
     }
 }

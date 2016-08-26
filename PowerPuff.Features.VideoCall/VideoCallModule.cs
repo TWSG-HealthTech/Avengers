@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
 using PowerPuff.Features.VideoCall.Services;
 using PowerPuff.Features.VideoCall.ViewModels;
 using PowerPuff.Features.VideoCall.Views;
@@ -37,7 +38,7 @@ namespace PowerPuff.Features.VideoCall
             updater.RegisterType<MainButtonViewModel>();
             updater.RegisterType<SkypeUriVideoCallService>().As<IVideoCallService>();
 
-            updater.RegisterTypeForNavigation<VideoMainView>(typeof(VideoMainView).FullName);
+            updater.RegisterTypeForNavigation<VideoMainView>(NavigableViews.VideoCall.MainView.GetFullName());
 
             updater.Update(_container);
         }

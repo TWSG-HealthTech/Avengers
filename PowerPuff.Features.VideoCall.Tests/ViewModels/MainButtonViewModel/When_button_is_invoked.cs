@@ -1,8 +1,7 @@
 ﻿using Machine.Specifications;
 using PowerPuff.Common;
-using PowerPuff.Common.Events;
-using PowerPuff.Features.VideoCall.Views;
-using Prism.Events;
+using PowerPuff.Common.Helpers;
+using Prism.Regions;
 using SUT = PowerPuff.Features.VideoCall.ViewModels;
 using M = Moq;
 
@@ -13,21 +12,19 @@ namespace PowerPuff.Features.VideoCall.Tests.ViewModels.MainButtonViewModel
     {
         Establish context = () =>
         {
-            _eventMock = new M.Mock<NavigationEvent>();
-            var eventAggregator = new M.Mock<IEventAggregator>();
-            eventAggregator.Setup(aggregator => aggregator.GetEvent<NavigationEvent>()).Returns(_eventMock.Object);
-            _subject = new SUT.MainButtonViewModel(eventAggregator.Object);
+            _regionManagerMock = new M.Mock<IRegionManager>();
+            _subject = new SUT.MainButtonViewModel(_regionManagerMock.Object);
         };
 
         private Because of = () => _subject.GoToVideoPageCommand.Execute();
 
         private It should_request_to_go_to_video_main_view =
             () =>
-                _eventMock.Verify(
-                    e =>
-                        e.Publish(new NavigationEventPayload(RegionNames.MainContentRegion,
-                            typeof(VideoMainView))));
+                _regionManagerMock.Verify(
+                    m =>
+                        m.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.VideoCall.MainView.GetFullName()));
+
         private static SUT.MainButtonViewModel _subject;
-        private static M.Mock<NavigationEvent> _eventMock;
+        private static M.Mock<IRegionManager> _regionManagerMock;
     }
 }

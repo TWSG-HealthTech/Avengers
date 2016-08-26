@@ -1,8 +1,7 @@
 ﻿using Machine.Specifications;
 using PowerPuff.Common;
-using PowerPuff.Common.Events;
-using PowerPuff.Features.Timer.Views;
-using Prism.Events;
+using PowerPuff.Common.Helpers;
+using Prism.Regions;
 using SUT = PowerPuff.Features.Timer.ViewModels;
 using M = Moq;
 
@@ -13,20 +12,17 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels.TimerMainButtonViewModel
     {
         Establish context = () =>
         {
-            _eventMock = new M.Mock<NavigationEvent>();
-            var eventAggregator = new M.Mock<IEventAggregator>();
-            eventAggregator.Setup(aggregator => aggregator.GetEvent<NavigationEvent>()).Returns(_eventMock.Object);
-            _subject = new SUT.TimerMainButtonViewModel(eventAggregator.Object);
+            _regionManagerMock = new M.Mock<IRegionManager>();
+            _subject = new SUT.TimerMainButtonViewModel(_regionManagerMock.Object);
         };
 
         Because of = () => _subject.GoToTimerPageCommand.Execute();
 
-        It should_request_to_go_to_the_timer_page = () =>
-            _eventMock.Verify(
-                e => e.Publish(new NavigationEventPayload(RegionNames.MainContentRegion,
-                    typeof(TimerMainView))));
+        private It should_request_to_go_to_the_timer_page = () =>
+            _regionManagerMock.Verify(
+                m => m.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Timer.MainView.GetFullName()));
 
         private static SUT.TimerMainButtonViewModel _subject;
-        private static M.Mock<NavigationEvent> _eventMock;
+        private static M.Mock<IRegionManager> _regionManagerMock;
     }
 }
