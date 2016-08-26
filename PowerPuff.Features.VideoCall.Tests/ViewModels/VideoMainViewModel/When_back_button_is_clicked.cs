@@ -12,10 +12,11 @@ namespace PowerPuff.Features.VideoCall.Tests.ViewModels.VideoMainViewModel
         Establish context = () =>
         {
             _eventMock = new M.Mock<HomeNavigationEvent>();
-            var eventAggregator = new M.Mock<IEventAggregator>();
-            eventAggregator.Setup(aggregator => aggregator.GetEvent<HomeNavigationEvent>())
+            var eventAggregatorMock = new M.Mock<IEventAggregator>();
+            eventAggregatorMock.Setup(aggregator => aggregator.GetEvent<HomeNavigationEvent>())
                 .Returns(_eventMock.Object);
-            _subject = new SUT.VideoMainViewModel(eventAggregator.Object);
+            var videoCallServiceMock = new M.Mock<SUT.IVideoCallService>();
+            _subject = new SUT.VideoMainViewModel(eventAggregatorMock.Object, videoCallServiceMock.Object);
         };
 
         Because of = () => _subject.GoBackCommand.Execute();
