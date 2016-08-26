@@ -4,11 +4,11 @@ using PowerPuff.ViewModels;
 namespace PowerPuff.Views
 {
     /// <summary>
-    /// Interaction logic for MainButtonsView.xaml
+    /// Interaction logic for SettingsView.xaml
     /// </summary>
-    public partial class MainButtonsView : UserControl
+    public partial class SettingsView : UserControl
     {
-        public MainButtonsView(MainButtonsViewModel viewModel)
+        public SettingsView(SettingsViewModel viewModel)
         {
             InitializeComponent();
 

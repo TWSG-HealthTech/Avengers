@@ -1,5 +1,4 @@
-﻿using System;
-using PowerPuff.Common;
+﻿using PowerPuff.Common;
 using PowerPuff.Common.Events;
 using PowerPuff.Views;
 using Prism.Events;

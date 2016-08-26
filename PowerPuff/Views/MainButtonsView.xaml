@@ -14,5 +14,12 @@
                 <WrapPanel />
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
+
+        <Button
+             Content="Settings"
+             Style="{DynamicResource MainButtonStyle}"
+             Command="{Binding GoToSettingsCommand}">
+        </Button>
+
     </ItemsControl>
 </UserControl>

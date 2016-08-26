@@ -4,6 +4,7 @@ using PowerPuff.Common;
 using PowerPuff.Common.Logging;
 using PowerPuff.Modules;
 using PowerPuff.Speech;
+using PowerPuff.ViewModels;
 using PowerPuff.Views;
 using Prism.Autofac;
 using Prism.Modularity;
@@ -37,12 +38,15 @@ namespace PowerPuff
             base.ConfigureContainerBuilder(builder);
 
             builder.RegisterType<ShellViewModel>();
+            builder.RegisterType<MainButtonsViewModel>();
+            builder.RegisterType<SettingsViewModel>();
             builder.RegisterType<NLogAdapter>().As<ILogger>();
             builder.RegisterType<ActiveListenerModule>();
             builder.RegisterType<ActiveListenerView>().As<IActiveListenerView>();
             builder.RegisterType<ActiveListener>().As<IActiveListener>();
 
-            builder.RegisterTypeForNavigation<MainButtonsView>(typeof(MainButtonsView).FullName);
+            RegisterTypeForNavigation<MainButtonsView>(builder);
+            RegisterTypeForNavigation<SettingsView>(builder);
             
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => Container.Resolve(type));
         }
@@ -53,6 +57,11 @@ namespace PowerPuff
             {
                 ModulePath = @".\Features"
             };
+        }
+
+        private void RegisterTypeForNavigation<T>(ContainerBuilder builder)
+        {
+            builder.RegisterTypeForNavigation<T>(typeof(T).FullName);
         }
 
         private IComponentContext ComponentContext => Container;
