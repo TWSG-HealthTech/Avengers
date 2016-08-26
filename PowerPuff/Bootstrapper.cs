@@ -38,9 +38,10 @@ namespace PowerPuff
             builder.RegisterType<ShellViewModel>();
             builder.RegisterType<NLogAdapter>().As<ILogger>();
             builder.RegisterType<ActiveListenerModule>();
+            builder.RegisterType<ActiveListenerView>();
 
             builder.RegisterTypeForNavigation<MainButtonsView>(typeof(MainButtonsView).FullName);
-
+            
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => Container.Resolve(type));
         }
 

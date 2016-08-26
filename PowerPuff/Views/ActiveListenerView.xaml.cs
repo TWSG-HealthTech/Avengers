@@ -18,7 +18,7 @@ namespace PowerPuff.Views
     /// <summary>
     /// Interaction logic for ActiveListener.xaml
     /// </summary>
-    public partial class ActiveListenerView : UserControl
+    public partial class ActiveListenerView : Button
     {
         public ActiveListenerView()
         {
