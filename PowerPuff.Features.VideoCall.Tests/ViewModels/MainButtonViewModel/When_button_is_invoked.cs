@@ -1,4 +1,5 @@
-﻿using Machine.Specifications;
+﻿using System;
+using Machine.Specifications;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using Prism.Regions;
@@ -22,7 +23,7 @@ namespace PowerPuff.Features.VideoCall.Tests.ViewModels.MainButtonViewModel
             () =>
                 _regionManagerMock.Verify(
                     m =>
-                        m.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.VideoCall.MainView.GetFullName()));
+                        m.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.FeatureLayoutView.GetFullName(), M.It.IsAny<Action<NavigationResult>>()));
 
         private static SUT.MainButtonViewModel _subject;
         private static M.Mock<IRegionManager> _regionManagerMock;

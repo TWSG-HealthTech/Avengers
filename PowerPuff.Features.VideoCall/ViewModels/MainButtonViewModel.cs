@@ -20,7 +20,11 @@ namespace PowerPuff.Features.VideoCall.ViewModels
 
         private void GoToVideoPage()
         {
-            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.VideoCall.MainView.GetFullName());
+            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.FeatureLayoutView.GetFullName(),
+                result =>
+                {
+                    _regionManager.RequestNavigate(RegionNames.FeatureMainContentRegion, NavigableViews.VideoCall.MainView.GetFullName());
+                });
         }
     }
 }

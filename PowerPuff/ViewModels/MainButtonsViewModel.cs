@@ -19,7 +19,11 @@ namespace PowerPuff.ViewModels
         public DelegateCommand GoToSettingsCommand { get; private set; }
         private void GoToSettings()
         {
-            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.SettingsView.GetFullName());
+            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.FeatureLayoutView.GetFullName(),
+                result =>
+                {
+                    _regionManager.RequestNavigate(RegionNames.FeatureMainContentRegion, NavigableViews.Main.SettingsView.GetFullName());
+                });
         }
 
         public bool KeepAlive { get; } = false;

@@ -41,6 +41,7 @@ namespace PowerPuff
             builder.RegisterType<ShellViewModel>();
             builder.RegisterType<MainButtonsViewModel>();
             builder.RegisterType<SettingsViewModel>();
+            builder.RegisterType<FeatureLayoutViewModel>();
             builder.RegisterType<NLogAdapter>().As<ILogger>();
             builder.RegisterType<ActiveListenerModule>();
             builder.RegisterType<ActiveListenerView>().As<IActiveListenerView>();
@@ -48,6 +49,7 @@ namespace PowerPuff
 
             builder.RegisterTypeForNavigation<MainButtonsView>(NavigableViews.Main.HomeView.GetFullName());
             builder.RegisterTypeForNavigation<SettingsView>(NavigableViews.Main.SettingsView.GetFullName());            
+            builder.RegisterTypeForNavigation<FeatureLayoutView>(NavigableViews.Main.FeatureLayoutView.GetFullName());            
             
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => Container.Resolve(type));
         }

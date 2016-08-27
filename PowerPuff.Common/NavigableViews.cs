@@ -5,7 +5,8 @@
         public enum Main
         {
             HomeView,
-            SettingsView
+            SettingsView,
+            FeatureLayoutView
         }
 
         public enum VideoCall

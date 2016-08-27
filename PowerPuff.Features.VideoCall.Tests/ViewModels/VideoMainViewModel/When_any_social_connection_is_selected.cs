@@ -1,7 +1,6 @@
 ﻿using System;
 using Machine.Specifications;
 using PowerPuff.Features.VideoCall.Models;
-using Prism.Regions;
 using SUT = PowerPuff.Features.VideoCall.ViewModels;
 using M = Moq;
 
@@ -12,9 +11,8 @@ namespace PowerPuff.Features.VideoCall.Tests.ViewModels.VideoMainViewModel
     {
         Establish context = () =>
         {
-            var regionManagerMock = new M.Mock<IRegionManager>();
             _videoCallServiceMock = new M.Mock<SUT.IVideoCallService>();
-            _subject = new SUT.VideoMainViewModel(regionManagerMock.Object, _videoCallServiceMock.Object);
+            _subject = new SUT.VideoMainViewModel(_videoCallServiceMock.Object);
 
             _selectedConnection = new SocialConnection
             {

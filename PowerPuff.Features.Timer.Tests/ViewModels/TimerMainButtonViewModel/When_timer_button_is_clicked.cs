@@ -1,4 +1,5 @@
-﻿using Machine.Specifications;
+﻿using System;
+using Machine.Specifications;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using Prism.Regions;
@@ -20,7 +21,7 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels.TimerMainButtonViewModel
 
         private It should_request_to_go_to_the_timer_page = () =>
             _regionManagerMock.Verify(
-                m => m.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Timer.MainView.GetFullName()));
+                m => m.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.FeatureLayoutView.GetFullName(), M.It.IsAny<Action<NavigationResult>>()));
 
         private static SUT.TimerMainButtonViewModel _subject;
         private static M.Mock<IRegionManager> _regionManagerMock;

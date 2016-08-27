@@ -82,7 +82,6 @@
     <Compile Include="TimerModule\When_initialize_timer_module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\TimerMainButtonViewModel\When_timer_button_is_clicked.cs" />
-    <Compile Include="ViewModels\TimerMainViewModel\When_back_button_in_timer_is_clicked.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

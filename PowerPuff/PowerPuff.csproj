@@ -91,10 +91,14 @@
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="Speech\ActiveListener.cs" />
     <Compile Include="Speech\IActiveListener.cs" />
+    <Compile Include="ViewModels\FeatureLayoutViewModel.cs" />
     <Compile Include="ViewModels\MainButtonsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\ActiveListenerView.xaml.cs">
       <DependentUpon>ActiveListenerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FeatureLayoutView.xaml.cs">
+      <DependentUpon>FeatureLayoutView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IActiveListenerView.cs" />
     <Compile Include="Views\MainButtonsView.xaml.cs">
@@ -112,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ActiveListenerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FeatureLayoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

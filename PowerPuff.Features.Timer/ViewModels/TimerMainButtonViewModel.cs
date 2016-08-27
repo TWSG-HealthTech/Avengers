@@ -20,7 +20,11 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         private void GoToTimerPage()
         {
-            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Timer.MainView.GetFullName());
+            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.FeatureLayoutView.GetFullName(),
+                result =>
+                {
+                    _regionManager.RequestNavigate(RegionNames.FeatureMainContentRegion, NavigableViews.Timer.MainView.GetFullName());
+                });
         }
     }
 }
