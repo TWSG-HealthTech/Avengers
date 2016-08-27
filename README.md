@@ -15,6 +15,10 @@ Source:
 Tests: mirror structure of Source folder
 ```
 
+## Layout Structures
+
+![alt Layout Structure](https://dl.dropboxusercontent.com/u/55034418/AvengersLayoutStructure.png "Layout Structure")
+
 ## Technical Details
 
 ### Navigation
