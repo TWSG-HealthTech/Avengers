@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using PowerPuff.Features.Timer.ViewModels;
-
+using System.Windows.Threading;
+using System;
 
 namespace PowerPuff.Features.Timer.Views
 {
