@@ -1,8 +1,11 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using PowerPuff.Common.Logging;
+using PowerPuff.Common.Prism;
+using PowerPuff.Common.Settings;
 using PowerPuff.Modules;
 using PowerPuff.Speech;
 using PowerPuff.ViewModels;
@@ -47,11 +50,24 @@ namespace PowerPuff
             builder.RegisterType<ActiveListenerView>().As<IActiveListenerView>();
             builder.RegisterType<ActiveListener>().As<IActiveListener>();
 
+            builder.RegisterType<SettingsRepository>().As<ISettingsRepository>().SingleInstance();
+
+            builder.RegisterType<ScopedRegionNavigationContentLoader>().As<IRegionNavigationContentLoader>().SingleInstance();
+
             builder.RegisterTypeForNavigation<MainButtonsView>(NavigableViews.Main.HomeView.GetFullName());
             builder.RegisterTypeForNavigation<SettingsView>(NavigableViews.Main.SettingsView.GetFullName());            
             builder.RegisterTypeForNavigation<FeatureLayoutView>(NavigableViews.Main.FeatureLayoutView.GetFullName());            
             
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => Container.Resolve(type));
+        }
+
+        protected override IRegionBehaviorFactory ConfigureDefaultRegionBehaviors()
+        {
+            var behaviors = base.ConfigureDefaultRegionBehaviors();
+
+            behaviors.AddIfMissing(RegionManagerAwareBehavior.BehaviorKey, typeof(RegionManagerAwareBehavior));
+
+            return behaviors;
         }
 
         protected override IModuleCatalog CreateModuleCatalog()

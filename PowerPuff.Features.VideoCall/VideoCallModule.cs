@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
+using PowerPuff.Common.Settings;
 using PowerPuff.Features.VideoCall.Services;
 using PowerPuff.Features.VideoCall.ViewModels;
 using PowerPuff.Features.VideoCall.Views;
@@ -28,7 +29,15 @@ namespace PowerPuff.Features.VideoCall
 
             _regionManager.RegisterViewWithRegion(RegionNames.MainButtonsRegion, typeof(MainButtonView));
 
+            ConfigureSettingMenu();
+
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => _container.Resolve(type));
+        }
+
+        private void ConfigureSettingMenu()
+        {
+            var settingsRepository = _container.Resolve<ISettingsRepository>();
+            settingsRepository.RegisterMenu("Video", NavigableViews.VideoCall.SettingsView.GetFullName());
         }
 
         private void ConfigureDependencies()
@@ -39,6 +48,7 @@ namespace PowerPuff.Features.VideoCall
             updater.RegisterType<SkypeUriVideoCallService>().As<IVideoCallService>();
 
             updater.RegisterTypeForNavigation<VideoMainView>(NavigableViews.VideoCall.MainView.GetFullName());
+            updater.RegisterTypeForNavigation<SettingsView>(NavigableViews.VideoCall.SettingsView.GetFullName());
 
             updater.Update(_container);
         }

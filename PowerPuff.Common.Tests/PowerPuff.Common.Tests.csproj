@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\SettingsRepository\When_register_a_menu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

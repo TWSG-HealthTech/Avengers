@@ -9,7 +9,7 @@ using M = Moq;
 namespace PowerPuff.Features.VideoCall.Tests.ViewModels.MainButtonViewModel
 {
     [Subject(typeof(SUT.MainButtonViewModel))]
-    public class When_button_is_invoked
+    public class When_main_button_is_invoked
     {
         Establish context = () =>
         {

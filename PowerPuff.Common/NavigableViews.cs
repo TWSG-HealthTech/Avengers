@@ -11,7 +11,8 @@
 
         public enum VideoCall
         {
-            MainView
+            MainView,
+            SettingsView
         }
 
         public enum Timer

@@ -3,10 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="http://prismlibrary.com/"
              xmlns:local="clr-namespace:PowerPuff.Views"
+             xmlns:common="clr-namespace:PowerPuff.Common;assembly=PowerPuff.Common"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="70"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -18,5 +26,55 @@
                    FontWeight="Bold">
             Settings
         </TextBlock>
+
+        <ListBox Grid.Row="1" 
+                 Grid.Column="0"
+                 ItemsSource="{Binding SettingMenus, Mode=OneWay}"
+                 DisplayMemberPath="Title"
+                 Background="#FF436B95"
+                 Margin="5"
+                 SelectedItem="{Binding SelectedMenu}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <prism:InvokeCommandAction Command="{Binding LoadSettingsViewCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Style.Setters>
+                        <Setter Property="Margin" Value="5" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border BorderBrush="#5076A7" 
+                                            BorderThickness="1,1,1,1"
+				                            CornerRadius="4,4,4,4">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#FFFFFF" Offset="0.0" />
+                                                <GradientStop Color="#C0D3EA" Offset="1.0" />
+                                            </LinearGradientBrush>
+
+                                        </Border.Background>
+                                        <StackPanel TextElement.FontFamily="Segoe UI"
+						                            TextElement.FontSize="12">
+                                            <TextBlock FontWeight="Bold" 
+                                                       Padding="10"
+						                               Text="{Binding Path=Title}" />
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style.Setters>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        
+        <ContentControl Grid.Row="1" 
+                        Grid.Column="1"
+                        Margin="5"
+                        prism:RegionManager.RegionName="{x:Static common:RegionNames.SettingContentRegion}" ></ContentControl>
     </Grid>
 </UserControl>

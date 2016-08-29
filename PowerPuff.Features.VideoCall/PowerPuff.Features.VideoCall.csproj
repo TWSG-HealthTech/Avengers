@@ -80,6 +80,9 @@
     <Compile Include="Views\MainButtonView.xaml.cs">
       <DependentUpon>MainButtonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VideoMainView.xaml.cs">
       <DependentUpon>VideoMainView.xaml</DependentUpon>
     </Compile>
@@ -90,6 +93,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MainButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -82,7 +82,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VideoCallModule\When_initialize_module.cs" />
-    <Compile Include="ViewModels\MainButtonViewModel\When_button_is_invoked.cs" />
+    <Compile Include="ViewModels\MainButtonViewModel\When_main_button_is_invoked.cs" />
     <Compile Include="ViewModels\VideoMainViewModel\When_any_social_connection_is_selected.cs" />
   </ItemGroup>
   <ItemGroup>

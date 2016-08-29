@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using PowerPuff.Common.Prism;
 using PowerPuff.ViewModels;
 
 namespace PowerPuff.Views
@@ -6,7 +7,7 @@ namespace PowerPuff.Views
     /// <summary>
     /// Interaction logic for SettingsView.xaml
     /// </summary>
-    public partial class SettingsView : UserControl
+    public partial class SettingsView : UserControl, ICreateRegionManagerScope
     {
         public SettingsView(SettingsViewModel viewModel)
         {
@@ -14,5 +15,7 @@ namespace PowerPuff.Views
 
             DataContext = viewModel;
         }
+
+        public bool CreateRegionManagerScope { get; } = true;
     }
 }
