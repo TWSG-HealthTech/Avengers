@@ -17,6 +17,7 @@ namespace PowerPuff.Modules
             _view = view;
             _view.OnListnerActivatorClick += activeListener.BeginActiveListening;
             activeListener.ActiveListeningStarted += _view.ActiveListeningStarted;
+            activeListener.ActiveListeningStopped += _view.ActiveListeningStopped;
         }
 
         public void Initialize()

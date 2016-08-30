@@ -51,5 +51,13 @@ namespace PowerPuff.Tests.Modules
             It should_tell_the_view_active_listening_is_started = () =>
                 _activeListenerViewMock.Verify(alv => alv.ActiveListeningStarted());
         }
+
+        class OnActiveListeningEnded
+        {
+            Because of = () => _activeListenerMock.Raise(al => al.ActiveListeningStopped += null);
+
+            It should_tell_the_view_active_listening_is_stopped = () =>
+                _activeListenerViewMock.Verify(alv => alv.ActiveListeningStopped());
+        }
     }
 }

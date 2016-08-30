@@ -7,5 +7,6 @@ namespace PowerPuff.Views
         event Action OnListnerActivatorClick;
 
         void ActiveListeningStarted();
+        void ActiveListeningStopped();
     }
 }

@@ -12,6 +12,7 @@ namespace PowerPuff.Views
     public partial class ActiveListenerView : ButtonBase, IActiveListenerView
     {
         public event Action OnListnerActivatorClick;
+
         public void ActiveListeningStarted()
         {
             Dispatcher.BeginInvoke(new Action(() =>
@@ -49,6 +50,21 @@ namespace PowerPuff.Views
 
                 triangleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, daTriangle);
                 triangleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, daTriangle);
+            }));
+        }
+
+        public void ActiveListeningStopped()
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                rectangleScale.BeginAnimation(ScaleTransform.ScaleXProperty, null);
+                rectangleScale.BeginAnimation(ScaleTransform.ScaleYProperty, null);
+
+                circleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, null);
+                circleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, null);
+
+                triangleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, null);
+                triangleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, null);
             }));
         }
 

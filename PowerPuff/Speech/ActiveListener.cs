@@ -52,6 +52,10 @@ namespace PowerPuff.Speech
             {
                 ActiveListeningStarted?.Invoke();
             }
+            else
+            {
+                ActiveListeningStopped?.Invoke();
+            }
         }
     }
 }
