@@ -16,6 +16,7 @@ namespace PowerPuff.Modules
             _regionManager = regionManager;
             _view = view;
             _view.OnListnerActivatorClick += activeListener.BeginActiveListening;
+            activeListener.ActiveListeningStarted += _view.ActiveListeningStarted;
         }
 
         public void Initialize()

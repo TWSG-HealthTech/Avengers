@@ -10,9 +10,22 @@
              MinWidth="300" MaxWidth="300"
             Click="ActiveListenerView_OnClick">
     <Grid Height="85" VerticalAlignment="Top">
-        <Rectangle Fill="#FFF40000" HorizontalAlignment="Left" Height="27.273" Margin="57.056,22.657,0,0" Stroke="Black" VerticalAlignment="Top" Width="25.174"/>
-        <Ellipse Fill="#FF00F400" HorizontalAlignment="Left" Height="26.514" Margin="68.384,41.958,0,0" Stroke="Black" VerticalAlignment="Top" Width="25.63"/>
-        <Polygon Points="34.325279,67.891957 46.493307,88.870824 22.157242,88.870456" Fill="#FF0000F4" HorizontalAlignment="Left" Height="26.514" Margin="46.916,41.958,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="28.601"/>
+        <Rectangle x:Name="square" Fill="#FFF40000" HorizontalAlignment="Left" Height="27.273" Margin="57.056,22.657,0,0" Stroke="Black" VerticalAlignment="Top" Width="25.174">
+            <Rectangle.RenderTransform>
+                <ScaleTransform x:Name="rectangleScale"  ScaleX="1" ScaleY="1"></ScaleTransform>
+            </Rectangle.RenderTransform>    
+        </Rectangle>
+        <Ellipse x:Name="circle" Fill="#FF00F400" HorizontalAlignment="Left" Height="26.514" Margin="68.384,41.958,0,0" Stroke="Black" VerticalAlignment="Top" Width="25.63">
+            <Ellipse.RenderTransform>
+                <ScaleTransform x:Name="circleTransform" ScaleX="1" ScaleY="1"></ScaleTransform>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+        <Polygon x:Name="triangle"  Points="34.325279,67.891957 46.493307,88.870824 22.157242,88.870456" Fill="#FF0000F4" HorizontalAlignment="Left" Height="26.514" Margin="46.916,41.958,0,0" Stretch="Fill" Stroke="Black" VerticalAlignment="Top" Width="28.601">
+            <Polygon.RenderTransform>
+                <ScaleTransform x:Name="triangleTransform" ScaleX="1" ScaleY="1"></ScaleTransform>
+            </Polygon.RenderTransform>
+        </Polygon>
+                 
         <Polygon Points="62.097902,43.216783 73.765635,36.422859 82.156783,14.605003 280.24279,12.941501 282.341,65.808307 81.318115,67.471675 74.604817,49.429854" Fill="#FFF4F4F5" Margin="99.014,12.941,68.819,16.283" Stretch="Fill" Stroke="Black"/>
         <TextBlock x:Name="textBlock" Height="39.021" Margin="122.93,22.657,68.819,0" TextWrapping="Wrap" Text="Hey Cate" VerticalAlignment="Top" FontSize="24"/>
     </Grid>

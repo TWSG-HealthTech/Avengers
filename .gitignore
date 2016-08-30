@@ -247,3 +247,6 @@ ModelManifest.xml
 # CAKE
 tools/*
 !tools/NuGet.exe
+
+# Secrets
+App.secrets.config

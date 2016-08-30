@@ -7,6 +7,7 @@ using PowerPuff.Common.Logging;
 using PowerPuff.Common.Prism;
 using PowerPuff.Common.Settings;
 using PowerPuff.Modules;
+using PowerPuff.Settings;
 using PowerPuff.Speech;
 using PowerPuff.ViewModels;
 using PowerPuff.Views;
@@ -49,6 +50,7 @@ namespace PowerPuff
             builder.RegisterType<ActiveListenerModule>();
             builder.RegisterType<ActiveListenerView>().As<IActiveListenerView>();
             builder.RegisterType<ActiveListener>().As<IActiveListener>();
+            builder.RegisterType<ApplicationSettings>().As<IApplicationSettings>();
 
             builder.RegisterType<SettingsRepository>().As<ISettingsRepository>().SingleInstance();
 
