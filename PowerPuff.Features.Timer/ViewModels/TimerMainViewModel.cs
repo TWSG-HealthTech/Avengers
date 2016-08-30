@@ -25,7 +25,7 @@ namespace PowerPuff.Features.Timer.ViewModels
             StopTimerButton = new DelegateCommand(StopTimer);
             AddSecondsButton = new DelegateCommand(IncreaseSeconds);
             SubtractSecondsButton = new DelegateCommand(DecreaseSeconds);
-        }
+        }   
 
         private string _hours;
         public string Hours
@@ -59,9 +59,6 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         private void StartTimer()
         {
-            timer = new TimeSpan(0, 1, 5);
-            UpdatePropertiesForTimerDisplay();
-
             _timerObject.Start();
             IsTimerEnabled = _timerObject.IsEnabled.ToString();
         }
@@ -71,8 +68,6 @@ namespace PowerPuff.Features.Timer.ViewModels
         private void StopTimer()
         {
             _timerObject.Stop();
-            timer = new TimeSpan(0, 1, 5);
-            UpdatePropertiesForTimerDisplay();
             IsTimerEnabled = _timerObject.IsEnabled.ToString();
         }
 
@@ -98,9 +93,7 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         private void timerTick(object obj, EventArgs e)
         {
-            timer = timer.Subtract(new TimeSpan(0, 0, 1));
-            UpdatePropertiesForTimerDisplay();
-
+            DecreaseSeconds();
             if (timer.TotalSeconds == 0)
             {
                 StopTimer();

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PowerPuff.Features.Timer.Views"
-             xmlns:ViewModels="clr-namespace:PowerPuff.Features.Timer.ViewModels" x:Class="PowerPuff.Features.Timer.Views.TimerMainView"
+             xmlns:ViewModels="clr-namespace:PowerPuff.Features.Timer.ViewModels" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="PowerPuff.Features.Timer.Views.TimerMainView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
@@ -26,8 +26,7 @@
                    TextWrapping="Wrap"
                    VerticalAlignment="Center"
                    Text="{Binding Hours}"
-                   FontSize="60">
-        </TextBlock>
+                   FontSize="60"/>
         <TextBlock x:Name="textBlock_MM"
                    Grid.Row="1" 
                    HorizontalAlignment="Center"
@@ -43,13 +42,12 @@
                    TextWrapping="Wrap"
                    VerticalAlignment="Center"
                    FontSize="60"
-                   Text="{Binding Seconds}">
-        </TextBlock>
-        
+                   Text="{Binding Seconds}"/>
+
         <Button x:Name="btn_Start"
                 Content="Start"
                 HorizontalAlignment="Center"
-                Margin="331,157,95,52"
+                Margin="331,177,95,32"
                 Grid.Row="1"
                 VerticalAlignment="Center"
                 Width="74" 
@@ -58,11 +56,27 @@
         <Button x:Name="btn_Stop"
                 Content="Stop"
                 HorizontalAlignment="Center"
-                Margin="96,157,330,52"
+                Margin="96,177,330,32"
                 Grid.Row="1"
                 VerticalAlignment="Center"
                 Width="74" 
                 Command="{Binding StopTimerButton}"/>
+        <Button x:Name="incrSeconds" 
+                Content="/\"
+                HorizontalAlignment="Center" 
+                Margin="331,24,95,186" 
+                Grid.Row="1" 
+                VerticalAlignment="Center" 
+                Width="74"
+                Command="{Binding AddSecondsButton}"/>
+        <Button x:Name="decrSeconds" 
+            Content="\/"
+            HorizontalAlignment="Center" 
+            Margin="331,152,95,58" 
+            Grid.Row="1" 
+            VerticalAlignment="Center" 
+            Width="74"
+            Command="{Binding SubtractSecondsButton}"/>
 
     </Grid>
 </UserControl>
