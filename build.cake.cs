@@ -7,13 +7,15 @@ using System.Linq;
 
 var target = Argument("target", "Default");
 var buildConfiguration = "Release";
+var platformTarget = PlatformTarget.MSIL;   //AnyCPU
 
 Task("Build")
   .Does(() =>
 {
   NuGetRestore("Avengers.sln");
   MSBuild("Avengers.sln", new MSBuildSettings {
-    Configuration = buildConfiguration
+    Configuration = buildConfiguration,
+    PlatformTarget = platformTarget
   });
 });
 
