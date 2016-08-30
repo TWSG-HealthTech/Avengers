@@ -53,5 +53,24 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels.TimerMainViewModel
 
             It should_decrease_the_number_of_seconds = () => _subject.Seconds.ShouldEqual($"{0:D2}");
         }
+
+        class When_Up_Button_for_minutes_is_clicked
+        {
+            Because of = () => _subject.AddMinutesButton.Execute();
+
+            It should_increase_the_number_of_minutes = () => _subject.Minutes.ShouldEqual($"{1:D2}");
+        }
+
+        class When_Down_Button_for_minutes_is_clicked
+        {
+            Establish stopContext = () =>
+            {
+                _subject.AddMinutesButton.Execute();
+            };
+
+            Because of = () => _subject.SubtractMinutesButton.Execute();
+
+            It should_decrease_the_number_of_Minutes = () => _subject.Minutes.ShouldEqual($"{0:D2}");
+        }
     }
 }

@@ -23,8 +23,10 @@ namespace PowerPuff.Features.Timer.ViewModels
 
             StartTimerButton = new DelegateCommand(StartTimer);
             StopTimerButton = new DelegateCommand(StopTimer);
-            AddSecondsButton = new DelegateCommand(IncreaseSeconds);
-            SubtractSecondsButton = new DelegateCommand(DecreaseSeconds);
+            AddSecondsButton = new DelegateCommand(IncreaseSecond);
+            SubtractSecondsButton = new DelegateCommand(DecreaseSecond);
+            AddMinutesButton = new DelegateCommand(IncreaseMinute);
+            SubtractMinutesButton = new DelegateCommand(DecreaseMinute);
         }   
 
         private string _hours;
@@ -73,7 +75,7 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         public DelegateCommand AddSecondsButton { get; private set; }
 
-        private void IncreaseSeconds()
+        private void IncreaseSecond()
         {
             timer = timer.Add(new TimeSpan(0, 0, 1));
             UpdatePropertiesForTimerDisplay();
@@ -81,19 +83,37 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         public DelegateCommand SubtractSecondsButton { get; private set; }
 
-        private void DecreaseSeconds()
+        private void DecreaseSecond()
         {
-            timer = timer.Subtract(new TimeSpan(0, 0, 1));
-            if (timer.TotalSeconds < 0)
+            if (timer.TotalSeconds > 0)
             {
-                timer = new TimeSpan();
+                timer = timer.Subtract(new TimeSpan(0, 0, 1));
+            }
+            UpdatePropertiesForTimerDisplay();
+        }
+
+        public DelegateCommand AddMinutesButton { get; set; }
+
+        private void IncreaseMinute()
+        {
+            timer = timer.Add(new TimeSpan(0, 1, 0));
+            UpdatePropertiesForTimerDisplay();
+        }
+
+        public DelegateCommand SubtractMinutesButton { get; set; }
+
+        private void DecreaseMinute()
+        {
+            if (timer.Minutes > 0)
+            {
+                timer = timer.Subtract(new TimeSpan(0, 1, 0));
             }
             UpdatePropertiesForTimerDisplay();
         }
 
         private void timerTick(object obj, EventArgs e)
         {
-            DecreaseSeconds();
+            DecreaseSecond();
             if (timer.TotalSeconds == 0)
             {
                 StopTimer();
