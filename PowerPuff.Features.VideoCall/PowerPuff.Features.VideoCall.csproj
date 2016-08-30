@@ -94,6 +94,7 @@
     <Compile Include="VideoCallModule.cs" />
     <Compile Include="ViewModels\IVideoCallService.cs" />
     <Compile Include="ViewModels\MainButtonViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\VideoMainViewModel.cs" />
     <Compile Include="Views\MainButtonView.xaml.cs">
       <DependentUpon>MainButtonView.xaml</DependentUpon>

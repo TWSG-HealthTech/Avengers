@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using PowerPuff.Common;
 using PowerPuff.Common.Prism;
 using PowerPuff.Common.Settings;
@@ -48,7 +49,7 @@ namespace PowerPuff.ViewModels
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
-            return true;
+            return false;
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
