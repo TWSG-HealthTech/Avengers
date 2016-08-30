@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using Autofac;
+﻿using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using PowerPuff.Common.Logging;
@@ -15,6 +13,7 @@ using Prism.Autofac;
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
+using System.Windows;
 
 namespace PowerPuff
 {
@@ -36,8 +35,10 @@ namespace PowerPuff
 
             ConfigureSettings();
 
+            Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             Application.Current.MainWindow = (Window)Shell;
             Application.Current.MainWindow.Show();
+            Application.Current.Exit += (sender, args) => Container.Dispose();
         }
 
         private void ConfigureSettings()
@@ -56,10 +57,10 @@ namespace PowerPuff
             builder.RegisterType<FeatureLayoutViewModel>();
             builder.RegisterType<SocialConnectionSettingsViewModel>();
             builder.RegisterType<NLogAdapter>().As<ILogger>();
-            builder.RegisterType<ActiveListenerModule>();
+            builder.RegisterType<ActiveListenerModule>().SingleInstance();
             builder.RegisterType<ActiveListenerView>().As<IActiveListenerView>();
-            builder.RegisterType<ActiveListener>().As<IActiveListener>();
-            builder.RegisterType<ApplicationSettings>().As<IApplicationSettings>();
+            builder.RegisterType<ActiveListener>().As<IActiveListener>().SingleInstance();
+            builder.RegisterType<ApplicationSettings>().As<IApplicationSettings>().SingleInstance();
 
             builder.RegisterType<MenuSettingsRepository>().As<IMenuSettingsRepository>().SingleInstance();
 

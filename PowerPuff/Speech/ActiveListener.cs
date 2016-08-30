@@ -57,5 +57,10 @@ namespace PowerPuff.Speech
                 ActiveListeningStopped?.Invoke();
             }
         }
+
+        public void Dispose()
+        {
+            _microphoneClient?.Dispose();
+        }
     }
 }

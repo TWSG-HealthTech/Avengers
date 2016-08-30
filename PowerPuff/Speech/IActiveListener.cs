@@ -2,7 +2,7 @@
 
 namespace PowerPuff.Speech
 {
-    public interface IActiveListener
+    public interface IActiveListener : IDisposable
     {
         void BeginActiveListening();
         event Action ActiveListeningStarted;
