@@ -21,29 +21,10 @@ namespace PowerPuff.Features.Timer.ViewModels
 
             IsTimerEnabled = _timerObject.IsEnabled.ToString();
 
-            ButtonStartTimer = new DelegateCommand(StartTimer);
-            ButtonStopTimer = new DelegateCommand(StopTimer);
-        }
-
-        public DelegateCommand ButtonStartTimer { get; private set; }
-
-        public void StartTimer()
-        {
-            timer = new TimeSpan(0, 1, 5);
-            UpdatePropertiesForTimerDisplay();
-
-            _timerObject.Start();
-            IsTimerEnabled = _timerObject.IsEnabled.ToString();
-        }
-
-        public DelegateCommand ButtonStopTimer { get; private set; }
-
-        public void StopTimer()
-        {
-            _timerObject.Stop();
-            timer = new TimeSpan(0, 1, 5);
-            UpdatePropertiesForTimerDisplay();
-            IsTimerEnabled = _timerObject.IsEnabled.ToString();
+            StartTimerButton = new DelegateCommand(StartTimer);
+            StopTimerButton = new DelegateCommand(StopTimer);
+            AddSecondsButton = new DelegateCommand(IncreaseSeconds);
+            SubtractSecondsButton = new DelegateCommand(DecreaseSeconds);
         }
 
         private string _hours;
@@ -74,6 +55,47 @@ namespace PowerPuff.Features.Timer.ViewModels
             set { SetProperty(ref _isTimerEnabled, value); }
         }
 
+        public DelegateCommand StartTimerButton { get; private set; }
+
+        private void StartTimer()
+        {
+            timer = new TimeSpan(0, 1, 5);
+            UpdatePropertiesForTimerDisplay();
+
+            _timerObject.Start();
+            IsTimerEnabled = _timerObject.IsEnabled.ToString();
+        }
+
+        public DelegateCommand StopTimerButton { get; private set; }
+
+        private void StopTimer()
+        {
+            _timerObject.Stop();
+            timer = new TimeSpan(0, 1, 5);
+            UpdatePropertiesForTimerDisplay();
+            IsTimerEnabled = _timerObject.IsEnabled.ToString();
+        }
+
+        public DelegateCommand AddSecondsButton { get; private set; }
+
+        private void IncreaseSeconds()
+        {
+            timer = timer.Add(new TimeSpan(0, 0, 1));
+            UpdatePropertiesForTimerDisplay();
+        }
+
+        public DelegateCommand SubtractSecondsButton { get; private set; }
+
+        private void DecreaseSeconds()
+        {
+            timer = timer.Subtract(new TimeSpan(0, 0, 1));
+            if (timer.TotalSeconds < 0)
+            {
+                timer = new TimeSpan();
+            }
+            UpdatePropertiesForTimerDisplay();
+        }
+
         private void timerTick(object obj, EventArgs e)
         {
             timer = timer.Subtract(new TimeSpan(0, 0, 1));
@@ -87,9 +109,9 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         private void UpdatePropertiesForTimerDisplay()
         {
-            Hours = string.Format($"{timer.Hours:D2}");
-            Minutes = string.Format($"{timer.Minutes:D2}");
-            Seconds = string.Format($"{timer.Seconds:D2}");
+            Hours = $"{timer.Hours:D2}";
+            Minutes = $"{timer.Minutes:D2}";
+            Seconds = $"{timer.Seconds:D2}";
         }
     }
 }

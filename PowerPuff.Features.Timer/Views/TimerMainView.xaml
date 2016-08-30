@@ -53,7 +53,7 @@
                 Grid.Row="1"
                 VerticalAlignment="Center"
                 Width="74" 
-                Command="{Binding ButtonStartTimer}"/>
+                Command="{Binding StartTimerButton}"/>
 
         <Button x:Name="btn_Stop"
                 Content="Stop"
@@ -62,7 +62,7 @@
                 Grid.Row="1"
                 VerticalAlignment="Center"
                 Width="74" 
-                Command="{Binding ButtonStopTimer}"/>
+                Command="{Binding StopTimerButton}"/>
 
     </Grid>
 </UserControl>
