@@ -45,5 +45,16 @@
                    FontSize="60"
                    Text="{Binding Seconds}">
         </TextBlock>
+        
+        <Button x:Name="btn_Start"
+                Content="Start"
+                HorizontalAlignment="Center"
+                Margin="331,157,95,52"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                Width="74" 
+                Command="{Binding ButtonStartTimer}"/>
+
+
     </Grid>
 </UserControl>

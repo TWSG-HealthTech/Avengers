@@ -10,11 +10,17 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels.TimerMainViewModel
     class TimerMainViewModelTests
     {
         private static SUT.TimerMainViewModel _subject;
-        private static int Answer;
 
         Establish context = () =>
         {
             _subject = new SUT.TimerMainViewModel();
         };
+
+        class When_Start_Button_Is_Clicked
+        {
+            Because of = () => _subject.ButtonStartTimer.Execute();
+
+            It should_toggle_timer_to_be_eneabled = () => _subject.IsTimerEnabled.ShouldEqual("True");
+        }
     }
 }

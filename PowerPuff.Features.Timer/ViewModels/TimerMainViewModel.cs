@@ -1,9 +1,7 @@
 ﻿using System;
-using Prism.Regions;
-using Prism;
 using System.Windows.Threading;
-using Autofac;
 using Prism.Mvvm;
+using Prism.Commands;
 
 namespace PowerPuff.Features.Timer.ViewModels
 {
@@ -14,11 +12,22 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         public TimerMainViewModel ()
         {
-            timer = new TimeSpan(0,1,5);
             _timerObject = new DispatcherTimer();
             _timerObject.Interval = TimeSpan.FromSeconds(1);
             _timerObject.Tick += new EventHandler(timerTick);
+
+            Hours = Minutes = Seconds = "00";
+
+            ButtonStartTimer = new DelegateCommand(StartTimer);
+        }
+
+        public DelegateCommand ButtonStartTimer { get; private set; }
+
+        public void StartTimer()
+        {
+            timer = new TimeSpan(0, 1, 5);
             _timerObject.Start();
+            IsTimerEnabled = _timerObject.IsEnabled.ToString();
         }
 
         private string _hours;
@@ -42,6 +51,13 @@ namespace PowerPuff.Features.Timer.ViewModels
             set { SetProperty(ref _seconds, value); }
         }
 
+        private string _isTimerEnabled;
+        public string IsTimerEnabled
+        {
+            get { return _isTimerEnabled.ToString(); }
+            set { SetProperty(ref _isTimerEnabled, value); }
+        }
+
         private void timerTick(object obj, EventArgs e)
         {
             timer = timer.Subtract(new TimeSpan(0, 0, 1));
@@ -53,6 +69,8 @@ namespace PowerPuff.Features.Timer.ViewModels
             {
                 _timerObject.Stop();
             }
+
+            IsTimerEnabled = _timerObject.IsEnabled.ToString();
         }
     }
 }
