@@ -22,7 +22,7 @@
         <TextBlock x:Name="textBlock_HH"
                    Grid.Row="1" 
                    HorizontalAlignment="Center"
-                   Margin="129,61,371,89"
+                   Margin="131,61,369,89"
                    TextWrapping="Wrap"
                    VerticalAlignment="Center"
                    Text="{Binding Hours}"
@@ -79,7 +79,7 @@
             Command="{Binding SubtractSecondsButton}"/>
         <TextBlock x:Name="HhMmSeparator"
                    HorizontalAlignment="Center"
-                   Margin="182,82,311,108"
+                   Margin="185,82,309,108"
                    Grid.Row="1"
                    TextWrapping="Wrap"
                    Text=":"
@@ -109,6 +109,22 @@
             VerticalAlignment="Center" 
             Width="74"
             Command="{Binding SubtractMinutesButton}"/>
+        <Button x:Name="incrHours" 
+            Content="/\"
+            HorizontalAlignment="Center" 
+            Margin="96,24,330,186" 
+            Grid.Row="1" 
+            VerticalAlignment="Center" 
+            Width="74"
+            Command="{Binding AddHoursButton}"/>
+        <Button x:Name="decrHours" 
+            Content="\/"
+            HorizontalAlignment="Center" 
+            Margin="96,152,330,58" 
+            Grid.Row="1" 
+            VerticalAlignment="Center" 
+            Width="74"
+            Command="{Binding SubtractHoursButton}"/>
 
     </Grid>
 </UserControl>

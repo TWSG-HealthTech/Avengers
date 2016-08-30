@@ -1,8 +1,5 @@
-﻿using System;
-using PowerPuff.Common;
+﻿using Machine.Specifications;
 using SUT = PowerPuff.Features.Timer.ViewModels;
-using M = Moq;
-using Machine.Specifications;
 
 namespace PowerPuff.Features.Timer.Tests.ViewModels.TimerMainViewModel
 {
@@ -71,6 +68,25 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels.TimerMainViewModel
             Because of = () => _subject.SubtractMinutesButton.Execute();
 
             It should_decrease_the_number_of_Minutes = () => _subject.Minutes.ShouldEqual($"{0:D2}");
+        }
+
+        class When_Up_Button_for_hours_is_clicked
+        {
+            Because of = () => _subject.AddHoursButton.Execute();
+
+            It should_increase_the_number_of_hours = () => _subject.Hours.ShouldEqual($"{1:D2}");
+        }
+
+        class When_Down_Button_for_hours_is_clicked
+        {
+            Establish stopContext = () =>
+            {
+                _subject.AddHoursButton.Execute();
+            };
+
+            Because of = () => _subject.SubtractHoursButton.Execute();
+
+            It should_decrease_the_number_of_hours = () => _subject.Hours.ShouldEqual($"{0:D2}");
         }
     }
 }

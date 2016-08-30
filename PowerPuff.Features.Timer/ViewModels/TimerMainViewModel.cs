@@ -27,6 +27,8 @@ namespace PowerPuff.Features.Timer.ViewModels
             SubtractSecondsButton = new DelegateCommand(DecreaseSecond);
             AddMinutesButton = new DelegateCommand(IncreaseMinute);
             SubtractMinutesButton = new DelegateCommand(DecreaseMinute);
+            AddHoursButton = new DelegateCommand(IncreaseHour);
+            SubtractHoursButton = new DelegateCommand(DecreaseHour);
         }   
 
         private string _hours;
@@ -107,6 +109,25 @@ namespace PowerPuff.Features.Timer.ViewModels
             if (timer.Minutes > 0)
             {
                 timer = timer.Subtract(new TimeSpan(0, 1, 0));
+            }
+            UpdatePropertiesForTimerDisplay();
+        }
+
+        public DelegateCommand AddHoursButton { get; set; }
+
+        private void IncreaseHour()
+        {
+            timer = timer.Add(new TimeSpan(1, 0, 0));
+            UpdatePropertiesForTimerDisplay();
+        }
+
+        public DelegateCommand SubtractHoursButton { get; set; }
+
+        private void DecreaseHour()
+        {
+            if (timer.Hours > 0)
+            {
+                timer = timer.Subtract(new TimeSpan(1, 0, 0));
             }
             UpdatePropertiesForTimerDisplay();
         }
