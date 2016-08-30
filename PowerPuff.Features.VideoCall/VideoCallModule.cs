@@ -36,7 +36,7 @@ namespace PowerPuff.Features.VideoCall
 
         private void ConfigureSettingMenu()
         {
-            var settingsRepository = _container.Resolve<ISettingsRepository>();
+            var settingsRepository = _container.Resolve<IMenuSettingsRepository>();
             settingsRepository.RegisterMenu("Video", NavigableViews.VideoCall.SettingsView.GetFullName());
         }
 

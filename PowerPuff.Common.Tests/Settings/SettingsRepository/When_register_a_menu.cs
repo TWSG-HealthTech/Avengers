@@ -4,12 +4,12 @@ using SUT = PowerPuff.Common.Settings;
 
 namespace PowerPuff.Common.Tests.Settings.SettingsRepository
 {
-    [Subject(typeof(SUT.SettingsRepository))]
+    [Subject(typeof(SUT.MenuSettingsRepository))]
     public class When_register_a_menu
     {
         private Establish context = () =>
         {
-            _subject = new SUT.SettingsRepository();
+            _subject = new SUT.MenuSettingsRepository();
         };
 
         private Because of = () => _subject.RegisterMenu("some title", "someViewId");
@@ -24,6 +24,6 @@ namespace PowerPuff.Common.Tests.Settings.SettingsRepository
             menus.First().SettingContentViewId.ShouldEqual("someViewId");
         };
 
-        private static SUT.SettingsRepository _subject;
+        private static SUT.MenuSettingsRepository _subject;
     }
 }

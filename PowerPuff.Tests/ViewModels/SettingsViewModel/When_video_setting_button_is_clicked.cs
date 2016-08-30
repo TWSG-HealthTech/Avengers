@@ -13,12 +13,12 @@ namespace PowerPuff.Tests.ViewModels.SettingsViewModel
     {
         private Establish context = () =>
         {
-            _settingsRepositoryMock = new M.Mock<ISettingsRepository>();
+            _settingsRepositoryMock = new M.Mock<IMenuSettingsRepository>();
             _scopedRegionManagerMock = new M.Mock<IRegionManager>();
             _subject = new SUT.SettingsViewModel(_settingsRepositoryMock.Object)
             {
                 RegionManager = _scopedRegionManagerMock.Object,
-                SelectedMenu = new SettingMenuViewModel("some menu title", "someViewId")
+                SelectedMenu = new MenuSettingViewModel("some menu title", "someViewId")
             };
         };
 
@@ -29,7 +29,7 @@ namespace PowerPuff.Tests.ViewModels.SettingsViewModel
                 _scopedRegionManagerMock.Verify(m => m.RequestNavigate(RegionNames.SettingContentRegion,
                     "someViewId"));
 
-        private static M.Mock<ISettingsRepository> _settingsRepositoryMock;
+        private static M.Mock<IMenuSettingsRepository> _settingsRepositoryMock;
         private static SUT.SettingsViewModel _subject;
         private static M.Mock<IRegionManager> _scopedRegionManagerMock;
     }

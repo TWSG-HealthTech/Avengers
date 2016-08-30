@@ -11,21 +11,21 @@ namespace PowerPuff.ViewModels
 {
     public class SettingsViewModel : BindableBase, INavigationAware, IRegionManagerAware
     {
-        private readonly ISettingsRepository _settingsRepository;
-        public ObservableCollection<SettingMenuViewModel> SettingMenus { get; private set; }
+        private readonly IMenuSettingsRepository _settingsRepository;
+        public ObservableCollection<MenuSettingViewModel> SettingMenus { get; private set; }
 
-        private SettingMenuViewModel _selectedMenu;
-        public SettingMenuViewModel SelectedMenu
+        private MenuSettingViewModel _selectedMenu;
+        public MenuSettingViewModel SelectedMenu
         {
             get { return _selectedMenu; }
             set { SetProperty(ref _selectedMenu, value); }
         }
 
-        public SettingsViewModel(ISettingsRepository settingsRepository)
+        public SettingsViewModel(IMenuSettingsRepository settingsRepository)
         {
             _settingsRepository = settingsRepository;
 
-            SettingMenus = new ObservableCollection<SettingMenuViewModel>();
+            SettingMenus = new ObservableCollection<MenuSettingViewModel>();
 
             LoadSettingsViewCommand = new DelegateCommand(LoadSettingsView);
         }

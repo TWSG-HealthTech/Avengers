@@ -2,18 +2,18 @@
 
 namespace PowerPuff.Common.Settings
 {
-    public class SettingMenuViewModel : IEquatable<SettingMenuViewModel>
+    public class MenuSettingViewModel : IEquatable<MenuSettingViewModel>
     {
         public string Title { get; private set; }
         public string SettingContentViewId { get; private set; }
 
-        public SettingMenuViewModel(string title, string settingContentViewId)
+        public MenuSettingViewModel(string title, string settingContentViewId)
         {
             Title = title;
             SettingContentViewId = settingContentViewId;
         }
 
-        public bool Equals(SettingMenuViewModel other)
+        public bool Equals(MenuSettingViewModel other)
         {
             return Title == other.Title && 
                 SettingContentViewId == other.SettingContentViewId;
@@ -21,7 +21,7 @@ namespace PowerPuff.Common.Settings
 
         public override bool Equals(object obj)
         {
-            var other = obj as SettingMenuViewModel;
+            var other = obj as MenuSettingViewModel;
             return other != null && Equals(other);
         }
 

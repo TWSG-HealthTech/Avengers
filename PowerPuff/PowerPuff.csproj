@@ -121,6 +121,7 @@
     <Compile Include="ViewModels\FeatureLayoutViewModel.cs" />
     <Compile Include="ViewModels\MainButtonsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\SocialConnectionSettingsViewModel.cs" />
     <Compile Include="Views\ActiveListenerView.xaml.cs">
       <DependentUpon>ActiveListenerView.xaml</DependentUpon>
     </Compile>

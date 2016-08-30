@@ -2,9 +2,9 @@
 
 namespace PowerPuff.Common.Settings
 {
-    public interface ISettingsRepository
+    public interface IMenuSettingsRepository
     {
         void RegisterMenu(string title, string settingContentViewId);
-        IEnumerable<SettingMenuViewModel> FindAll();
+        IEnumerable<MenuSettingViewModel> FindAll();
     }
 }

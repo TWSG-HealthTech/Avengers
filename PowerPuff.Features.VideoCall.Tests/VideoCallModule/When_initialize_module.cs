@@ -16,13 +16,13 @@ namespace PowerPuff.Features.VideoCall.Tests.VideoCallModule
         private static SUT.VideoCallModule _subject;
         private static M.Mock<IRegionManager> _regionManagerMock;
         private static IContainer _container;
-        private static M.Mock<ISettingsRepository> _settingsRepositoryMock;
+        private static M.Mock<IMenuSettingsRepository> _settingsRepositoryMock;
 
         Establish context = () =>
         {
             _regionManagerMock = new M.Mock<IRegionManager>();
             var containerBuilder = new ContainerBuilder();
-            _settingsRepositoryMock = new M.Mock<ISettingsRepository>();
+            _settingsRepositoryMock = new M.Mock<IMenuSettingsRepository>();
             containerBuilder.Register(context => _settingsRepositoryMock.Object);
             _container = containerBuilder.Build();
             _subject = new SUT.VideoCallModule(_regionManagerMock.Object, _container);

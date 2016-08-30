@@ -13,10 +13,10 @@ namespace PowerPuff.Tests.ViewModels.SettingsViewModel
     {
         private Establish context = () =>
         {
-            _settingsRepository = new M.Mock<ISettingsRepository>();
-            _settingsRepository.Setup(r => r.FindAll()).Returns(new List<SettingMenuViewModel>
+            _settingsRepository = new M.Mock<IMenuSettingsRepository>();
+            _settingsRepository.Setup(r => r.FindAll()).Returns(new List<MenuSettingViewModel>
             {
-                new SettingMenuViewModel("some title", "someViewId")
+                new MenuSettingViewModel("some title", "someViewId")
             });
             _subject = new SUT.SettingsViewModel(_settingsRepository.Object);
         };
@@ -25,7 +25,7 @@ namespace PowerPuff.Tests.ViewModels.SettingsViewModel
 
         private It should_find_all_menu_settings = () => _settingsRepository.Verify(r => r.FindAll());
 
-        private It should_load_all_menu_settings = () => _subject.SettingMenus.ShouldContain(new SettingMenuViewModel("some title", "someViewId"));
+        private It should_load_all_menu_settings = () => _subject.SettingMenus.ShouldContain(new MenuSettingViewModel("some title", "someViewId"));
 
         private static void NavigateTo()
         {
@@ -34,7 +34,7 @@ namespace PowerPuff.Tests.ViewModels.SettingsViewModel
             _subject.OnNavigatedTo(context);
         }
 
-        private static M.Mock<ISettingsRepository> _settingsRepository;
+        private static M.Mock<IMenuSettingsRepository> _settingsRepository;
         private static SUT.SettingsViewModel _subject;
     }
 }

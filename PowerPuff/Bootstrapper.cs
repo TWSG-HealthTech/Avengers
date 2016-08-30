@@ -42,7 +42,7 @@ namespace PowerPuff
 
         private void ConfigureSettings()
         {
-            var settingsRepository = ComponentContext.Resolve<ISettingsRepository>();
+            var settingsRepository = ComponentContext.Resolve<IMenuSettingsRepository>();
             settingsRepository.RegisterMenu("Connections", NavigableViews.Main.SocialConnectionSettingsView.GetFullName());
         }
 
@@ -54,13 +54,14 @@ namespace PowerPuff
             builder.RegisterType<MainButtonsViewModel>();
             builder.RegisterType<SettingsViewModel>();
             builder.RegisterType<FeatureLayoutViewModel>();
+            builder.RegisterType<SocialConnectionSettingsViewModel>();
             builder.RegisterType<NLogAdapter>().As<ILogger>();
             builder.RegisterType<ActiveListenerModule>();
             builder.RegisterType<ActiveListenerView>().As<IActiveListenerView>();
             builder.RegisterType<ActiveListener>().As<IActiveListener>();
             builder.RegisterType<ApplicationSettings>().As<IApplicationSettings>();
 
-            builder.RegisterType<SettingsRepository>().As<ISettingsRepository>().SingleInstance();
+            builder.RegisterType<MenuSettingsRepository>().As<IMenuSettingsRepository>().SingleInstance();
 
             builder.RegisterType<ScopedRegionNavigationContentLoader>().As<IRegionNavigationContentLoader>().SingleInstance();
 
