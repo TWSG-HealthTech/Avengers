@@ -16,9 +16,13 @@ namespace PowerPuff.Features.Timer.ViewModels
             _timerObject.Interval = TimeSpan.FromSeconds(1);
             _timerObject.Tick += new EventHandler(timerTick);
 
-            Hours = Minutes = Seconds = "00";
+            timer = new TimeSpan();
+            UpdatePropertiesForTimerDisplay();
+
+            IsTimerEnabled = _timerObject.IsEnabled.ToString();
 
             ButtonStartTimer = new DelegateCommand(StartTimer);
+            ButtonStopTimer = new DelegateCommand(StopTimer);
         }
 
         public DelegateCommand ButtonStartTimer { get; private set; }
@@ -26,7 +30,19 @@ namespace PowerPuff.Features.Timer.ViewModels
         public void StartTimer()
         {
             timer = new TimeSpan(0, 1, 5);
+            UpdatePropertiesForTimerDisplay();
+
             _timerObject.Start();
+            IsTimerEnabled = _timerObject.IsEnabled.ToString();
+        }
+
+        public DelegateCommand ButtonStopTimer { get; private set; }
+
+        public void StopTimer()
+        {
+            _timerObject.Stop();
+            timer = new TimeSpan(0, 1, 5);
+            UpdatePropertiesForTimerDisplay();
             IsTimerEnabled = _timerObject.IsEnabled.ToString();
         }
 
@@ -61,16 +77,19 @@ namespace PowerPuff.Features.Timer.ViewModels
         private void timerTick(object obj, EventArgs e)
         {
             timer = timer.Subtract(new TimeSpan(0, 0, 1));
-            Hours = string.Format($"{timer.Hours:D2}");
-            Minutes = string.Format($"{timer.Minutes:D2}");
-            Seconds = string.Format($"{timer.Seconds:D2}");
+            UpdatePropertiesForTimerDisplay();
 
             if (timer.TotalSeconds == 0)
             {
-                _timerObject.Stop();
+                StopTimer();
             }
+        }
 
-            IsTimerEnabled = _timerObject.IsEnabled.ToString();
+        private void UpdatePropertiesForTimerDisplay()
+        {
+            Hours = string.Format($"{timer.Hours:D2}");
+            Minutes = string.Format($"{timer.Minutes:D2}");
+            Seconds = string.Format($"{timer.Seconds:D2}");
         }
     }
 }

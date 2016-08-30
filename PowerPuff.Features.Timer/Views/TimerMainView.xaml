@@ -55,6 +55,14 @@
                 Width="74" 
                 Command="{Binding ButtonStartTimer}"/>
 
+        <Button x:Name="btn_Stop"
+                Content="Stop"
+                HorizontalAlignment="Center"
+                Margin="96,157,330,52"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                Width="74" 
+                Command="{Binding ButtonStopTimer}"/>
 
     </Grid>
 </UserControl>
