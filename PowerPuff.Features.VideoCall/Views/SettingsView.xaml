@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PowerPuff.Features.VideoCall.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="#FF436B95">
+    <Grid Style="{DynamicResource SettingContentStyle}">
             <TextBlock>Video Settings</TextBlock>
     </Grid>
 </UserControl>

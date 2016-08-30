@@ -34,8 +34,16 @@ namespace PowerPuff
             var regionManager = ComponentContext.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion(RegionNames.MainContentRegion, typeof(MainButtonsView));
 
+            ConfigureSettings();
+
             Application.Current.MainWindow = (Window)Shell;
             Application.Current.MainWindow.Show();
+        }
+
+        private void ConfigureSettings()
+        {
+            var settingsRepository = ComponentContext.Resolve<ISettingsRepository>();
+            settingsRepository.RegisterMenu("Connections", NavigableViews.Main.SocialConnectionSettingsView.GetFullName());
         }
 
         protected override void ConfigureContainerBuilder(ContainerBuilder builder)
@@ -59,6 +67,7 @@ namespace PowerPuff
             builder.RegisterTypeForNavigation<MainButtonsView>(NavigableViews.Main.HomeView.GetFullName());
             builder.RegisterTypeForNavigation<SettingsView>(NavigableViews.Main.SettingsView.GetFullName());            
             builder.RegisterTypeForNavigation<FeatureLayoutView>(NavigableViews.Main.FeatureLayoutView.GetFullName());            
+            builder.RegisterTypeForNavigation<SocialConnectionSettingsView>(NavigableViews.Main.SocialConnectionSettingsView.GetFullName());            
             
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => Container.Resolve(type));
         }
