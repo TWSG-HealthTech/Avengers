@@ -17,7 +17,6 @@
   </PropertyGroup>
   <ItemGroup>
     <DnxInvisibleFolder Include="Calendar\" />
-    <DnxInvisibleFolder Include="Common\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

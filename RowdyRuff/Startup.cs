@@ -4,9 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using RowdyRuff.Core.Common;
+using RowdyRuff.Repository;
+using RowdyRuff.Repository.Common;
 
 namespace RowdyRuff
 {
@@ -29,6 +35,18 @@ namespace RowdyRuff
         {
             // Add framework services.
             services.AddMvc();
+
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigin"));
+            });
+
+            services.AddEntityFrameworkSqlServer()
+                    .AddDbContext<RowdyRuffContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
+
+            services.AddScoped<IClientProfileRepository, ClientProfileRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +69,11 @@ namespace RowdyRuff
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "profile",
+                    template: "Api/Profile/{profileId}/{action=connections}",
+                    defaults: new { controller = "Profile" });
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

@@ -1,11 +1,12 @@
-﻿using Autofac;
+using System.Windows;
+using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using PowerPuff.Common.Logging;
 using PowerPuff.Common.Prism;
 using PowerPuff.Common.Settings;
 using PowerPuff.Modules;
-using PowerPuff.Settings;
+using PowerPuff.Services;
 using PowerPuff.Speech;
 using PowerPuff.ViewModels;
 using PowerPuff.Views;
@@ -13,7 +14,6 @@ using Prism.Autofac;
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
-using System.Windows;
 
 namespace PowerPuff
 {
@@ -44,7 +44,7 @@ namespace PowerPuff
         private void ConfigureSettings()
         {
             var settingsRepository = ComponentContext.Resolve<IMenuSettingsRepository>();
-            settingsRepository.RegisterMenu("Connections", NavigableViews.Main.SocialConnectionSettingsView.GetFullName());
+            settingsRepository.RegisterMenu("Profile", NavigableViews.Main.ProfileSettingsView.GetFullName());
         }
 
         protected override void ConfigureContainerBuilder(ContainerBuilder builder)
@@ -55,12 +55,14 @@ namespace PowerPuff
             builder.RegisterType<MainButtonsViewModel>();
             builder.RegisterType<SettingsViewModel>();
             builder.RegisterType<FeatureLayoutViewModel>();
-            builder.RegisterType<SocialConnectionSettingsViewModel>();
+            builder.RegisterType<ProfileSettingsViewModel>();
             builder.RegisterType<NLogAdapter>().As<ILogger>();
             builder.RegisterType<ActiveListenerModule>().SingleInstance();
             builder.RegisterType<ActiveListenerView>().As<IActiveListenerView>();
             builder.RegisterType<ActiveListener>().As<IActiveListener>().SingleInstance();
             builder.RegisterType<ApplicationSettings>().As<IApplicationSettings>().SingleInstance();
+
+            builder.RegisterType<ProfileGateway>().As<IProfileGateway>();
 
             builder.RegisterType<MenuSettingsRepository>().As<IMenuSettingsRepository>().SingleInstance();
 
@@ -69,7 +71,7 @@ namespace PowerPuff
             builder.RegisterTypeForNavigation<MainButtonsView>(NavigableViews.Main.HomeView.GetFullName());
             builder.RegisterTypeForNavigation<SettingsView>(NavigableViews.Main.SettingsView.GetFullName());            
             builder.RegisterTypeForNavigation<FeatureLayoutView>(NavigableViews.Main.FeatureLayoutView.GetFullName());            
-            builder.RegisterTypeForNavigation<SocialConnectionSettingsView>(NavigableViews.Main.SocialConnectionSettingsView.GetFullName());            
+            builder.RegisterTypeForNavigation<ProfileSettingsView>(NavigableViews.Main.ProfileSettingsView.GetFullName());            
             
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => Container.Resolve(type));
         }

@@ -4,11 +4,11 @@ using PowerPuff.ViewModels;
 namespace PowerPuff.Views
 {
     /// <summary>
-    /// Interaction logic for SocialConnectionSettingsView.xaml
+    /// Interaction logic for ProfileSettingsView.xaml
     /// </summary>
-    public partial class SocialConnectionSettingsView : UserControl
+    public partial class ProfileSettingsView : UserControl
     {
-        public SocialConnectionSettingsView(SocialConnectionSettingsViewModel viewModel)
+        public ProfileSettingsView(ProfileSettingsViewModel viewModel)
         {
             InitializeComponent();
 

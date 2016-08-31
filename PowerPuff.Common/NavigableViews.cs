@@ -7,7 +7,7 @@
             HomeView,
             SettingsView,
             FeatureLayoutView,
-            SocialConnectionSettingsView
+            ProfileSettingsView
         }
 
         public enum VideoCall

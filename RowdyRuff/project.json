@@ -22,7 +22,8 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "RowdyRuff.Core": "1.0.0-*",
     "RowdyRuff.Repository": "1.0.0-*",
-    "RowdyRuff.Common": "1.0.0-*"
+    "RowdyRuff.Common": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0"
   },
 
   "tools": {
@@ -35,8 +36,7 @@
     "netcoreapp1.0": {
       "imports": [
         "dotnet5.6",
-        "portable-net45+win8",
-        "netstandard1.6"
+        "portable-net45+win8"
       ]
     }
   },

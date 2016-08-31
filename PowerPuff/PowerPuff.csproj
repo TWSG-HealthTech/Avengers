@@ -106,8 +106,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Modules\ActiveListenerModule.cs" />
-    <Compile Include="Settings\ApplicationSettings.cs" />
-    <Compile Include="Settings\IApplicationSettings.cs" />
+    <Compile Include="Services\ProfileGateway.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
@@ -120,9 +119,12 @@
     <Compile Include="Speech\ActiveListener.cs" />
     <Compile Include="Speech\IActiveListener.cs" />
     <Compile Include="ViewModels\FeatureLayoutViewModel.cs" />
+    <Compile Include="ViewModels\IProfileGateway.cs" />
     <Compile Include="ViewModels\MainButtonsViewModel.cs" />
+    <Compile Include="ViewModels\Profile.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\SocialConnectionSettingsViewModel.cs" />
+    <Compile Include="ViewModels\ProfileSettingsViewModel.cs" />
+    <Compile Include="ViewModels\SocialConnection.cs" />
     <Compile Include="Views\ActiveListenerView.xaml.cs">
       <DependentUpon>ActiveListenerView.xaml</DependentUpon>
     </Compile>
@@ -133,11 +135,11 @@
     <Compile Include="Views\MainButtonsView.xaml.cs">
       <DependentUpon>MainButtonsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProfileSettingsView.xaml.cs">
+      <DependentUpon>ProfileSettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SocialConnectionSettingsView.xaml.cs">
-      <DependentUpon>SocialConnectionSettingsView.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Styles\MainStyle.xaml">
       <SubType>Designer</SubType>
@@ -159,11 +161,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SettingsView.xaml">
+    <Page Include="Views\ProfileSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SocialConnectionSettingsView.xaml">
+    <Page Include="Views\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

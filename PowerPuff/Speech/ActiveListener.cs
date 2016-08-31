@@ -1,6 +1,6 @@
 using System;
 using Microsoft.ProjectOxford.SpeechRecognition;
-using PowerPuff.Settings;
+using PowerPuff.Common.Settings;
 
 namespace PowerPuff.Speech
 {
