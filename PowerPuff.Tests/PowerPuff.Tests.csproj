@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="Modules\ActiveListenerModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Speech\IntentProcessorTests.cs" />
     <Compile Include="ViewModels\FeatureLayoutViewModelTests.cs" />
     <Compile Include="ViewModels\SettingsViewModelTests.cs" />
   </ItemGroup>
