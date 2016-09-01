@@ -97,10 +97,10 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TimerModule\When_initialize_timer_module.cs" />
+    <Compile Include="TimerModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\TimerMainButtonViewModel\When_timer_button_is_clicked.cs" />
-    <Compile Include="ViewModels\TimerMainViewModel\TimerMainViewModelTests.cs" />
+    <Compile Include="ViewModels\TimerMainButtonViewModelTests.cs" />
+    <Compile Include="ViewModels\TimerMainViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

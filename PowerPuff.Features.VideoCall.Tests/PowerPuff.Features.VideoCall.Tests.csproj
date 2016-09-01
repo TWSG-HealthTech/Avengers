@@ -99,9 +99,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VideoCallModule\When_initialize_module.cs" />
-    <Compile Include="ViewModels\MainButtonViewModel\When_main_button_is_invoked.cs" />
-    <Compile Include="ViewModels\VideoMainViewModel\When_any_social_connection_is_selected.cs" />
+    <Compile Include="VideoCallModuleTests.cs" />
+    <Compile Include="ViewModels\MainButtonViewModelTests.cs" />
+    <Compile Include="ViewModels\VideoMainViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -120,6 +120,7 @@
       <Name>PowerPuff.Features.VideoCall</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

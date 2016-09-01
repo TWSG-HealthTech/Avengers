@@ -1,16 +1,16 @@
 ﻿using Machine.Specifications;
-using SUT = PowerPuff.Features.Timer.ViewModels;
+using PowerPuff.Features.Timer.ViewModels;
 
-namespace PowerPuff.Features.Timer.Tests.ViewModels.TimerMainViewModel
+namespace PowerPuff.Features.Timer.Tests.ViewModels
 {
-    [Subject(typeof(SUT.TimerMainViewModel))]
-    class TimerMainViewModelTests
+    [Subject(typeof(TimerMainViewModel))]
+    public class TimerMainViewModelTests
     {
-        private static SUT.TimerMainViewModel _subject;
+        private static TimerMainViewModel _subject;
 
         Establish context = () =>
         {
-            _subject = new SUT.TimerMainViewModel();
+            _subject = new TimerMainViewModel();
         };
 
         class When_Start_Button_is_Clicked
