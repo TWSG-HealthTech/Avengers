@@ -12,9 +12,9 @@ namespace PowerPuff.Settings.Services
         {
         }
 
-        public Task<List<SocialConnection>> GetAllSocialConnections(string profileId)
+        public Task<Profile> GetProfileBy(string profileId)
         {
-            return GetAsync<List<SocialConnection>>($"api/profile/{profileId}/connections");
+            return GetAsync<Profile>($"api/profile/{profileId}");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using RowdyRuff.Core.Common;
 
@@ -7,8 +6,8 @@ namespace RowdyRuff.Repository.Common
 {
     public class ClientProfileRepository : IClientProfileRepository
     {
-        private RowdyRuffContext _context;
-        private DbSet<ClientProfile> _set;
+        private readonly RowdyRuffContext _context;
+        private readonly DbSet<ClientProfile> _set;
 
         public ClientProfileRepository(RowdyRuffContext context)
         {
@@ -16,11 +15,11 @@ namespace RowdyRuff.Repository.Common
             _set = _context.Set<ClientProfile>();
         }
 
-        public List<SocialConnection> FindAllSocialConnectionsBy(string profileId)
+        public ClientProfile FindProfileBy(string profileId)
         {
-            return _context.Set<SocialConnection>()
-                .Where(s => s.ClientProfileId == profileId)
-                .ToList();
+            return _set
+                .Include(p => p.Connections)
+                .FirstOrDefault(s => s.Id == profileId);
         }
     }
 }

@@ -5,6 +5,6 @@ namespace PowerPuff.Settings
 {
     public interface IProfileGateway
     {
-        Task<List<SocialConnection>> GetAllSocialConnections(string profileId);
+        Task<Profile> GetProfileBy(string profileId);
     }
 }

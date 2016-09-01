@@ -44,19 +44,10 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <DataTemplate.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="MidnightBlue"></Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataTemplate.Resources>
                     <Border
                         Width="350"
                         Height="150"
-                        Background="DarkSlateGray"
+                        Background="{DynamicResource PrimaryBackgroundBrush}"
                         Cursor="Hand">
                         <StackPanel Orientation="Horizontal">
                             <Ellipse Width="100" Height="100" Margin="20">
@@ -69,7 +60,7 @@
                                        FontSize="20"
                                        Width="180"
                                        FontWeight="Bold"
-                                       Foreground="White"
+                                       Foreground="{DynamicResource PrimaryForegroundBrush}"
                                        TextWrapping="Wrap"
                                        Text="{Binding Name}" />
                         </StackPanel>

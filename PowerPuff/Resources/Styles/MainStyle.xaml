@@ -36,8 +36,10 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="SettingContentStyle" TargetType="{x:Type Grid}" >
-        <Setter Property="Background" Value="{StaticResource PrimaryBackgroundBrush}"></Setter>
+    <Style x:Key="SettingContentStyle"
+           TargetType="{x:Type Grid}">
+        <Setter Property="Background"
+                Value="{StaticResource PrimaryBackgroundBrush}"></Setter>
     </Style>
 
     <Style TargetType="{x:Type ListBox}" >
@@ -45,6 +47,21 @@
     </Style>
 
     <Style TargetType="{x:Type ListBoxItem}">
+        <Style.Resources>
+            <ControlTemplate x:Key="SelectedTemplate"
+                             TargetType="ListBoxItem">
+                <Border BorderBrush="#5076A7"
+                        BorderThickness="1,1,1,1"
+                        Background="{StaticResource HoverBackgroundBrush}"
+                        CornerRadius="4,4,4,4">
+                    <StackPanel TextElement.FontFamily="Segoe UI"
+                                TextElement.FontSize="12"
+                                TextElement.Foreground="White">
+                        <ContentPresenter ContentSource="Content" />
+                    </StackPanel>
+                </Border>
+            </ControlTemplate>
+        </Style.Resources>
         <Style.Setters>
             <Setter Property="Margin" Value="5" />
             <Setter Property="Cursor" Value="Hand" />
@@ -70,5 +87,17 @@
                 </Setter.Value>
             </Setter>
         </Style.Setters>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsSelected"
+                               Value="true" />
+                    <Condition Property="Selector.IsSelectionActive"
+                               Value="true" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Template"
+                        Value="{StaticResource SelectedTemplate}" />
+            </MultiTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

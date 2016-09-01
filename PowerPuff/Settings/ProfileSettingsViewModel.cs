@@ -1,25 +1,28 @@
 ﻿using System.Collections.ObjectModel;
+using Prism.Mvvm;
 using Prism.Regions;
 
 namespace PowerPuff.Settings
 {
-    public class ProfileSettingsViewModel : INavigationAware
+    public class ProfileSettingsViewModel : BindableBase, INavigationAware
     {
         private readonly IProfileGateway _profileGateway;
 
-        public ObservableCollection<SocialConnection> Connections { get; set; }
+        private Profile _profile;
+        public Profile Profile
+        {
+            get { return _profile; }
+            set { SetProperty(ref _profile, value); }
+        }
 
         public ProfileSettingsViewModel(IProfileGateway profileGateway)
         {
             _profileGateway = profileGateway;
-
-            Connections = new ObservableCollection<SocialConnection>();
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            var connections = _profileGateway.GetAllSocialConnections("a111222a").Result;
-            Connections.AddRange(connections);
+            Profile = _profileGateway.GetProfileBy("a111222a").Result;
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

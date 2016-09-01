@@ -4,6 +4,6 @@ namespace RowdyRuff.Core.Common
 {
     public interface IClientProfileRepository
     {
-        List<SocialConnection> FindAllSocialConnectionsBy(string profileId);
+        ClientProfile FindProfileBy(string profileId);
     }
 }

@@ -12,10 +12,10 @@ namespace RowdyRuff.Controllers.Api
             _clientProfileRepository = clientProfileRepository;
         }
         
-        public IActionResult Connections(string profileId)
+        public IActionResult Index(string profileId)
         {
-            var connections = _clientProfileRepository.FindAllSocialConnectionsBy(profileId);
-            return Json(connections);
+            var profile = _clientProfileRepository.FindProfileBy(profileId);
+            return Json(profile);
         }
     }
 }
