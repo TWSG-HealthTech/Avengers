@@ -4,7 +4,12 @@ using System.Linq;
 
 namespace PowerPuff.Speech
 {
-    public class IntentProcessor
+    public interface IIntentProcessor
+    {
+        void Process(string intentName);
+    }
+
+    public class IntentProcessor : IIntentProcessor
     {
         private readonly IIntentHandler _defaultHandler;
         public ReadOnlyDictionary<string, IIntentHandler> _handlers;

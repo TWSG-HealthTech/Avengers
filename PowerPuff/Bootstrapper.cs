@@ -1,4 +1,3 @@
-using System.Windows;
 using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
@@ -14,6 +13,7 @@ using Prism.Autofac;
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
+using System.Windows;
 
 namespace PowerPuff
 {
@@ -67,6 +67,14 @@ namespace PowerPuff
             builder.RegisterType<MenuSettingsRepository>().As<IMenuSettingsRepository>().SingleInstance();
 
             builder.RegisterType<ScopedRegionNavigationContentLoader>().As<IRegionNavigationContentLoader>().SingleInstance();
+
+            builder.RegisterType<SpeechSynthesiser>().As<ISpeechSynthesiser>().SingleInstance();
+            builder.RegisterType<NoneIntentHandler>().Named<IIntentHandler>("DefaultIntent").SingleInstance();
+
+            builder.RegisterType<IntentProcessor>()
+                .As<IIntentProcessor>()
+                .WithParameter((pi, ctx) => pi.Name == "defaultHandler", (pi, ctx) => ctx.ResolveNamed<IIntentHandler>("DefaultIntent"))
+                .SingleInstance();
 
             builder.RegisterTypeForNavigation<MainButtonsView>(NavigableViews.Main.HomeView.GetFullName());
             builder.RegisterTypeForNavigation<SettingsView>(NavigableViews.Main.SettingsView.GetFullName());            

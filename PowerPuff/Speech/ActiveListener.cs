@@ -1,6 +1,7 @@
-using System;
 using Microsoft.ProjectOxford.SpeechRecognition;
 using PowerPuff.Common.Settings;
+using System;
+using Microsoft.Speech.Recognition;
 
 namespace PowerPuff.Speech
 {
@@ -8,11 +9,15 @@ namespace PowerPuff.Speech
     {
         private MicrophoneRecognitionClientWithIntent _microphoneClient;
         private IApplicationSettings _applicationSettings;
+        private readonly IIntentProcessor _intentProcessor;
 
-        public ActiveListener(IApplicationSettings applicationSettings)
+        public ActiveListener(IApplicationSettings applicationSettings, IIntentProcessor intentProcessor)
         {
             _applicationSettings = applicationSettings;
+            _intentProcessor = intentProcessor;
             SetupActiveMic();
+            var sre = new SpeechRecognitionEngine();
+            sre.SetInputToDefaultAudioDevice();
         }
 
         public void BeginActiveListening()
@@ -36,11 +41,21 @@ namespace PowerPuff.Speech
             // Event handlers for speech recognition results
             _microphoneClient.OnMicrophoneStatus += OnMicrophoneStatus;
             //            _microphoneClient.OnPartialResponseReceived += OnPartialResponseReceivedHandler;
-            //            _microphoneClient.OnResponseReceived += OnMicShortPhraseResponseReceivedHandler;
+            _microphoneClient.OnResponseReceived += OnMicShortPhraseResponseReceivedHandler;
             //            _microphoneClient.OnConversationError += OnConversationErrorHandler;
 
             // Event handler for intent result
-            //            _microphoneClient.OnIntent += OnIntentHandler;
+            _microphoneClient.OnIntent += OnIntentHandler;
+        }
+
+        private void OnMicShortPhraseResponseReceivedHandler(object sender, SpeechResponseEventArgs e)
+        {
+            Console.WriteLine(e.PhraseResponse.Results.ToString());
+        }
+
+        private void OnIntentHandler(object sender, SpeechIntentEventArgs e)
+        {
+            _intentProcessor.Process("None");
         }
 
         public event Action ActiveListeningStarted;
