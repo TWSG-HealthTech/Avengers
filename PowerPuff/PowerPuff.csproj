@@ -142,6 +142,8 @@
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Speech\IntentProcessor.cs" />
+    <Compile Include="Speech\ISpeechSynthesiser.cs" />
+    <Compile Include="Speech\NoneIntentHandler.cs" />
     <Page Include="Resources\Styles\MainStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
