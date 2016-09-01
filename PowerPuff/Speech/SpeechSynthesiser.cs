@@ -9,7 +9,6 @@ namespace PowerPuff.Speech
         public SpeechSynthesiser()
         {
             _synthesizer.SetOutputToDefaultAudioDevice();
-            _synthesizer.Speak("I can speak... Hooray!");
         }
 
         public void Speak(string speech)
