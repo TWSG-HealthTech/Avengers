@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Prism.Mvvm;
 
-namespace PowerPuff.ViewModels
+namespace PowerPuff.Settings
 {
     public class Profile : BindableBase
     {

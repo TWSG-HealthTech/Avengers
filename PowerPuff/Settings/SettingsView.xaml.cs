@@ -1,8 +1,7 @@
 ﻿using System.Windows.Controls;
 using PowerPuff.Common.Prism;
-using PowerPuff.ViewModels;
 
-namespace PowerPuff.Views
+namespace PowerPuff.Settings
 {
     /// <summary>
     /// Interaction logic for SettingsView.xaml

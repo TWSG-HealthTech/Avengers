@@ -1,7 +1,6 @@
 ﻿using System.Windows.Controls;
-using PowerPuff.ViewModels;
 
-namespace PowerPuff.Views
+namespace PowerPuff.Layout
 {
     /// <summary>
     /// Interaction logic for MainButtonsView.xaml

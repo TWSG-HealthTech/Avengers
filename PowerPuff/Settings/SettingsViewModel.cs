@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using PowerPuff.Common;
 using PowerPuff.Common.Prism;
 using PowerPuff.Common.Settings;
@@ -7,7 +6,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
-namespace PowerPuff.ViewModels
+namespace PowerPuff.Settings
 {
     public class SettingsViewModel : BindableBase, INavigationAware, IRegionManagerAware
     {

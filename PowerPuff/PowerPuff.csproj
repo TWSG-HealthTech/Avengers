@@ -106,7 +106,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Modules\ActiveListenerModule.cs" />
-    <Compile Include="Services\ProfileGateway.cs" />
+    <Compile Include="Settings\Services\ProfileGateway.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
@@ -118,27 +118,27 @@
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="Speech\ActiveListener.cs" />
     <Compile Include="Speech\IActiveListener.cs" />
-    <Compile Include="ViewModels\FeatureLayoutViewModel.cs" />
-    <Compile Include="ViewModels\IProfileGateway.cs" />
-    <Compile Include="ViewModels\MainButtonsViewModel.cs" />
-    <Compile Include="ViewModels\Profile.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\ProfileSettingsViewModel.cs" />
-    <Compile Include="ViewModels\SocialConnection.cs" />
-    <Compile Include="Views\ActiveListenerView.xaml.cs">
+    <Compile Include="Layout\FeatureLayoutViewModel.cs" />
+    <Compile Include="Settings\IProfileGateway.cs" />
+    <Compile Include="Layout\MainButtonsViewModel.cs" />
+    <Compile Include="Settings\Profile.cs" />
+    <Compile Include="Settings\SettingsViewModel.cs" />
+    <Compile Include="Settings\ProfileSettingsViewModel.cs" />
+    <Compile Include="Settings\SocialConnection.cs" />
+    <Compile Include="Speech\ActiveListenerView.xaml.cs">
       <DependentUpon>ActiveListenerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FeatureLayoutView.xaml.cs">
+    <Compile Include="Layout\FeatureLayoutView.xaml.cs">
       <DependentUpon>FeatureLayoutView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\IActiveListenerView.cs" />
-    <Compile Include="Views\MainButtonsView.xaml.cs">
+    <Compile Include="Speech\IActiveListenerView.cs" />
+    <Compile Include="Layout\MainButtonsView.xaml.cs">
       <DependentUpon>MainButtonsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProfileSettingsView.xaml.cs">
+    <Compile Include="Settings\ProfileSettingsView.xaml.cs">
       <DependentUpon>ProfileSettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingsView.xaml.cs">
+    <Compile Include="Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Styles\MainStyle.xaml">
@@ -149,23 +149,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ActiveListenerView.xaml">
+    <Page Include="Speech\ActiveListenerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FeatureLayoutView.xaml">
+    <Page Include="Layout\FeatureLayoutView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainButtonsView.xaml">
+    <Page Include="Layout\MainButtonsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ProfileSettingsView.xaml">
+    <Page Include="Settings\ProfileSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SettingsView.xaml">
+    <Page Include="Settings\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

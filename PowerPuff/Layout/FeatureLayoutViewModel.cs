@@ -3,7 +3,7 @@ using PowerPuff.Common.Helpers;
 using Prism.Commands;
 using Prism.Regions;
 
-namespace PowerPuff.ViewModels
+namespace PowerPuff.Layout
 {
     public class FeatureLayoutViewModel : IRegionMemberLifetime
     {

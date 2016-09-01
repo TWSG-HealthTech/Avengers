@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 using PowerPuff.Common.Gateway;
 using PowerPuff.Common.Settings;
-using PowerPuff.ViewModels;
 
-namespace PowerPuff.Services
+namespace PowerPuff.Settings.Services
 {
     public class ProfileGateway : ServerGatewayBase, IProfileGateway
     {

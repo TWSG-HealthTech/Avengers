@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Prism.Regions;
 
-namespace PowerPuff.ViewModels
+namespace PowerPuff.Settings
 {
     public class ProfileSettingsViewModel : INavigationAware
     {

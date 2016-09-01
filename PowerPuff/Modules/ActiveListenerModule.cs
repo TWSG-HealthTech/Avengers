@@ -1,6 +1,5 @@
 ﻿using PowerPuff.Common;
 using PowerPuff.Speech;
-using PowerPuff.Views;
 using Prism.Modularity;
 using Prism.Regions;
 

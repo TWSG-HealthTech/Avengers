@@ -2,7 +2,7 @@
 using Moq;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
-using PowerPuff.ViewModels;
+using PowerPuff.Layout;
 using Prism.Regions;
 using It = Machine.Specifications.It;
 

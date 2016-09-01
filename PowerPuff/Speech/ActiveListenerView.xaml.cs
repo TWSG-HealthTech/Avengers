@@ -4,7 +4,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace PowerPuff.Views
+namespace PowerPuff.Speech
 {
     /// <summary>
     /// Interaction logic for ActiveListener.xaml

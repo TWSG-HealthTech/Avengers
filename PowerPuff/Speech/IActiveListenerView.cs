@@ -1,6 +1,6 @@
 using System;
 
-namespace PowerPuff.Views
+namespace PowerPuff.Speech
 {
     public interface IActiveListenerView
     {

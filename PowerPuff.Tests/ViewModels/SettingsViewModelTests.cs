@@ -4,7 +4,7 @@ using Machine.Specifications;
 using Moq;
 using PowerPuff.Common;
 using PowerPuff.Common.Settings;
-using PowerPuff.ViewModels;
+using PowerPuff.Settings;
 using Prism.Regions;
 using It = Machine.Specifications.It;
 
