@@ -12,8 +12,8 @@ var platformTarget = PlatformTarget.MSIL;   //AnyCPU
 Task("Build")
   .Does(() =>
 {
-  NuGetRestore("Avengers.sln");
-  MSBuild("Avengers.sln", new MSBuildSettings {
+  NuGetRestore("PowerPuff.sln");
+  MSBuild("PowerPuff.sln", new MSBuildSettings {
     Configuration = buildConfiguration,
     PlatformTarget = platformTarget
   });
