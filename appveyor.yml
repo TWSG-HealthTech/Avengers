@@ -3,7 +3,7 @@ environment:
     secure: tXvmbVUFQp+HeZaOfnpfM61pfi95L0rujjPt9RiCbQN87tZw7wtdCZsvdqAYThp4ksvgpvSWcgpJu76K2pllIw==
 
 build_script:
-  - ps: ./build.ps1 -Target Decrypt -secret=%encryption_secret%
+  - ps: ./build.ps1 -Target Decrypt -secret=$Env:encryption_secret
   - ps: ./build.ps1 -Target Build
 
 test_script:
