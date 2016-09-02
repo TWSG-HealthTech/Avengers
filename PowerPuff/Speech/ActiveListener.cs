@@ -34,13 +34,12 @@ namespace PowerPuff.Speech
         private void SetupActiveMic()
         {
             _microphoneClient?.Dispose();
-            _microphoneClient = SpeechRecognitionServiceFactory.CreateMicrophoneClient(
-                SpeechRecognitionMode.ShortPhrase, 
+            _microphoneClient = SpeechRecognitionServiceFactory.CreateMicrophoneClientWithIntent(
                 _applicationSettings.Locale,
                 _applicationSettings.SpeechPrimaryKey,
-                _applicationSettings.SpeechSecondaryKey//,
-//                _applicationSettings.LuisAppId,
-//                _applicationSettings.LuisSubscriptionId
+                _applicationSettings.SpeechSecondaryKey,
+                _applicationSettings.LuisAppId,
+                _applicationSettings.LuisSubscriptionId
                 );
 
             // Event handlers for speech recognition results
