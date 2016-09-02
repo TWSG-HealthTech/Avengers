@@ -21,6 +21,25 @@ Tests: mirror structure of Source folder
 
 ## Technical Details
 
+### Secrets file
+The project contains a secrets file that is encrypted.  In order to run the project you will need to decrypt this file.
+Run this command:
+```
+./build.ps1 -target Decrypt -secret=<<the secret>>
+```
+Ask the CATE/PowerPuff team lead for the secret.
+
+Alternatively, if you are not in the CATE/PowerPuff team (and hence the team lead won't tell you the secret) you can create your own `App.secrets.config` file with the following template:
+```
+<?xml version="1.0" encoding="utf-8" ?>
+<appSettings>
+  <add key="speechPrimaryKey" value="<<Your Bing Speech primary api key>>"/>
+  <add key="speechSecondaryKey" value="<<Your Bing Speech secondary api key>>"/>
+  <add key="luisAppId" value="<<Your LUIS api id>>"/>
+  <add key="luisSubscriptionId" value="<<Your LUIS subscription id>>"/>
+</appSettings>
+```
+
 ### Navigation
 
 Navigation in `Avengers` app is View-Based Navigation. To change a region from one view to another, following these steps:
