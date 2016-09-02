@@ -67,6 +67,7 @@ namespace PowerPuff
             builder.RegisterType<MenuSettingsRepository>().As<IMenuSettingsRepository>().SingleInstance();
 
             builder.RegisterType<ScopedRegionNavigationContentLoader>().As<IRegionNavigationContentLoader>().SingleInstance();
+            builder.RegisterType<PassiveListener>().As<IPassiveListener>().SingleInstance();
 
             builder.RegisterType<SpeechSynthesiser>().As<ISpeechSynthesiser>().SingleInstance();
             builder.RegisterType<NoneIntentHandler>().Named<IIntentHandler>("DefaultIntent").SingleInstance();

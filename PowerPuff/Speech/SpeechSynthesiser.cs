@@ -1,8 +1,9 @@
-﻿using Microsoft.Speech.Synthesis;
+﻿using System;
+using Microsoft.Speech.Synthesis;
 
 namespace PowerPuff.Speech
 {
-    public class SpeechSynthesiser : ISpeechSynthesiser
+    public class SpeechSynthesiser : ISpeechSynthesiser, IDisposable
     {
         private SpeechSynthesizer _synthesizer = new SpeechSynthesizer();
 
@@ -13,7 +14,13 @@ namespace PowerPuff.Speech
 
         public void Speak(string speech)
         {
+            Console.WriteLine($"Speaking: '{speech}'");
             _synthesizer.Speak(speech);
+        }
+
+        public void Dispose()
+        {
+            _synthesizer.Dispose();
         }
     }
 }
