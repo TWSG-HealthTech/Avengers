@@ -16,16 +16,8 @@ namespace PowerPuff.Tests.Speech
             _subject = new NoneIntentHandler(_speechSynthesiserMock.Object);
         };
 
-        class static_use
-        {
-            It has_the_None_intent_name = () => _subject.IntentName.ShouldEqual("None");
-        }
+        private Because of = () => _subject.Handle();
 
-        class Handle
-        {
-            private Because of = () => _subject.Handle();
-
-            It says_that_it_does_not_know = () => _speechSynthesiserMock.Verify(ss => ss.Speak("I'm sorry, I don't know how to do that."));
-        }
+        It says_that_it_does_not_know = () => _speechSynthesiserMock.Verify(ss => ss.Speak("I'm sorry, I don't know how to do that."));
     }
 }
