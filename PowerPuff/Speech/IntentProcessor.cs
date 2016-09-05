@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Microsoft.Cognitive.LUIS;
+using Newtonsoft.Json.Linq;
 
 namespace PowerPuff.Speech
 {
@@ -12,28 +14,30 @@ namespace PowerPuff.Speech
     public class IntentProcessor : IIntentProcessor
     {
         private readonly IIntentHandler _defaultHandler;
-        public ReadOnlyDictionary<string, IIntentHandler> _handlers;
+
+        public IntentRouter router = new IntentRouter(null);
 
         public IntentProcessor(IEnumerable<IIntentHandler> intentHandlers, IIntentHandler defaultHandler)
         {
             _defaultHandler = defaultHandler;
-            _handlers = new ReadOnlyDictionary<string, IIntentHandler>(intentHandlers.ToDictionary(handler => handler.IntentName));
+            foreach (var intentHandler in intentHandlers)
+            {
+                router.RegisterHandler(intentHandler);
+            }
         }
 
-        public void Process(string intentName)
+        public async void Process(string intentPayload)
         {
-            IIntentHandler handler;
-            if (!_handlers.TryGetValue(intentName, out handler))
-            {
-                handler = _defaultHandler;
-            };
-            handler.Handle();
+            LuisResult result = new LuisResult();
+            result.Load(JToken.Parse(intentPayload));
+
+            bool handled = await router.Route(result, null);
+            if (!handled) { _defaultHandler.Handle(); }
         }
     }
 
     public interface IIntentHandler
     {
-        string IntentName { get; }
         void Handle();
     }
 }

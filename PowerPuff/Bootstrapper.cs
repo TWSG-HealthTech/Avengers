@@ -71,6 +71,7 @@ namespace PowerPuff
 
             builder.RegisterType<SpeechSynthesiser>().As<ISpeechSynthesiser>().SingleInstance();
             builder.RegisterType<NoneIntentHandler>().Named<IIntentHandler>("DefaultIntent").SingleInstance();
+            builder.RegisterType<JokeIntentHandler>().As<IIntentHandler>().SingleInstance();
 
             builder.RegisterType<IntentProcessor>()
                 .As<IIntentProcessor>()

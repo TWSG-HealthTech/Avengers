@@ -69,7 +69,7 @@ namespace PowerPuff.Speech
 
         private void OnIntentHandler(object sender, SpeechIntentEventArgs e)
         {
-            _intentProcessor.Process("None");
+            _intentProcessor.Process(e.Payload);
         }
 
         public event Action ActiveListeningStarted;

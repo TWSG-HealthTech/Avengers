@@ -9,7 +9,6 @@
             _speechSynthesiser = speechSynthesiser;
         }
 
-        public string IntentName => "None";
         public void Handle()
         {
             _speechSynthesiser.Speak("I'm sorry, I don't know how to do that.");
