@@ -14,7 +14,7 @@ namespace PowerPuff.Settings.Services
 
         public Task<Profile> GetProfileBy(string profileId)
         {
-            return GetAsync<Profile>($"api/profile/{profileId}");
+            return GetAsync<Profile>($"main/api/profile/{profileId}");
         }
     }
 }

@@ -46,9 +46,32 @@
                   CanUserAddRows="False"
                   IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="200" Header="Skype" Binding="{Binding Skype}"></DataGridTextColumn>
+                <DataGridTextColumn Width="50"
+                                    Header="Id"
+                                    Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Width="200" Header="Name" Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTextColumn Width="*" Header="Aliases" Binding="{Binding AliasesDisplay}"></DataGridTextColumn>
             </DataGrid.Columns>
+<!--            <DataGrid.RowDetailsTemplate>-->
+<!--                <DataTemplate>-->
+<!--                    <DataGrid AutoGenerateColumns="False"-->
+<!--                              CanUserAddRows="True"-->
+<!--                              IsReadOnly="True"-->
+<!--                              Margin="30 0 0 0"-->
+<!--                              ItemsSource="{Binding Aliases}">-->
+<!--                        <DataGrid.Columns>-->
+<!--                            <DataGridTextColumn Header="Alias" Width="*" Binding="{Binding}"></DataGridTextColumn>-->
+<!--                            <DataGridTemplateColumn Width="100">-->
+<!--                                <DataGridTemplateColumn.CellTemplate>-->
+<!--                                    <DataTemplate>-->
+<!--                                        <Button>Remove</Button>-->
+<!--                                    </DataTemplate>-->
+<!--                                </DataGridTemplateColumn.CellTemplate>-->
+<!--                            </DataGridTemplateColumn>-->
+<!--                        </DataGrid.Columns>-->
+<!--                    </DataGrid>-->
+<!--                </DataTemplate>-->
+<!--            </DataGrid.RowDetailsTemplate>-->
         </DataGrid>
     </Grid>
 </UserControl>

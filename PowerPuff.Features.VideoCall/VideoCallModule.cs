@@ -47,6 +47,7 @@ namespace PowerPuff.Features.VideoCall
             updater.RegisterType<MainButtonViewModel>();
             updater.RegisterType<SettingsViewModel>();
             updater.RegisterType<SkypeUriVideoCallService>().As<IVideoCallService>();
+            updater.RegisterType<Gateway>().As<IGateway>();
 
             updater.RegisterTypeForNavigation<VideoMainView>(NavigableViews.VideoCall.MainView.GetFullName());
             updater.RegisterTypeForNavigation<SettingsView>(NavigableViews.VideoCall.SettingsView.GetFullName());

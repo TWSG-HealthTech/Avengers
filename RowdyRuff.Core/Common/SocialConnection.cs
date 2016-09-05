@@ -10,6 +10,7 @@ namespace RowdyRuff.Core.Common
     {
         public int Id { get; private set; }
         public string ClientProfileId { get; private set; }
+        public string Name { get; private set; }
         public string Skype { get; private set; }
         public List<string> Aliases { get; private set; }
         public string CalendarEmail { get; private set; }
@@ -25,8 +26,9 @@ namespace RowdyRuff.Core.Common
             set { Aliases = value.Split(',').ToList(); }
         }
 
-        public SocialConnection(string skype, List<string> aliases)
+        public SocialConnection(string name, string skype, List<string> aliases)
         {
+            Name = name;
             Skype = skype;
             Aliases = aliases;
         }

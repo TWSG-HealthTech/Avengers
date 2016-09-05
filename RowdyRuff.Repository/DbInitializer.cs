@@ -22,8 +22,8 @@ namespace RowdyRuff.Repository
                 "a111222a", 
                 "rowdyruff@thoughtworks.com");
 
-            profile.Connections.Add(new SocialConnection("someskypeid1", new List<string> { "son" }));
-            profile.Connections.Add(new SocialConnection("someskypeid2", new List<string> { "daughter" }));
+            profile.Connections.Add(new SocialConnection("Connection 1", "someskypeid1", new List<string> { "son" }));
+            profile.Connections.Add(new SocialConnection("Connection 2", "someskypeid2", new List<string> { "daughter" }));
 
             return profile;
         }
