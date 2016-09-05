@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PowerPuff.Features.Timer.Views"
              xmlns:ViewModels="clr-namespace:PowerPuff.Features.Timer.ViewModels" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="PowerPuff.Features.Timer.Views.TimerMainView"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="500">
+             d:DesignHeight="500" d:DesignWidth="800">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -22,109 +22,109 @@
         <TextBlock x:Name="textBlock_HH"
                    Grid.Row="1" 
                    HorizontalAlignment="Center"
-                   Margin="131,61,369,89"
+                   Margin="90,64,572,130"
                    TextWrapping="Wrap"
                    VerticalAlignment="Center"
                    Text="{Binding Hours}"
-                   FontSize="60"/>
+                   FontSize="60" Height="136" Width="138"/>
         <TextBlock x:Name="textBlock_MM"
                    Grid.Row="1" 
                    HorizontalAlignment="Center"
-                   Margin="218,61,217,89"
+                   Margin="329,64,333,130"
                    TextWrapping="Wrap"
                    Text="{Binding Minutes}"
                    VerticalAlignment="Center"
-                   FontSize="60"/>
+                   FontSize="60" Height="136" Width="138"/>
         <TextBlock x:Name="textBlock_SS"
                    Grid.Row="1" 
                    HorizontalAlignment="Center"
-                   Margin="335,61,100,89"
+                   Margin="561,64,100,130"
                    TextWrapping="Wrap"
                    VerticalAlignment="Center"
                    FontSize="60"
-                   Text="{Binding Seconds}"/>
+                   Text="{Binding Seconds}" Height="136" Width="139"/>
 
         <Button x:Name="btn_Start"
                 Content="Start"
                 HorizontalAlignment="Center"
-                Margin="331,177,95,32"
+                Margin="90,312,96,83"
                 Grid.Row="1"
                 VerticalAlignment="Center"
-                Width="74" 
-                Command="{Binding StartTimerButton}"/>
+                Width="614" 
+                Command="{Binding StartTimerButton}" Height="35"/>
 
         <Button x:Name="btn_Stop"
                 Content="Stop"
                 HorizontalAlignment="Center"
-                Margin="96,177,330,32"
+                Margin="90,366,100,29"
                 Grid.Row="1"
                 VerticalAlignment="Center"
-                Width="74" 
-                Command="{Binding StopTimerButton}"/>
+                Width="610" 
+                Command="{Binding StopTimerButton}" Height="35"/>
         <Button x:Name="incrSeconds" 
                 Content="/\"
                 HorizontalAlignment="Center" 
-                Margin="331,24,95,186" 
+                Margin="557,2,96,294" 
                 Grid.Row="1" 
                 VerticalAlignment="Center" 
-                Width="74"
-                Command="{Binding AddSecondsButton}"/>
+                Width="147"
+                Command="{Binding AddSecondsButton}" Height="34"/>
         <Button x:Name="decrSeconds" 
             Content="\/"
             HorizontalAlignment="Center" 
-            Margin="331,152,95,58" 
+            Margin="557,219,96,77" 
             Grid.Row="1" 
             VerticalAlignment="Center" 
-            Width="74"
-            Command="{Binding SubtractSecondsButton}"/>
+            Width="147"
+            Command="{Binding SubtractSecondsButton}" Height="34"/>
         <TextBlock x:Name="HhMmSeparator"
                    HorizontalAlignment="Center"
-                   Margin="185,82,309,108"
+                   Margin="267,100,520,162"
                    Grid.Row="1"
                    TextWrapping="Wrap"
                    Text=":"
                    VerticalAlignment="Center"
-                   FontSize="30"/>
+                   FontSize="30" Height="68" Width="13"/>
         <TextBlock x:Name="MmSsSeparator_Copy"
                    HorizontalAlignment="Center"
-                   Margin="308,82,186,108"
+                   Margin="512,100,275,162"
                    Grid.Row="1"
                    TextWrapping="Wrap"
                    Text=":"
                    VerticalAlignment="Center"
-                   FontSize="30"/>
+                   FontSize="30" Height="68" Width="13"/>
         <Button x:Name="incrMinutes" 
             Content="/\"
             HorizontalAlignment="Center" 
-            Margin="212,24,214,186" 
+            Margin="321,2,333,294" 
             Grid.Row="1" 
             VerticalAlignment="Center" 
-            Width="74"
-            Command="{Binding AddMinutesButton}"/>
+            Width="146"
+            Command="{Binding AddMinutesButton}" Height="34"/>
         <Button x:Name="decrMinutes" 
             Content="\/"
             HorizontalAlignment="Center" 
-            Margin="212,152,214,58" 
+            Margin="321,219,333,77" 
             Grid.Row="1" 
             VerticalAlignment="Center" 
-            Width="74"
-            Command="{Binding SubtractMinutesButton}"/>
+            Width="146"
+            Command="{Binding SubtractMinutesButton}" Height="34"/>
         <Button x:Name="incrHours" 
             Content="/\"
             HorizontalAlignment="Center" 
-            Margin="96,24,330,186" 
+            Margin="90,2,562,294" 
             Grid.Row="1" 
             VerticalAlignment="Center" 
-            Width="74"
-            Command="{Binding AddHoursButton}"/>
+            Width="148"
+            Command="{Binding AddHoursButton}" Height="34"/>
         <Button x:Name="decrHours" 
             Content="\/"
             HorizontalAlignment="Center" 
-            Margin="96,152,330,58" 
+            Margin="90,219,562,77" 
             Grid.Row="1" 
             VerticalAlignment="Center" 
-            Width="74"
-            Command="{Binding SubtractHoursButton}"/>
+            Width="148"
+            Command="{Binding SubtractHoursButton}" Height="34"/>
 
     </Grid>
 </UserControl>
