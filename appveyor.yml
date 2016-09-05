@@ -1,6 +1,6 @@
 environment:
   encryption_secret:
-    secure: tXvmbVUFQp+HeZaOfnpfM61pfi95L0rujjPt9RiCbQN87tZw7wtdCZsvdqAYThp4ksvgpvSWcgpJu76K2pllIw==
+    secure: Wg5N4thXnCjhD5lYFTm4mj054sRdRFt0A5XMONBbqM5aS4iygHEgPyJcjXomXG3BrTP3mqyTpR9VBDI1B7gFhw==
 
 build_script:
   - ps: ./build.ps1 -Target Decrypt "-secret=$Env:encryption_secret"
