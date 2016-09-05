@@ -4,20 +4,25 @@ namespace PowerPuff.Features.VideoCall.Models
 {
     public class SocialConnection : BindableBase
     {
-        private string _name;
+        private int _id;
+        public int Id
+        {
+            get { return _id; }
+            set { SetProperty(ref _id, value); }
+        }
 
+        private string _name;
         public string Name
         {
             get { return _name; }
             set { SetProperty(ref _name, value); }
         }
 
-        private string _skypeId;
-
-        public string SkypeId
+        private string _skype;
+        public string Skype
         {
-            get { return _skypeId; }
-            set { SetProperty(ref _skypeId, value); }
+            get { return _skype; }
+            set { SetProperty(ref _skype, value); }
         }
 
         private string _avatarUrl;

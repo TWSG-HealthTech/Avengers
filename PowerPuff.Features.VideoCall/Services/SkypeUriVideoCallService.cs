@@ -13,7 +13,7 @@ namespace PowerPuff.Features.VideoCall.Services
     {
         public void Call(SocialConnection connection, Action finishCallback)
         {
-            Process.Start($"skype:{connection.SkypeId}?call&video=true");
+            Process.Start($"skype:{connection.Skype}?call&video=true");
 
             WaitForCallToFinishAndSwitchBack(finishCallback);
         }

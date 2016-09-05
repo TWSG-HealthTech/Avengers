@@ -19,7 +19,7 @@ namespace PowerPuff.Features.VideoCall.Tests.ViewModels
 
                 _selectedConnection = new SocialConnection
                 {
-                    SkypeId = "someskypeid",
+                    Skype = "someskypeid",
                     Name = "some user"
                 };
                 _subject.SelectedConnection = _selectedConnection;

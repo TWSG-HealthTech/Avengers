@@ -7,6 +7,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{DynamicResource SettingContentStyle}">
-            <TextBlock>Video Settings</TextBlock>
+        <DataGrid
+            IsReadOnly="True"
+            ItemsSource="{Binding Connections}"
+            AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id"
+                                    Width="50"
+                                    Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Name"
+                                    Width="200"
+                                    Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Skype"
+                                    Width="*"
+                                    Binding="{Binding Skype}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
