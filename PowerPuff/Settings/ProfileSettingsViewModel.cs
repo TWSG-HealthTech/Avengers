@@ -20,9 +20,9 @@ namespace PowerPuff.Settings
             _profileGateway = profileGateway;
         }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
+        public async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Profile = _profileGateway.GetProfileBy("a111222a").Result;
+            Profile = await _profileGateway.GetProfileBy("a111222a");
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

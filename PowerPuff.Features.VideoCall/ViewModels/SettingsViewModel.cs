@@ -17,9 +17,9 @@ namespace PowerPuff.Features.VideoCall.ViewModels
             Connections = new ObservableCollection<SocialConnection>();
         }
 
-        public void OnNavigatedTo(NavigationContext navigationContext)
+        public async void OnNavigatedTo(NavigationContext navigationContext)
         {
-            var connections = _gateway.GetSocialConnections("a111222a").Result;
+            var connections = await _gateway.GetSocialConnections("a111222a");
 
             Connections.AddRange(connections);
         }
