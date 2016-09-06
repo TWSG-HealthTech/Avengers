@@ -1,4 +1,7 @@
-﻿namespace PowerPuff.Speech
+﻿using System.Threading.Tasks;
+using Microsoft.Cognitive.LUIS;
+
+namespace PowerPuff.Speech
 {
     public class NoneIntentHandler : IIntentHandler
     {
@@ -9,9 +12,11 @@
             _speechSynthesiser = speechSynthesiser;
         }
 
-        public void Handle()
+        [IntentHandler(0, Name = "None")]
+        public async Task<bool> DefaultHandler(LuisResult result, object context)
         {
             _speechSynthesiser.Speak("I'm sorry, I don't know how to do that.");
+            return true;
         }
     }
 }

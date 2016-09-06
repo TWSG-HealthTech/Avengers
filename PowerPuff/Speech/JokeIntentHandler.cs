@@ -29,11 +29,6 @@ namespace PowerPuff.Speech
             _speechSynthesiser = speechSynthesiser;
         }
 
-        public void Handle()
-        {
-            throw new NotImplementedException();
-        }
-
         [IntentHandler(0.75, Name = "TellJoke")]
         public async Task<bool> TellJoke(LuisResult result, object context)
         {

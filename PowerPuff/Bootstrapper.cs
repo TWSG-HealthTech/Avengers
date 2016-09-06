@@ -70,7 +70,7 @@ namespace PowerPuff
             builder.RegisterType<PassiveListener>().As<IPassiveListener>().SingleInstance();
 
             builder.RegisterType<SpeechSynthesiser>().As<ISpeechSynthesiser>().SingleInstance();
-            builder.RegisterType<NoneIntentHandler>().Named<IIntentHandler>("DefaultIntent").SingleInstance();
+            builder.RegisterType<NoneIntentHandler>().As<IIntentHandler>().SingleInstance();
             builder.RegisterType<JokeIntentHandler>().As<IIntentHandler>().SingleInstance();
 
             builder.RegisterType<IntentProcessor>()

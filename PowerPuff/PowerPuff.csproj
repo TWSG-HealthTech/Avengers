@@ -153,6 +153,7 @@
     <Compile Include="Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Speech\IIntentHandler.cs" />
     <Compile Include="Speech\IntentProcessor.cs" />
     <Compile Include="Speech\IPassiveListener.cs" />
     <Compile Include="Speech\ISpeechSynthesiser.cs" />

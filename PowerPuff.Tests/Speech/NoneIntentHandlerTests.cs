@@ -16,7 +16,7 @@ namespace PowerPuff.Tests.Speech
             _subject = new NoneIntentHandler(_speechSynthesiserMock.Object);
         };
 
-        private Because of = () => _subject.Handle();
+        private Because of = async () => await _subject.DefaultHandler(null, null);
 
         It says_that_it_does_not_know = () => _speechSynthesiserMock.Verify(ss => ss.Speak("I'm sorry, I don't know how to do that."));
     }
