@@ -93,6 +93,7 @@
     <Compile Include="Converters\BoolToValueConverter.cs" />
     <Compile Include="Gateway\ServerGatewayBase.cs" />
     <Compile Include="Helpers\EnumExtensions.cs" />
+    <Compile Include="Helpers\IDispatcher.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\NLogAdapter.cs" />
     <Compile Include="NavigableViews.cs" />
@@ -107,6 +108,8 @@
     <Compile Include="Settings\IMenuSettingsRepository.cs" />
     <Compile Include="Settings\MenuSettingViewModel.cs" />
     <Compile Include="Settings\MenuSettingsRepository.cs" />
+    <Compile Include="Speech\IIntentHandler.cs" />
+    <Compile Include="Speech\ISpeechSynthesiser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

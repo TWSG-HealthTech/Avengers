@@ -117,6 +117,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ApplicationDispatcher.cs" />
     <Compile Include="Modules\ActiveListenerModule.cs" />
     <Compile Include="Settings\Services\ProfileGateway.cs" />
     <Compile Include="Shell.xaml.cs">
@@ -153,10 +154,8 @@
     <Compile Include="Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Speech\IIntentHandler.cs" />
     <Compile Include="Speech\IntentProcessor.cs" />
     <Compile Include="Speech\IPassiveListener.cs" />
-    <Compile Include="Speech\ISpeechSynthesiser.cs" />
     <Compile Include="Speech\JokeIntentHandler.cs" />
     <Compile Include="Speech\NoneIntentHandler.cs" />
     <Compile Include="Speech\PassiveListener.cs" />

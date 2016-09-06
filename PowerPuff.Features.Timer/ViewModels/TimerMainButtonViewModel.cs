@@ -1,30 +1,15 @@
-﻿using PowerPuff.Common;
-using PowerPuff.Common.Helpers;
+﻿using PowerPuff.Features.Timer.Navigation;
 using Prism.Commands;
-using Prism.Regions;
 
 namespace PowerPuff.Features.Timer.ViewModels
 {
     public class TimerMainButtonViewModel
     {
-        private readonly IRegionManager _regionManager;
-
-        public TimerMainButtonViewModel(IRegionManager regionManager)
+        public TimerMainButtonViewModel(TimerNavigator timerNavigator)
         {
-            _regionManager = regionManager;
-
-            GoToTimerPageCommand = new DelegateCommand(GoToTimerPage);
+            GoToTimerPageCommand = new DelegateCommand(timerNavigator.GoToTimerPage);
         }
 
         public DelegateCommand GoToTimerPageCommand { get; private set; }
-
-        private void GoToTimerPage()
-        {
-            _regionManager.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.FeatureLayoutView.GetFullName(),
-                result =>
-                {
-                    _regionManager.RequestNavigate(RegionNames.FeatureMainContentRegion, NavigableViews.Timer.MainView.GetFullName());
-                });
-        }
     }
 }

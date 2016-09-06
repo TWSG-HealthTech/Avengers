@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff.Features.Timer", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff.Features.Timer.Tests", "PowerPuff.Features.Timer.Tests\PowerPuff.Features.Timer.Tests.csproj", "{90153F62-1EE0-437D-92B9-B49264F465D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff.Test.Helpers", "PowerPuff.Test.Helpers\PowerPuff.Test.Helpers.csproj", "{566781A8-417F-4F60-B77A-D76982803FB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,14 @@ Global
 		{90153F62-1EE0-437D-92B9-B49264F465D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90153F62-1EE0-437D-92B9-B49264F465D3}.Release|x64.ActiveCfg = Release|x64
 		{90153F62-1EE0-437D-92B9-B49264F465D3}.Release|x64.Build.0 = Release|x64
+		{566781A8-417F-4F60-B77A-D76982803FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{566781A8-417F-4F60-B77A-D76982803FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{566781A8-417F-4F60-B77A-D76982803FB2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{566781A8-417F-4F60-B77A-D76982803FB2}.Debug|x64.Build.0 = Debug|Any CPU
+		{566781A8-417F-4F60-B77A-D76982803FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{566781A8-417F-4F60-B77A-D76982803FB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{566781A8-417F-4F60-B77A-D76982803FB2}.Release|x64.ActiveCfg = Release|Any CPU
+		{566781A8-417F-4F60-B77A-D76982803FB2}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,5 +131,6 @@ Global
 		{5209C531-1A9B-4BF8-91AF-884B53D950CA} = {38E2E016-3AA3-41B6-B364-89BBD64AD69D}
 		{C965D94B-53D4-47CF-BA07-7438FEDB01BD} = {7C4E2D18-0AF4-4165-B6EB-43A090120673}
 		{90153F62-1EE0-437D-92B9-B49264F465D3} = {5209C531-1A9B-4BF8-91AF-884B53D950CA}
+		{566781A8-417F-4F60-B77A-D76982803FB2} = {38E2E016-3AA3-41B6-B364-89BBD64AD69D}
 	EndGlobalSection
 EndGlobal

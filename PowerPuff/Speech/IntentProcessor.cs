@@ -1,6 +1,7 @@
 ﻿using Microsoft.Cognitive.LUIS;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using PowerPuff.Common.Speech;
 
 namespace PowerPuff.Speech
 {

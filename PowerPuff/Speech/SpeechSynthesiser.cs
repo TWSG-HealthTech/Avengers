@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Speech.Synthesis;
+using PowerPuff.Common.Speech;
 
 namespace PowerPuff.Speech
 {

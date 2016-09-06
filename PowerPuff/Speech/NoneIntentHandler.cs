@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Cognitive.LUIS;
+using PowerPuff.Common.Speech;
 
 namespace PowerPuff.Speech
 {

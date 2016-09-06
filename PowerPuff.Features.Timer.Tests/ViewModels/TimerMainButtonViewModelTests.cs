@@ -1,11 +1,10 @@
-﻿using System;
-using Machine.Specifications;
+﻿using Machine.Specifications;
 using Moq;
-using PowerPuff.Common;
-using PowerPuff.Common.Helpers;
+using PowerPuff.Features.Timer.Navigation;
+using PowerPuff.Features.Timer.Tests.Navigation;
 using PowerPuff.Features.Timer.ViewModels;
+using PowerPuff.Test.Helpers;
 using Prism.Regions;
-using It = Machine.Specifications.It;
 
 namespace PowerPuff.Features.Timer.Tests.ViewModels
 {
@@ -17,17 +16,16 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels
             Establish context = () =>
             {
                 _regionManagerMock = new Mock<IRegionManager>();
-                _subject = new TimerMainButtonViewModel(_regionManagerMock.Object);
+                var timerNavigator = new TimerNavigator(_regionManagerMock.Object, new TestDispatcher());
+                _subject = new TimerMainButtonViewModel(timerNavigator);
             };
 
             Because of = () => _subject.GoToTimerPageCommand.Execute();
 
-            private It should_request_to_go_to_the_timer_page = () =>
-                _regionManagerMock.Verify(
-                    m => m.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.FeatureLayoutView.GetFullName(), Moq.It.IsAny<Action<NavigationResult>>()));
-
-            private static TimerMainButtonViewModel _subject;
-            private static Mock<IRegionManager> _regionManagerMock;
+            Behaves_like<TimerNavigatorBehaviors> it_navigates_to_timer_view;
+            
+            protected static TimerMainButtonViewModel _subject;
+            protected static Mock<IRegionManager> _regionManagerMock;
         }
     }
 }

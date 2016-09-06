@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PowerPuff.Common.Speech;
 
 namespace PowerPuff.Speech
 {

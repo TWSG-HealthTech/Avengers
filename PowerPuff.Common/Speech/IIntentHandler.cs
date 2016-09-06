@@ -1,4 +1,4 @@
-namespace PowerPuff.Speech
+namespace PowerPuff.Common.Speech
 {
     public interface IIntentHandler
     {

@@ -1,4 +1,5 @@
 ﻿using Machine.Specifications;
+using PowerPuff.Common.Speech;
 using PowerPuff.Speech;
 using M = Moq;
 

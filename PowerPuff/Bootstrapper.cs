@@ -14,11 +14,18 @@ using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Windows;
+using PowerPuff.Common.Speech;
 
 namespace PowerPuff
 {
     public class Bootstrapper : AutofacBootstrapper
     {
+        public override void Run(bool runWithDefaultConfiguration)
+        {
+            base.Run(runWithDefaultConfiguration);
+            ComponentContext.Resolve<ActiveListenerModule>().Initialize();
+        }
+
         protected override DependencyObject CreateShell()
         {
             return ComponentContext.Resolve<Shell>();
@@ -27,8 +34,6 @@ namespace PowerPuff
         protected override void InitializeShell()
         {
             base.InitializeShell();
-
-            ComponentContext.Resolve<ActiveListenerModule>().Initialize();
 
             var regionManager = ComponentContext.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion(RegionNames.MainContentRegion, typeof(MainButtonsView));
@@ -62,6 +67,8 @@ namespace PowerPuff
             builder.RegisterType<ActiveListener>().As<IActiveListener>().SingleInstance();
             builder.RegisterType<ApplicationSettings>().As<IApplicationSettings>().SingleInstance();
 
+            builder.RegisterType<ApplicationDispatcher>().As<IDispatcher>().SingleInstance();
+
             builder.RegisterType<ProfileGateway>().As<IProfileGateway>();
 
             builder.RegisterType<MenuSettingsRepository>().As<IMenuSettingsRepository>().SingleInstance();
@@ -73,10 +80,7 @@ namespace PowerPuff
             builder.RegisterType<NoneIntentHandler>().As<IIntentHandler>().SingleInstance();
             builder.RegisterType<JokeIntentHandler>().As<IIntentHandler>().SingleInstance();
 
-            builder.RegisterType<IntentProcessor>()
-                .As<IIntentProcessor>()
-                .WithParameter((pi, ctx) => pi.Name == "defaultHandler", (pi, ctx) => ctx.ResolveNamed<IIntentHandler>("DefaultIntent"))
-                .SingleInstance();
+            builder.RegisterType<IntentProcessor>().As<IIntentProcessor>().SingleInstance();
 
             builder.RegisterTypeForNavigation<MainButtonsView>(NavigableViews.Main.HomeView.GetFullName());
             builder.RegisterTypeForNavigation<SettingsView>(NavigableViews.Main.SettingsView.GetFullName());            
