@@ -5,8 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PowerPuff.Features.Timer.Views"
              xmlns:ViewModels="clr-namespace:PowerPuff.Features.Timer.ViewModels" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="PowerPuff.Features.Timer.Views.TimerMainView"
+             xmlns:controls="clr-namespace:PowerPuff.Common.Controls;assembly=PowerPuff.Common"
+             xmlns:converters="clr-namespace:PowerPuff.Common.Converters;assembly=PowerPuff.Common"       
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:BoolToVisibilityConverter x:Key="TrueToVisibleConverter"
+                                                  TrueValue="Visible"
+                                                  FalseValue="Collapsed" />
+            <converters:BoolToVisibilityConverter x:Key="FalseToVisibleConverter"
+                                                  TrueValue="Collapsed"
+                                                  FalseValue="Visible" />
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
 
         <Grid.RowDefinitions>
@@ -47,20 +59,23 @@
         <Button x:Name="btn_Start"
                 Content="Start"
                 HorizontalAlignment="Center"
-                Margin="90,312,96,83"
+                Margin="94,326,92,50"
                 Grid.Row="1"
                 VerticalAlignment="Center"
                 Width="614" 
-                Command="{Binding StartTimerButton}" Height="35"/>
+                Command="{Binding StartTimerButton}" 
+                Visibility="{Binding IsTimerEnabled, Converter={StaticResource FalseToVisibleConverter}}" 
+                Height="54"/>
 
         <Button x:Name="btn_Stop"
                 Content="Stop"
                 HorizontalAlignment="Center"
-                Margin="90,366,100,29"
+                Margin="94,326,96,50"
                 Grid.Row="1"
                 VerticalAlignment="Center"
                 Width="610" 
-                Command="{Binding StopTimerButton}" Height="35"/>
+                Visibility="{Binding IsTimerEnabled, Converter={StaticResource TrueToVisibleConverter}}" 
+                Command="{Binding StopTimerButton}" Height="54"/>
         <Button x:Name="incrSeconds" 
                 Content="/\"
                 HorizontalAlignment="Center" 
@@ -68,6 +83,7 @@
                 Grid.Row="1" 
                 VerticalAlignment="Center" 
                 Width="147"
+                Visibility="{Binding IsTimerEnabled, Converter={StaticResource FalseToVisibleConverter}}" 
                 Command="{Binding AddSecondsButton}" Height="34"/>
         <Button x:Name="decrSeconds" 
             Content="\/"
@@ -76,6 +92,7 @@
             Grid.Row="1" 
             VerticalAlignment="Center" 
             Width="147"
+            Visibility="{Binding IsTimerEnabled, Converter={StaticResource FalseToVisibleConverter}}" 
             Command="{Binding SubtractSecondsButton}" Height="34"/>
         <TextBlock x:Name="HhMmSeparator"
                    HorizontalAlignment="Center"
@@ -100,6 +117,7 @@
             Grid.Row="1" 
             VerticalAlignment="Center" 
             Width="146"
+            Visibility="{Binding IsTimerEnabled, Converter={StaticResource FalseToVisibleConverter}}" 
             Command="{Binding AddMinutesButton}" Height="34"/>
         <Button x:Name="decrMinutes" 
             Content="\/"
@@ -108,6 +126,7 @@
             Grid.Row="1" 
             VerticalAlignment="Center" 
             Width="146"
+            Visibility="{Binding IsTimerEnabled, Converter={StaticResource FalseToVisibleConverter}}" 
             Command="{Binding SubtractMinutesButton}" Height="34"/>
         <Button x:Name="incrHours" 
             Content="/\"
@@ -116,6 +135,7 @@
             Grid.Row="1" 
             VerticalAlignment="Center" 
             Width="148"
+            Visibility="{Binding IsTimerEnabled, Converter={StaticResource FalseToVisibleConverter}}" 
             Command="{Binding AddHoursButton}" Height="34"/>
         <Button x:Name="decrHours" 
             Content="\/"
@@ -124,6 +144,7 @@
             Grid.Row="1" 
             VerticalAlignment="Center" 
             Width="148"
+            Visibility="{Binding IsTimerEnabled, Converter={StaticResource FalseToVisibleConverter}}" 
             Command="{Binding SubtractHoursButton}" Height="34"/>
 
     </Grid>

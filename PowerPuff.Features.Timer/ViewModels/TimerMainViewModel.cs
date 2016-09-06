@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Threading;
 using Prism.Mvvm;
 using Prism.Commands;
@@ -10,6 +11,13 @@ namespace PowerPuff.Features.Timer.ViewModels
         private TimeSpan timer;
         private DispatcherTimer _timerObject;
 
+        private bool _isTimerEnabled;
+        public bool IsTimerEnabled
+        {
+            get { return _isTimerEnabled; }
+            set { SetProperty(ref _isTimerEnabled, value); }
+        }
+
         public TimerMainViewModel ()
         {
             _timerObject = new DispatcherTimer();
@@ -19,7 +27,7 @@ namespace PowerPuff.Features.Timer.ViewModels
             timer = new TimeSpan();
             UpdatePropertiesForTimerDisplay();
 
-            IsTimerEnabled = _timerObject.IsEnabled.ToString();
+            IsTimerEnabled = _timerObject.IsEnabled;
 
             StartTimerButton = new DelegateCommand(StartTimer);
             StopTimerButton = new DelegateCommand(StopTimer);
@@ -52,19 +60,13 @@ namespace PowerPuff.Features.Timer.ViewModels
             set { SetProperty(ref _seconds, value); }
         }
 
-        private string _isTimerEnabled;
-        public string IsTimerEnabled
-        {
-            get { return _isTimerEnabled.ToString(); }
-            set { SetProperty(ref _isTimerEnabled, value); }
-        }
-
+       
         public DelegateCommand StartTimerButton { get; private set; }
 
         private void StartTimer()
         {
             _timerObject.Start();
-            IsTimerEnabled = _timerObject.IsEnabled.ToString();
+            IsTimerEnabled = _timerObject.IsEnabled;
         }
 
         public DelegateCommand StopTimerButton { get; private set; }
@@ -72,7 +74,7 @@ namespace PowerPuff.Features.Timer.ViewModels
         private void StopTimer()
         {
             _timerObject.Stop();
-            IsTimerEnabled = _timerObject.IsEnabled.ToString();
+            IsTimerEnabled = _timerObject.IsEnabled;
         }
 
         public DelegateCommand AddSecondsButton { get; private set; }
@@ -122,6 +124,7 @@ namespace PowerPuff.Features.Timer.ViewModels
         }
 
         public DelegateCommand SubtractHoursButton { get; set; }
+        public object StartTimerButtonVisibility { get; private set; }
 
         private void DecreaseHour()
         {

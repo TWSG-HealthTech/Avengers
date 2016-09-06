@@ -17,7 +17,7 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels
         {
             Because of = () => _subject.StartTimerButton.Execute();
 
-            It should_toggle_timer_to_be_enabled = () => _subject.IsTimerEnabled.ShouldEqual(true.ToString());
+            It should_toggle_timer_to_be_enabled = () => _subject.IsTimerEnabled.ShouldEqual(true);
         }
 
         class When_Stop_Button_is_Clicked
@@ -29,7 +29,7 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels
 
             Because of = () => _subject.StopTimerButton.Execute();
 
-            It should_toggle_timer_to_be_disabled = () => _subject.IsTimerEnabled.ShouldEqual(false.ToString());
+            It should_toggle_timer_to_be_disabled = () => _subject.IsTimerEnabled.ShouldEqual(false);
         }
 
         class When_Up_Button_for_seconds_is_clicked
