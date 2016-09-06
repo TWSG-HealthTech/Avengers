@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using PowerPuff.Features.VideoCall.Models;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -11,6 +13,13 @@ namespace PowerPuff.Features.VideoCall.ViewModels
 
         public ObservableCollection<SocialConnection> Connections { get; set; }
 
+        private string _message;
+        public string Message
+        {
+            get { return _message; }
+            set { SetProperty(ref _message, value); }
+        }
+
         private bool _isLoading;
         public bool IsLoading
         {
@@ -18,11 +27,30 @@ namespace PowerPuff.Features.VideoCall.ViewModels
             set { SetProperty(ref _isLoading, value); }
         }
 
+        private SocialConnection _selectedConnection;
+        public SocialConnection SelectedConnection
+        {
+            get { return _selectedConnection; }
+            set { SetProperty(ref _selectedConnection, value); }
+        }
+
         public SettingsViewModel(IGateway gateway)
         {
             _gateway = gateway;
 
             Connections = new ObservableCollection<SocialConnection>();
+
+            UpdateSkypeCommand = DelegateCommand.FromAsyncHandler(UpdateSkype);
+        }
+
+        public DelegateCommand UpdateSkypeCommand { get; private set; }
+        private async Task UpdateSkype()
+        {
+            Message = "";
+
+            await _gateway.Update("a111222a", SelectedConnection);
+
+            Message = "Connection updated";
         }
 
         public async void OnNavigatedTo(NavigationContext navigationContext)

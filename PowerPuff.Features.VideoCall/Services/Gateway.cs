@@ -18,5 +18,10 @@ namespace PowerPuff.Features.VideoCall.Services
         {
             return GetAsync<List<SocialConnection>>($"video/api/{profileId}/settings");
         }
+
+        public Task Update(string profileId, SocialConnection connection)
+        {
+            return PutAsync($"video/api/{profileId}/settings/{connection.Id}", connection);
+        }
     }
 }

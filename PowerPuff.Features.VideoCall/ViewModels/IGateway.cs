@@ -7,5 +7,6 @@ namespace PowerPuff.Features.VideoCall.ViewModels
     public interface IGateway
     {
         Task<List<SocialConnection>> GetSocialConnections(string profileId);
+        Task Update(string profileId, SocialConnection connection);
     }
 }
