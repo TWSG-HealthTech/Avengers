@@ -100,4 +100,15 @@
             </MultiTrigger>
         </Style.Triggers>
     </Style>
+    
+    <Style TargetType="{x:Type Viewbox}">
+        <Setter Property="Width"
+                Value="200" />
+        <Setter Property="Height"
+                Value="200" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+    </Style>
 </ResourceDictionary>
