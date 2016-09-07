@@ -1,15 +1,14 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Threading;
+﻿using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Commands;
+using System;
+using System.Windows.Threading;
 
 namespace PowerPuff.Features.Timer.ViewModels
 {
     public class TimerMainViewModel : BindableBase
     {
-        private TimeSpan timer;
         private DispatcherTimer _timerObject;
+        private Model.Timer _timer;
 
         private bool _isTimerEnabled;
         public bool IsTimerEnabled
@@ -18,14 +17,15 @@ namespace PowerPuff.Features.Timer.ViewModels
             set { SetProperty(ref _isTimerEnabled, value); }
         }
 
-        public TimerMainViewModel ()
+        public TimerMainViewModel (Model.Timer timer)
         {
             _timerObject = new DispatcherTimer();
             _timerObject.Interval = TimeSpan.FromSeconds(1);
             _timerObject.Tick += new EventHandler(timerTick);
 
-            timer = new TimeSpan();
-            UpdatePropertiesForTimerDisplay();
+            _timer = timer;
+            _timer.OnTimeSpanChanged += UpdatePropertiesForTimerDisplay;
+            UpdatePropertiesForTimerDisplay(_timer.Duration);
 
             IsTimerEnabled = _timerObject.IsEnabled;
 
@@ -37,7 +37,7 @@ namespace PowerPuff.Features.Timer.ViewModels
             SubtractMinutesButton = new DelegateCommand(DecreaseMinute);
             AddHoursButton = new DelegateCommand(IncreaseHour);
             SubtractHoursButton = new DelegateCommand(DecreaseHour);
-        }   
+        }
 
         private string _hours;
         public string Hours
@@ -81,46 +81,35 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         private void IncreaseSecond()
         {
-            timer = timer.Add(new TimeSpan(0, 0, 1));
-            UpdatePropertiesForTimerDisplay();
+            _timer.Duration = _timer.Duration.Add(new TimeSpan(0, 0, 1));
         }
 
         public DelegateCommand SubtractSecondsButton { get; private set; }
 
         private void DecreaseSecond()
         {
-            if (timer.TotalSeconds > 0)
-            {
-                timer = timer.Subtract(new TimeSpan(0, 0, 1));
-            }
-            UpdatePropertiesForTimerDisplay();
+            _timer.Duration = _timer.Duration.Subtract(new TimeSpan(0, 0, 1));
         }
 
         public DelegateCommand AddMinutesButton { get; set; }
 
         private void IncreaseMinute()
         {
-            timer = timer.Add(new TimeSpan(0, 1, 0));
-            UpdatePropertiesForTimerDisplay();
+            _timer.Duration = _timer.Duration.Add(new TimeSpan(0, 1, 0));
         }
 
         public DelegateCommand SubtractMinutesButton { get; set; }
 
         private void DecreaseMinute()
         {
-            if (timer.Minutes > 0)
-            {
-                timer = timer.Subtract(new TimeSpan(0, 1, 0));
-            }
-            UpdatePropertiesForTimerDisplay();
+            _timer.Duration = _timer.Duration.Subtract(new TimeSpan(0, 1, 0));
         }
 
         public DelegateCommand AddHoursButton { get; set; }
 
         private void IncreaseHour()
         {
-            timer = timer.Add(new TimeSpan(1, 0, 0));
-            UpdatePropertiesForTimerDisplay();
+            _timer.Duration = _timer.Duration.Add(new TimeSpan(1, 0, 0));
         }
 
         public DelegateCommand SubtractHoursButton { get; set; }
@@ -128,27 +117,23 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         private void DecreaseHour()
         {
-            if (timer.Hours > 0)
-            {
-                timer = timer.Subtract(new TimeSpan(1, 0, 0));
-            }
-            UpdatePropertiesForTimerDisplay();
+            _timer.Duration = _timer.Duration.Subtract(new TimeSpan(1, 0, 0));
         }
 
         private void timerTick(object obj, EventArgs e)
         {
             DecreaseSecond();
-            if (timer.TotalSeconds == 0)
+            if (_timer.Duration <= TimeSpan.Zero)
             {
                 StopTimer();
             }
         }
 
-        private void UpdatePropertiesForTimerDisplay()
+        private void UpdatePropertiesForTimerDisplay(TimeSpan timeSpan)
         {
-            Hours = $"{timer.Hours:D2}";
-            Minutes = $"{timer.Minutes:D2}";
-            Seconds = $"{timer.Seconds:D2}";
+            Hours = $"{timeSpan.Hours:D2}";
+            Minutes = $"{timeSpan.Minutes:D2}";
+            Seconds = $"{timeSpan.Seconds:D2}";
         }
     }
 }

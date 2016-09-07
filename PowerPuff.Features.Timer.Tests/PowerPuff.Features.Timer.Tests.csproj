@@ -105,6 +105,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\TimerTests.cs" />
     <Compile Include="Navigation\TimerNavigatorBehaviors.cs" />
     <Compile Include="Speech\TimerIntentHandlerTests.cs" />
     <Compile Include="TimerModuleTests.cs" />

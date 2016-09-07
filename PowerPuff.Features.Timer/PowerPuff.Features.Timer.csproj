@@ -96,6 +96,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Timer.cs" />
     <Compile Include="Navigation\TimerNavigator.cs" />
     <Compile Include="Speech\TimerIntentHandler.cs" />
     <Compile Include="TimerModule.cs" />

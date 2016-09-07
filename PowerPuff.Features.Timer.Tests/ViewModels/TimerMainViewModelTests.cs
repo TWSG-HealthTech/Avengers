@@ -10,7 +10,7 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels
 
         Establish context = () =>
         {
-            _subject = new TimerMainViewModel();
+            _subject = new TimerMainViewModel(new Model.Timer());
         };
 
         class When_Start_Button_is_Clicked
