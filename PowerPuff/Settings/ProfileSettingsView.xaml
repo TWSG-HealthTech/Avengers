@@ -28,6 +28,7 @@
                 <TextBlock VerticalAlignment="Center"
                            FontSize="15"
                            Margin="10 0"
+                           Foreground="{StaticResource PrimaryForegroundBrush}"
                            FontWeight="Bold">
                     Email
                 </TextBlock>
@@ -41,6 +42,7 @@
                        FontSize="15"
                        Margin="10"
                        VerticalAlignment="Center"
+                       Foreground="{StaticResource PrimaryForegroundBrush}"
                        FontWeight="Bold">
                 Connections
             </TextBlock>

@@ -8,16 +8,51 @@
                                           TrueValue="Collapsed"
                                           FalseValue="Visible" />
 
-    <Color x:Key="PrimaryBackgroundColor">#FF436B95</Color>
+    <Color x:Key="PrimaryBackgroundColor">#FF353536</Color>
+    <Color x:Key="PrimaryBackgroundColor2">#FF615aa2</Color>
+    <Color x:Key="PrimaryBackgroundColor3">#FF8e80c4</Color>
+    <Color x:Key="PrimaryBackgroundColor4">#FFc8a9e3</Color>
+    <Color x:Key="PrimaryBackgroundColor5">#FFe2ebe3</Color>
     <Color x:Key="PrimaryForegroundColor">AntiqueWhite</Color>
-    <Color x:Key="HoverBackgroundColor">CornflowerBlue</Color>
+    <Color x:Key="PrimaryForegroundColor2">#FF353536</Color>
+    <Color x:Key="HoverBackgroundColor">#FF615aa2</Color>
 
     <SolidColorBrush x:Key="PrimaryBackgroundBrush"
                      Color="{StaticResource PrimaryBackgroundColor}" />
+    <SolidColorBrush x:Key="PrimaryBackgroundBrush2"
+                     Color="{StaticResource PrimaryBackgroundColor2}" />
+    <SolidColorBrush x:Key="PrimaryBackgroundBrush3"
+                     Color="{StaticResource PrimaryBackgroundColor3}" />
+    <SolidColorBrush x:Key="PrimaryBackgroundBrush4"
+                     Color="{StaticResource PrimaryBackgroundColor4}" />
+    <SolidColorBrush x:Key="PrimaryBackgroundBrush5"
+                     Color="{StaticResource PrimaryBackgroundColor5}" />
     <SolidColorBrush x:Key="PrimaryForegroundBrush"
                      Color="{StaticResource PrimaryForegroundColor}" />
+    <SolidColorBrush x:Key="PrimaryForegroundBrush2"
+                     Color="{StaticResource PrimaryForegroundColor2}" />
     <SolidColorBrush x:Key="HoverBackgroundBrush"
                      Color="{StaticResource HoverBackgroundColor}" />
+    
+    <Style x:Key="FeatureLayoutGridStyle" TargetType="{x:Type Grid}">
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+                Value="Stretch" />
+        <Setter Property="Margin"
+                Value="10" />
+    </Style>
+    
+    <Style x:Key="ViewHeaderStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight"
+                Value="Bold" />
+        <Setter Property="FontSize"
+                Value="30" />
+        <Setter Property="Margin"
+                Value="15" />
+        <Setter Property="Foreground"
+                Value="{StaticResource PrimaryForegroundBrush2}"/>
+    </Style>
 
     <Style x:Key="MainButtonStyle"
            TargetType="{x:Type Button}">
@@ -63,11 +98,15 @@
            TargetType="{x:Type Grid}">
         <Setter Property="Background"
                 Value="{StaticResource PrimaryBackgroundBrush}"></Setter>
+        <Setter Property="Opacity"
+                Value="0.8" />
     </Style>
 
     <Style TargetType="{x:Type ListBox}">
         <Setter Property="Background"
                 Value="{StaticResource PrimaryBackgroundBrush}"></Setter>
+        <Setter Property="Opacity"
+                Value="0.8" />
     </Style>
 
     <Style TargetType="{x:Type ListBoxItem}">
@@ -76,11 +115,11 @@
                              TargetType="ListBoxItem">
                 <Border BorderBrush="#5076A7"
                         BorderThickness="1,1,1,1"
-                        Background="{StaticResource HoverBackgroundBrush}"
+                        Background="{StaticResource PrimaryBackgroundBrush2}"
                         CornerRadius="4,4,4,4">
                     <StackPanel TextElement.FontFamily="Segoe UI"
                                 TextElement.FontSize="12"
-                                TextElement.Foreground="White">
+                                TextElement.Foreground="{StaticResource PrimaryForegroundBrush}">
                         <ContentPresenter ContentSource="Content" />
                     </StackPanel>
                 </Border>

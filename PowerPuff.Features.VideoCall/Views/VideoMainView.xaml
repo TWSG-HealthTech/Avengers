@@ -18,9 +18,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
-                   FontSize="30"
-                   Margin="15"
-                   FontWeight="Bold">
+                   Style="{StaticResource ViewHeaderStyle}">
             Video Call
         </TextBlock>
 
@@ -33,6 +31,8 @@
                       SelectedItem="{Binding SelectedConnection}"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       SelectionMode="Single"
+                      Opacity="0.8"
+                      Background="{DynamicResource PrimaryBackgroundBrush}"
                       Visibility="{Binding IsLoading, Converter={StaticResource FalseToVisibleConverter}}"
                       ItemsSource="{Binding SocialConnections}">
                 <i:Interaction.Triggers>
@@ -55,7 +55,7 @@
                     <DataTemplate>
                         <Border Width="350"
                                 Height="150"
-                                Background="{StaticResource PrimaryBackgroundBrush}"
+                                Background="{StaticResource PrimaryBackgroundBrush5}"
                                 Cursor="Hand">
                             <StackPanel Orientation="Horizontal">
                                 <Ellipse Width="100"
@@ -70,7 +70,7 @@
                                            FontSize="20"
                                            Width="180"
                                            FontWeight="Bold"
-                                           Foreground="{StaticResource PrimaryForegroundBrush}"
+                                           Foreground="{StaticResource PrimaryForegroundBrush2}"
                                            TextWrapping="Wrap"
                                            Text="{Binding Name}" />
                             </StackPanel>

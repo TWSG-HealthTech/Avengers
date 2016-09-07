@@ -18,10 +18,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" 
-                   FontSize="20" 
-                   Margin="15"
-                   FontWeight="Bold"><Run Text="Timer"/></TextBlock>
+        <TextBlock Grid.Row="0"
+                   Style="{StaticResource ViewHeaderStyle}">
+            Timer
+        </TextBlock>
 
         <TextBlock x:Name="textBlock_HH"
                    Grid.Row="1" 

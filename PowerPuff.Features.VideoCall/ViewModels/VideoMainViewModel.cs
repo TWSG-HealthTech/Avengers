@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using PowerPuff.Features.VideoCall.Models;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -51,7 +52,7 @@ namespace PowerPuff.Features.VideoCall.ViewModels
 
             var connections = await _gateway.GetSocialConnections("a111222a");
 
-            SocialConnections.AddRange(connections);
+            SocialConnections.AddRange(connections.Where(c => !string.IsNullOrWhiteSpace(c.Skype)));
 
             IsLoading = false;
         }
