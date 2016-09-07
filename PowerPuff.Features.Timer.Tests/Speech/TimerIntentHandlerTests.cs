@@ -8,6 +8,8 @@ using PowerPuff.Features.Timer.Tests.Navigation;
 using PowerPuff.Test.Helpers;
 using Prism.Regions;
 using System;
+using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
 using M = Moq;
 
 namespace PowerPuff.Features.Timer.Tests.Speech
@@ -18,7 +20,7 @@ namespace PowerPuff.Features.Timer.Tests.Speech
         protected static TimerIntentHandler _subject;
         protected static Model.Timer _timer;
         protected static M.Mock<ISpeechSynthesiser> _speechSynthesiserMock;
-        protected static M.Mock<IRegionManager> _regionManagerMock;
+        protected static M.Mock<INavigator> _navigatorMock;
 
         protected static LuisResult _luisResult;
         protected static bool? _handled;
@@ -26,10 +28,9 @@ namespace PowerPuff.Features.Timer.Tests.Speech
         Establish context = () =>
         {
             _timer = new Model.Timer();
-            _regionManagerMock = new M.Mock<IRegionManager>();
-            var timerNavigator = new TimerNavigator(_regionManagerMock.Object, new TestDispatcher());
+            _navigatorMock = new M.Mock<INavigator>();
             _speechSynthesiserMock = new M.Mock<ISpeechSynthesiser>();
-            _subject = new TimerIntentHandler(_speechSynthesiserMock.Object, timerNavigator, _timer);
+            _subject = new TimerIntentHandler(_speechSynthesiserMock.Object, _navigatorMock.Object, _timer);
         };
 
         class Successful_Request : TimerIntentHandlerTests
@@ -89,7 +90,7 @@ namespace PowerPuff.Features.Timer.Tests.Speech
 
             private Because of = async () => _handled = await _subject.SetTimer(_luisResult, null);
 
-            Behaves_like<TimerNavigatorBehaviors> it_navigates_to_timer_view;
+            It navigates_to_timer_view = () => _navigatorMock.Verify(n => n.GoToPage(NavigableViews.Timer.MainView.GetFullName()));
 
             It handles_the_intent = () => _handled.ShouldEqual(true);
 

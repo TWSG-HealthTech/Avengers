@@ -4,19 +4,21 @@ using PowerPuff.Features.Timer.Navigation;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
 
 namespace PowerPuff.Features.Timer.Speech
 {
     public class TimerIntentHandler : IIntentHandler
     {
         private readonly ISpeechSynthesiser _speechSynthesiser;
-        private readonly TimerNavigator _timerNavigator;
+        private readonly INavigator _navigator;
         private readonly Model.Timer _timer;
 
-        public TimerIntentHandler(ISpeechSynthesiser speechSynthesiser, TimerNavigator timerNavigator, Model.Timer timer)
+        public TimerIntentHandler(ISpeechSynthesiser speechSynthesiser, INavigator navigator, Model.Timer timer)
         {
             _speechSynthesiser = speechSynthesiser;
-            _timerNavigator = timerNavigator;
+            _navigator = navigator;
             _timer = timer;
         }
 
@@ -34,7 +36,7 @@ namespace PowerPuff.Features.Timer.Speech
 
             _timer.Duration = duration;
 
-            _timerNavigator.GoToTimerPage();
+            _navigator.GoToPage(NavigableViews.Timer.MainView.GetFullName());
             _speechSynthesiser.Speak($"Setting timer for{Speechify(duration)}");
             return true;
         }

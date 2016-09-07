@@ -39,7 +39,7 @@ namespace PowerPuff.Features.Timer
 
             updater.RegisterType<TimerMainButtonViewModel>();
             updater.RegisterType<TimerIntentHandler>().As<IIntentHandler>().SingleInstance();
-            updater.RegisterType<TimerNavigator>().SingleInstance();
+            updater.RegisterType<Navigator>().As<INavigator>().SingleInstance();
             updater.RegisterType<Model.Timer>().SingleInstance();
 
             updater.RegisterTypeForNavigation<TimerMainView>(NavigableViews.Timer.MainView.GetFullName());

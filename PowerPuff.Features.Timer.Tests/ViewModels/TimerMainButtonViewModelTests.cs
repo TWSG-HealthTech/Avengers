@@ -1,10 +1,13 @@
 ﻿using Machine.Specifications;
 using Moq;
+using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
 using PowerPuff.Features.Timer.Navigation;
 using PowerPuff.Features.Timer.Tests.Navigation;
 using PowerPuff.Features.Timer.ViewModels;
 using PowerPuff.Test.Helpers;
 using Prism.Regions;
+using It = Machine.Specifications.It;
 
 namespace PowerPuff.Features.Timer.Tests.ViewModels
 {
@@ -15,17 +18,17 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels
         {
             Establish context = () =>
             {
-                _regionManagerMock = new Mock<IRegionManager>();
-                var timerNavigator = new TimerNavigator(_regionManagerMock.Object, new TestDispatcher());
-                _subject = new TimerMainButtonViewModel(timerNavigator);
+                _navigatorMock = new Mock<INavigator>();
+                _subject = new TimerMainButtonViewModel(_navigatorMock.Object);
             };
 
             Because of = () => _subject.GoToTimerPageCommand.Execute();
 
-            Behaves_like<TimerNavigatorBehaviors> it_navigates_to_timer_view;
-            
+            It navigates_to_timer_view = () => _navigatorMock.Verify(n => n.GoToPage(NavigableViews.Timer.MainView.GetFullName()));
+
+
             protected static TimerMainButtonViewModel _subject;
-            protected static Mock<IRegionManager> _regionManagerMock;
+            protected static Mock<INavigator> _navigatorMock;
         }
     }
 }
