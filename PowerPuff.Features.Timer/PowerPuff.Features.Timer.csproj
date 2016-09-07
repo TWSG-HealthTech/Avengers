@@ -98,6 +98,11 @@
   <ItemGroup>
     <Compile Include="Model\Timer.cs" />
     <Compile Include="Navigation\TimerNavigator.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Speech\TimerIntentHandler.cs" />
     <Compile Include="TimerModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +134,15 @@
       <Project>{c87feaf5-a74f-44b0-8b90-a0ce1674ae2a}</Project>
       <Name>PowerPuff.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\timesup.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

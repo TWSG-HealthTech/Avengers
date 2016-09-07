@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using System;
+using System.Media;
 using System.Windows.Threading;
 
 namespace PowerPuff.Features.Timer.ViewModels
@@ -125,6 +126,8 @@ namespace PowerPuff.Features.Timer.ViewModels
             DecreaseSecond();
             if (_timer.Duration <= TimeSpan.Zero)
             {
+                SoundPlayer player = new SoundPlayer(Properties.Resources.timesup);
+                player.Play(); 
                 StopTimer();
             }
         }
