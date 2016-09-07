@@ -2,7 +2,7 @@ using Machine.Specifications;
 using Moq;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
-using PowerPuff.Features.Timer.Navigation;
+using PowerPuff.Navigation;
 using PowerPuff.Test.Helpers;
 using Prism.Regions;
 using System;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using It = Machine.Specifications.It;
 
-namespace PowerPuff.Features.Timer.Tests.Navigation
+namespace PowerPuff.Tests.Navigation
 {
     [Subject(typeof(Navigator))]
     class NavigatorTests

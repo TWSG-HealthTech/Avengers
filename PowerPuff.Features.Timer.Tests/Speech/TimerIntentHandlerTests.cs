@@ -1,15 +1,12 @@
 ﻿using Machine.Specifications;
 using Microsoft.Cognitive.LUIS;
 using Newtonsoft.Json.Linq;
-using PowerPuff.Common.Speech;
-using PowerPuff.Features.Timer.Navigation;
-using PowerPuff.Features.Timer.Speech;
-using PowerPuff.Features.Timer.Tests.Navigation;
-using PowerPuff.Test.Helpers;
-using Prism.Regions;
-using System;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
+using PowerPuff.Common.Navigation;
+using PowerPuff.Common.Speech;
+using PowerPuff.Features.Timer.Speech;
+using System;
 using M = Moq;
 
 namespace PowerPuff.Features.Timer.Tests.Speech

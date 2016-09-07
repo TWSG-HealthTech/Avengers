@@ -106,7 +106,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="model\TimerTests.cs" />
-    <Compile Include="Navigation\NavigatorTests.cs" />
     <Compile Include="Speech\TimerIntentHandlerTests.cs" />
     <Compile Include="TimerModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

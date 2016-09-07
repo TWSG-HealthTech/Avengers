@@ -2,10 +2,13 @@ using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using PowerPuff.Common.Logging;
+using PowerPuff.Common.Navigation;
 using PowerPuff.Common.Prism;
 using PowerPuff.Common.Settings;
+using PowerPuff.Common.Speech;
 using PowerPuff.Layout;
 using PowerPuff.Modules;
+using PowerPuff.Navigation;
 using PowerPuff.Settings;
 using PowerPuff.Settings.Services;
 using PowerPuff.Speech;
@@ -14,7 +17,6 @@ using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Windows;
-using PowerPuff.Common.Speech;
 
 namespace PowerPuff
 {
@@ -55,6 +57,9 @@ namespace PowerPuff
         protected override void ConfigureContainerBuilder(ContainerBuilder builder)
         {
             base.ConfigureContainerBuilder(builder);
+
+
+            builder.RegisterType<Navigator>().As<INavigator>().SingleInstance();
 
             builder.RegisterType<ShellViewModel>();
             builder.RegisterType<MainButtonsViewModel>();

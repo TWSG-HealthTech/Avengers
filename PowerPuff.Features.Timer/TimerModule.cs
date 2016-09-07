@@ -2,7 +2,6 @@
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using PowerPuff.Common.Speech;
-using PowerPuff.Features.Timer.Navigation;
 using PowerPuff.Features.Timer.Speech;
 using PowerPuff.Features.Timer.ViewModels;
 using PowerPuff.Features.Timer.Views;
@@ -39,7 +38,6 @@ namespace PowerPuff.Features.Timer
 
             updater.RegisterType<TimerMainButtonViewModel>();
             updater.RegisterType<TimerIntentHandler>().As<IIntentHandler>().SingleInstance();
-            updater.RegisterType<Navigator>().As<INavigator>().SingleInstance();
             updater.RegisterType<Model.Timer>().SingleInstance();
 
             updater.RegisterTypeForNavigation<TimerMainView>(NavigableViews.Timer.MainView.GetFullName());

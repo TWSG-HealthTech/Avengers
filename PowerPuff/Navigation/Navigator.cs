@@ -1,15 +1,10 @@
-﻿using System.Linq;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
+using PowerPuff.Common.Navigation;
 using Prism.Regions;
 
-namespace PowerPuff.Features.Timer.Navigation
+namespace PowerPuff.Navigation
 {
-    public interface INavigator
-    {
-        void GoToPage(string viewName);
-    }
-
     public class Navigator : INavigator
     {
         private readonly IRegionManager _regionManager;

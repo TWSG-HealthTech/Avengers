@@ -1,6 +1,6 @@
 ﻿using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
-using PowerPuff.Features.Timer.Navigation;
+using PowerPuff.Common.Navigation;
 using Prism.Commands;
 
 namespace PowerPuff.Features.Timer.ViewModels

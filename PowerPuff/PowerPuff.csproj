@@ -119,6 +119,7 @@
     </ApplicationDefinition>
     <Compile Include="ApplicationDispatcher.cs" />
     <Compile Include="Modules\ActiveListenerModule.cs" />
+    <Compile Include="Navigation\Navigator.cs" />
     <Compile Include="Settings\Services\ProfileGateway.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>

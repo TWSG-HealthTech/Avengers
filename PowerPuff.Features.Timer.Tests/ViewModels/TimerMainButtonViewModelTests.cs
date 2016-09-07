@@ -2,11 +2,8 @@
 using Moq;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
-using PowerPuff.Features.Timer.Navigation;
-using PowerPuff.Features.Timer.Tests.Navigation;
+using PowerPuff.Common.Navigation;
 using PowerPuff.Features.Timer.ViewModels;
-using PowerPuff.Test.Helpers;
-using Prism.Regions;
 using It = Machine.Specifications.It;
 
 namespace PowerPuff.Features.Timer.Tests.ViewModels

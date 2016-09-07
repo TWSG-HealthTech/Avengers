@@ -1,11 +1,11 @@
 ﻿using Microsoft.Cognitive.LUIS;
+using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
+using PowerPuff.Common.Navigation;
 using PowerPuff.Common.Speech;
-using PowerPuff.Features.Timer.Navigation;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using PowerPuff.Common;
-using PowerPuff.Common.Helpers;
 
 namespace PowerPuff.Features.Timer.Speech
 {
