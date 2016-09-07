@@ -21,14 +21,52 @@ namespace PowerPuff.Features.Timer.Tests.Navigation
             _regionCollection = new TestRegionCollection();
             _regionManagerMock = new Mock<IRegionManager>();
             _regionManagerMock.SetupGet(m => m.Regions).Returns(_regionCollection);
+            _regionManagerMock.Setup(
+                m =>
+                    m.RequestNavigate(Moq.It.IsAny<string>(), Moq.It.IsAny<string>(),
+                        Moq.It.IsAny<Action<NavigationResult>>()))
+                .Callback<string, string, Action<NavigationResult>>(
+                    (x, y, callback) => callback(new NavigationResult(null, true)));
             _subject = new Navigator(_regionManagerMock.Object, new TestDispatcher());
         };
 
-        Because of = () => _subject.GoToPage("some page");
 
-        It should_request_to_go_to_the_timer_page = () =>
-            _regionManagerMock.Verify(
-                m => m.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.FeatureLayoutView.GetFullName(), Moq.It.IsAny<Action<NavigationResult>>()));
+        class FeatureMainContentRegion_not_loaded
+        {
+            Because of = () => _subject.GoToPage("some page");
+
+            It should_request_to_go_to_the_feature_layout = () =>
+                _regionManagerMock.Verify(
+                    m =>
+                        m.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.FeatureLayoutView.GetFullName(),
+                            Moq.It.IsAny<Action<NavigationResult>>()));
+
+            It should_request_to_go_to_some_page = () =>
+                _regionManagerMock.Verify(
+                    m =>
+                        m.RequestNavigate(RegionNames.FeatureMainContentRegion, "some page"));
+        }
+
+        class FeatureMainContentRegion_loaded
+        {
+            private Establish context = () =>
+            {
+                _regionCollection.Add(new Region {Name = RegionNames.FeatureMainContentRegion});
+            };
+
+            Because of = () => _subject.GoToPage("some page");
+
+            It should_not_request_to_go_to_the_feature_layout = () =>
+                _regionManagerMock.Verify(
+                    m =>
+                        m.RequestNavigate(RegionNames.MainContentRegion, NavigableViews.Main.FeatureLayoutView.GetFullName(),
+                            Moq.It.IsAny<Action<NavigationResult>>()), Times.Never);
+
+            It should_request_to_go_to_some_page = () =>
+                _regionManagerMock.Verify(
+                    m =>
+                        m.RequestNavigate(RegionNames.FeatureMainContentRegion, "some page"));
+        }
 
         protected static Mock<IRegionManager> _regionManagerMock;
         private static Navigator _subject;
