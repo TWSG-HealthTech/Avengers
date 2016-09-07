@@ -33,6 +33,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff.Features.Timer", "PowerPuff.Features.Timer\PowerPuff.Features.Timer.csproj", "{C965D94B-53D4-47CF-BA07-7438FEDB01BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff.Features.Timer.Tests", "PowerPuff.Features.Timer.Tests\PowerPuff.Features.Timer.Tests.csproj", "{90153F62-1EE0-437D-92B9-B49264F465D3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{566781A8-417F-4F60-B77A-D76982803FB2} = {566781A8-417F-4F60-B77A-D76982803FB2}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff.Test.Helpers", "PowerPuff.Test.Helpers\PowerPuff.Test.Helpers.csproj", "{566781A8-417F-4F60-B77A-D76982803FB2}"
 EndProject
