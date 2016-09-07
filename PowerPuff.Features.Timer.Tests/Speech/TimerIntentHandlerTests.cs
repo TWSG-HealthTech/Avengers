@@ -7,6 +7,7 @@ using PowerPuff.Features.Timer.Speech;
 using PowerPuff.Features.Timer.Tests.Navigation;
 using PowerPuff.Test.Helpers;
 using Prism.Regions;
+using System;
 using M = Moq;
 
 namespace PowerPuff.Features.Timer.Tests.Speech
@@ -15,6 +16,7 @@ namespace PowerPuff.Features.Timer.Tests.Speech
     class TimerIntentHandlerTests
     {
         protected static TimerIntentHandler _subject;
+        protected static Model.Timer _timer;
         protected static M.Mock<ISpeechSynthesiser> _speechSynthesiserMock;
         protected static M.Mock<IRegionManager> _regionManagerMock;
 
@@ -23,10 +25,11 @@ namespace PowerPuff.Features.Timer.Tests.Speech
 
         Establish context = () =>
         {
+            _timer = new Model.Timer();
             _regionManagerMock = new M.Mock<IRegionManager>();
             var timerNavigator = new TimerNavigator(_regionManagerMock.Object, new TestDispatcher());
             _speechSynthesiserMock = new M.Mock<ISpeechSynthesiser>();
-            _subject = new TimerIntentHandler(_speechSynthesiserMock.Object, timerNavigator);
+            _subject = new TimerIntentHandler(_speechSynthesiserMock.Object, timerNavigator, _timer);
         };
 
         class Successful_Request : TimerIntentHandlerTests
@@ -91,6 +94,8 @@ namespace PowerPuff.Features.Timer.Tests.Speech
             It handles_the_intent = () => _handled.ShouldEqual(true);
 
             It responds_with_speech = () => _speechSynthesiserMock.Verify(ss => ss.Speak("Setting timer for 2 hours"));
+
+            It updated_the_timer = () => _timer.Duration.ShouldEqual(new TimeSpan(2, 0, 0));
         }
 
         class Incomplete_Request

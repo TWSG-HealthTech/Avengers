@@ -11,11 +11,13 @@ namespace PowerPuff.Features.Timer.Speech
     {
         private readonly ISpeechSynthesiser _speechSynthesiser;
         private readonly TimerNavigator _timerNavigator;
+        private readonly Model.Timer _timer;
 
-        public TimerIntentHandler(ISpeechSynthesiser speechSynthesiser, TimerNavigator timerNavigator)
+        public TimerIntentHandler(ISpeechSynthesiser speechSynthesiser, TimerNavigator timerNavigator, Model.Timer timer)
         {
             _speechSynthesiser = speechSynthesiser;
             _timerNavigator = timerNavigator;
+            _timer = timer;
         }
 
         [IntentHandler(0, Name = "SetTimer")]
@@ -29,7 +31,8 @@ namespace PowerPuff.Features.Timer.Speech
             if (resolution == null) return false;
 
             var duration = System.Xml.XmlConvert.ToTimeSpan(resolution);
-            Console.WriteLine(duration);
+
+            _timer.Duration = duration;
 
             _timerNavigator.GoToTimerPage();
             _speechSynthesiser.Speak($"Setting timer for{Speechify(duration)}");
