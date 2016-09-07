@@ -160,10 +160,6 @@
     <Compile Include="Speech\NoneIntentHandler.cs" />
     <Compile Include="Speech\PassiveListener.cs" />
     <Compile Include="Speech\SpeechSynthesiser.cs" />
-    <Page Include="Resources\Styles\MainStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Shell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

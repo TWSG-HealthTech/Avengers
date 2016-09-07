@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:PowerPuff.Features.VideoCall.Views"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:interactivity="http://prismlibrary.com/"
+             xmlns:controls="clr-namespace:PowerPuff.Common.Controls;assembly=PowerPuff.Common"
+             xmlns:converters="clr-namespace:PowerPuff.Common.Converters;assembly=PowerPuff.Common"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="500">
+             d:DesignHeight="300"
+             d:DesignWidth="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
@@ -21,52 +24,61 @@
             Video Call
         </TextBlock>
 
-        <ListView Grid.Row="1"
-                  BorderThickness="0"
-                  SelectedItem="{Binding SelectedConnection}"
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                  SelectionMode="Single"
-                  ItemsSource="{Binding SocialConnections}" >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <interactivity:InvokeCommandAction Command="{Binding CallCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="Margin" Value="30" />
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border
-                        Width="350"
-                        Height="150"
-                        Background="{DynamicResource PrimaryBackgroundBrush}"
-                        Cursor="Hand">
-                        <StackPanel Orientation="Horizontal">
-                            <Ellipse Width="100" Height="100" Margin="20">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding AvatarUrl}" />
-                                </Ellipse.Fill>
-                            </Ellipse>
+        <Grid Grid.Row="1">
+            <Viewbox Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}">
+                <controls:CircularProgressBar />
+            </Viewbox>
 
-                            <TextBlock VerticalAlignment="Center"
-                                       FontSize="20"
-                                       Width="180"
-                                       FontWeight="Bold"
-                                       Foreground="{DynamicResource PrimaryForegroundBrush}"
-                                       TextWrapping="Wrap"
-                                       Text="{Binding Name}" />
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            <ListView BorderThickness="0"
+                      SelectedItem="{Binding SelectedConnection}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      SelectionMode="Single"
+                      Visibility="{Binding IsLoading, Converter={StaticResource FalseToVisibleConverter}}"
+                      ItemsSource="{Binding SocialConnections}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <interactivity:InvokeCommandAction Command="{Binding CallCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="Margin"
+                                Value="30" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="350"
+                                Height="150"
+                                Background="{StaticResource PrimaryBackgroundBrush}"
+                                Cursor="Hand">
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="100"
+                                         Height="100"
+                                         Margin="20">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="{Binding AvatarUrl}" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+
+                                <TextBlock VerticalAlignment="Center"
+                                           FontSize="20"
+                                           Width="180"
+                                           FontWeight="Bold"
+                                           Foreground="{StaticResource PrimaryForegroundBrush}"
+                                           TextWrapping="Wrap"
+                                           Text="{Binding Name}" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        
     </Grid>
 </UserControl>

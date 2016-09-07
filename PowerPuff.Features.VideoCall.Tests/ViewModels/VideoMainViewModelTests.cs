@@ -15,7 +15,8 @@ namespace PowerPuff.Features.VideoCall.Tests.ViewModels
             Establish context = () =>
             {
                 _videoCallServiceMock = new Mock<IVideoCallService>();
-                _subject = new VideoMainViewModel(_videoCallServiceMock.Object);
+                _gatewayMock = new Mock<IGateway>();
+                _subject = new VideoMainViewModel(_videoCallServiceMock.Object, _gatewayMock.Object);
 
                 _selectedConnection = new SocialConnection
                 {
@@ -33,6 +34,7 @@ namespace PowerPuff.Features.VideoCall.Tests.ViewModels
             private static Mock<IVideoCallService> _videoCallServiceMock;
             private static VideoMainViewModel _subject;
             private static SocialConnection _selectedConnection;
+            private static Mock<IGateway> _gatewayMock;
         }
     }
 }

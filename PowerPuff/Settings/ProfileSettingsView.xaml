@@ -6,22 +6,8 @@
              xmlns:controls="clr-namespace:PowerPuff.Common.Controls;assembly=PowerPuff.Common"
              xmlns:converters="clr-namespace:PowerPuff.Common.Converters;assembly=PowerPuff.Common"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="500">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/MainStyle.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-            <converters:BoolToVisibilityConverter x:Key="TrueToVisibleConverter"
-                                                  TrueValue="Visible"
-                                                  FalseValue="Collapsed" />
-            <converters:BoolToVisibilityConverter x:Key="FalseToVisibleConverter"
-                                                  TrueValue="Collapsed"
-                                                  FalseValue="Visible" />
-        </ResourceDictionary>
-    </UserControl.Resources>
-
+             d:DesignHeight="300"
+             d:DesignWidth="500">
     <Grid>
         <Viewbox Visibility="{Binding IsLoading, Converter={StaticResource TrueToVisibleConverter}}">
             <controls:CircularProgressBar />
