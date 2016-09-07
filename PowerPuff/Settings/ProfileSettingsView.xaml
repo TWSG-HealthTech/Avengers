@@ -18,27 +18,28 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Left"
-                        Margin="10"
-                        Grid.Row="0">
-                <TextBlock VerticalAlignment="Center"
-                           FontSize="15"
-                           Margin="10 0"
-                           Foreground="{StaticResource PrimaryForegroundBrush}"
-                           FontWeight="Bold">
-                    Email
-                </TextBlock>
-                <TextBox Width="250"
-                         VerticalContentAlignment="Center"
-                         IsReadOnly="True"
-                         Text="{Binding Profile.Email}" />
-            </StackPanel>
+            <TextBlock Grid.Row="0"
+                       FontSize="15"
+                       Margin="10"
+                       VerticalAlignment="Center"
+                       Foreground="{StaticResource PrimaryForegroundBrush}"
+                       FontWeight="Bold">
+                Email
+            </TextBlock>
 
-            <TextBlock Grid.Row="1"
+            <TextBox Width="250"
+                     HorizontalAlignment="Left"
+                     VerticalContentAlignment="Center"
+                     IsReadOnly="True"
+                     Grid.Row="1"
+                     Margin="10"
+                     Text="{Binding Profile.Email}" />
+
+            <TextBlock Grid.Row="2"
                        FontSize="15"
                        Margin="10"
                        VerticalAlignment="Center"
@@ -47,7 +48,7 @@
                 Connections
             </TextBlock>
 
-            <DataGrid Grid.Row="2"
+            <DataGrid Grid.Row="3"
                       Margin="10"
                       FontSize="15"
                       ItemsSource="{Binding Profile.Connections}"

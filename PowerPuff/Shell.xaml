@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:PowerPuff"
         xmlns:common="clr-namespace:PowerPuff.Common;assembly=PowerPuff.Common"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title="PowerPuff" Height="720" Width="1280">
     <Window.Resources>
         <ImageBrush x:Key="BackgroundBrush" ImageSource="/Resources/Images/cat.jpg" Opacity="0.5"/>
