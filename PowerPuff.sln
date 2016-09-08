@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff", "PowerPuff\PowerPuff.csproj", "{6E0FD199-31B5-4361-AE08-E5D07603D0AA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C965D94B-53D4-47CF-BA07-7438FEDB01BD} = {C965D94B-53D4-47CF-BA07-7438FEDB01BD}
+		{B86475F4-C131-467C-8F80-F2F5BD480C25} = {B86475F4-C131-467C-8F80-F2F5BD480C25}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{38E2E016-3AA3-41B6-B364-89BBD64AD69D}"
 EndProject
