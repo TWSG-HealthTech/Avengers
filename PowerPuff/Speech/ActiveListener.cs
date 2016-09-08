@@ -11,22 +11,22 @@ namespace PowerPuff.Speech
         private readonly IApplicationSettings _applicationSettings;
         private readonly IIntentProcessor _intentProcessor;
         private readonly IPassiveListener _passiveListener;
+        private readonly SpeechRecognitionEngine _sre = new SpeechRecognitionEngine();
 
         public ActiveListener(IApplicationSettings applicationSettings, IIntentProcessor intentProcessor, IPassiveListener passiveListener)
         {
             _applicationSettings = applicationSettings;
             _intentProcessor = intentProcessor;
             _passiveListener = passiveListener;
-            SetupActiveMic();
-            var sre = new SpeechRecognitionEngine();
-            sre.SetInputToDefaultAudioDevice();
+
+            _sre.SetInputToDefaultAudioDevice();
             _passiveListener.OnWakeWord += BeginActiveListening;
             _passiveListener.StartListening();
         }
 
         public void BeginActiveListening()
         {
-//            SetupActiveMic();
+            SetupActiveMic();
             _passiveListener.StopListening();
             _microphoneClient.StartMicAndRecognition();
         }
@@ -93,6 +93,7 @@ namespace PowerPuff.Speech
         public void Dispose()
         {
             _microphoneClient?.Dispose();
+            _sre.Dispose();
         }
     }
 }
