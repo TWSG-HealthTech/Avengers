@@ -73,7 +73,7 @@ namespace PowerPuff.Tests.Navigation
         private static IRegionCollection _regionCollection;
 
         private class TestRegionCollection : Dictionary<string, IRegion>, IRegionCollection {
-            public IEnumerator<IRegion> GetEnumerator()
+            IEnumerator<IRegion> IEnumerable<IRegion>.GetEnumerator()
             {
                 return Values.GetEnumerator();
             }
@@ -87,6 +87,11 @@ namespace PowerPuff.Tests.Navigation
             public bool ContainsRegionWithName(string regionName)
             {
                 return ContainsKey(regionName);
+            }
+
+            protected void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+            {
+                CollectionChanged?.Invoke(this, e);
             }
         }
     }

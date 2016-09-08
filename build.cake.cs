@@ -8,7 +8,7 @@ using System.Linq;
 
 var target = Argument("target", "Default");
 var buildConfiguration = "Release";
-var platformTarget = PlatformTarget.MSIL;   //AnyCPU
+var platformTarget = PlatformTarget.x64;
 
 Task("Build")
   .Does(() =>

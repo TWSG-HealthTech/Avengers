@@ -12,8 +12,6 @@ namespace PowerPuff.Speech
 
     public class IntentProcessor : IIntentProcessor
     {
-        private readonly IIntentHandler _defaultHandler;
-
         public IntentRouter router = new IntentRouter(null);
 
         public IntentProcessor(IEnumerable<IIntentHandler> intentHandlers)
@@ -26,7 +24,7 @@ namespace PowerPuff.Speech
 
         public void Process(string intentPayload)
         {
-            LuisResult result = new LuisResult();
+            var result = new LuisResult();
             result.Load(JToken.Parse(intentPayload));
 
             router.Route(result, null);

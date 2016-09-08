@@ -23,14 +23,14 @@ namespace PowerPuff.Features.Timer.Speech
         }
 
         [IntentHandler(0, Name = "SetTimer")]
-        public async Task<bool> SetTimer(LuisResult result, object context)
+        public Task<bool> SetTimer(LuisResult result, object context)
         {
             var resolution = result.Intents.First(i => i.Name == "SetTimer")?
                 .Actions.FirstOrDefault(x => x.Name == "SetTimer" && x.Triggered)?
                 .Parameters.FirstOrDefault(x => x.Name == "duration")?
                 .ParameterValues.FirstOrDefault(p => p.Type == "builtin.datetime.duration")?
                 .Resolution["duration"] as string;
-            if (resolution == null) return false;
+            if (resolution == null) return Task.FromResult(false);
 
             var duration = System.Xml.XmlConvert.ToTimeSpan(resolution);
 
@@ -38,7 +38,7 @@ namespace PowerPuff.Features.Timer.Speech
 
             _navigator.GoToPage(NavigableViews.Timer.MainView.GetFullName());
             _speechSynthesiser.Speak($"Setting timer for{Speechify(duration)}");
-            return true;
+            return Task.FromResult(true);
         }
 
         private string Speechify(TimeSpan duration)

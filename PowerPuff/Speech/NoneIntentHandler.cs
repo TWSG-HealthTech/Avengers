@@ -14,10 +14,10 @@ namespace PowerPuff.Speech
         }
 
         [IntentHandler(0, Name = "None")]
-        public async Task<bool> DefaultHandler(LuisResult result, object context)
+        public Task<bool> DefaultHandler(LuisResult result, object context)
         {
             _speechSynthesiser.Speak("I'm sorry, I don't know how to do that.");
-            return true;
+            return Task.FromResult(true);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace PowerPuff.Features.Timer.Tests.Speech
         protected static LuisResult _luisResult;
         protected static bool? _handled;
 
-        Establish context = () =>
+        Establish baseContext = () =>
         {
             _timer = new Model.Timer();
             _navigatorMock = new M.Mock<INavigator>();
@@ -33,7 +33,7 @@ namespace PowerPuff.Features.Timer.Tests.Speech
         class Successful_Request : TimerIntentHandlerTests
         {
 
-            private Establish context = () =>
+            Establish context = () =>
             {
                 _luisResult = new LuisResult();
                 _luisResult.Load(JToken.Parse(@"

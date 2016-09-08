@@ -31,10 +31,10 @@ namespace PowerPuff.Speech
         }
 
         [IntentHandler(0.75, Name = "TellJoke")]
-        public async Task<bool> TellJoke(LuisResult result, object context)
+        public Task<bool> TellJoke(LuisResult result, object context)
         {
             _speechSynthesiser.Speak(_jokes[_random.Next(_jokes.Count)]);
-            return true;
+            return Task.FromResult(true);
         }
     }
 }
