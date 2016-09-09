@@ -9,7 +9,7 @@ namespace PowerPuff.Features.Timer.ViewModels
     public class TimerMainViewModel : BindableBase
     {
         private DispatcherTimer _timerObject;
-        private Model.Timer _timer;
+        private Model.TimerModel _timerModel;
 
         private bool _isTimerEnabled;
         public bool IsTimerEnabled
@@ -18,15 +18,15 @@ namespace PowerPuff.Features.Timer.ViewModels
             set { SetProperty(ref _isTimerEnabled, value); }
         }
 
-        public TimerMainViewModel (Model.Timer timer)
+        public TimerMainViewModel (Model.TimerModel timerModel)
         {
             _timerObject = new DispatcherTimer();
             _timerObject.Interval = TimeSpan.FromSeconds(1);
             _timerObject.Tick += new EventHandler(timerTick);
 
-            _timer = timer;
-            _timer.OnTimeSpanChanged += UpdatePropertiesForTimerDisplay;
-            UpdatePropertiesForTimerDisplay(_timer.Duration);
+            _timerModel = timerModel;
+            _timerModel.OnDurationChanged += UpdatePropertiesForTimerDisplay;
+            UpdatePropertiesForTimerDisplay(_timerModel.Duration);
 
             IsTimerEnabled = _timerObject.IsEnabled;
 
@@ -82,35 +82,35 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         private void IncreaseSecond()
         {
-            _timer.Duration = _timer.Duration.Add(new TimeSpan(0, 0, 1));
+            _timerModel.Duration = _timerModel.Duration.Add(new TimeSpan(0, 0, 1));
         }
 
         public DelegateCommand SubtractSecondsButton { get; private set; }
 
         private void DecreaseSecond()
         {
-            _timer.Duration = _timer.Duration.Subtract(new TimeSpan(0, 0, 1));
+            _timerModel.Duration = _timerModel.Duration.Subtract(new TimeSpan(0, 0, 1));
         }
 
         public DelegateCommand AddMinutesButton { get; set; }
 
         private void IncreaseMinute()
         {
-            _timer.Duration = _timer.Duration.Add(new TimeSpan(0, 1, 0));
+            _timerModel.Duration = _timerModel.Duration.Add(new TimeSpan(0, 1, 0));
         }
 
         public DelegateCommand SubtractMinutesButton { get; set; }
 
         private void DecreaseMinute()
         {
-            _timer.Duration = _timer.Duration.Subtract(new TimeSpan(0, 1, 0));
+            _timerModel.Duration = _timerModel.Duration.Subtract(new TimeSpan(0, 1, 0));
         }
 
         public DelegateCommand AddHoursButton { get; set; }
 
         private void IncreaseHour()
         {
-            _timer.Duration = _timer.Duration.Add(new TimeSpan(1, 0, 0));
+            _timerModel.Duration = _timerModel.Duration.Add(new TimeSpan(1, 0, 0));
         }
 
         public DelegateCommand SubtractHoursButton { get; set; }
@@ -118,13 +118,13 @@ namespace PowerPuff.Features.Timer.ViewModels
 
         private void DecreaseHour()
         {
-            _timer.Duration = _timer.Duration.Subtract(new TimeSpan(1, 0, 0));
+            _timerModel.Duration = _timerModel.Duration.Subtract(new TimeSpan(1, 0, 0));
         }
 
         private void timerTick(object obj, EventArgs e)
         {
             DecreaseSecond();
-            if (_timer.Duration <= TimeSpan.Zero)
+            if (_timerModel.Duration <= TimeSpan.Zero)
             {
                 SoundPlayer player = new SoundPlayer(Properties.Resources.timesup);
                 player.Play(); 

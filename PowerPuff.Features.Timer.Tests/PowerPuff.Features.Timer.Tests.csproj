@@ -88,7 +88,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="model\TimerTests.cs" />
+    <Compile Include="model\TimerModelTests.cs" />
     <Compile Include="Speech\TimerIntentHandlerTests.cs" />
     <Compile Include="TimerModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

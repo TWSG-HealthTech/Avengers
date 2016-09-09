@@ -5,6 +5,7 @@ using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using PowerPuff.Common.Navigation;
 using PowerPuff.Common.Speech;
+using PowerPuff.Features.Timer.Model;
 using PowerPuff.Features.Timer.Speech;
 using System;
 using M = Moq;
@@ -15,19 +16,21 @@ namespace PowerPuff.Features.Timer.Tests.Speech
     class TimerIntentHandlerTests
     {
         protected static TimerIntentHandler _subject;
-        protected static Model.Timer _timer;
+        protected static TimerModel _timerModel;
         protected static M.Mock<ISpeechSynthesiser> _speechSynthesiserMock;
         protected static M.Mock<INavigator> _navigatorMock;
+        protected static M.Mock<ITimer> _timerMock;
 
         protected static LuisResult _luisResult;
         protected static bool? _handled;
 
         Establish baseContext = () =>
         {
-            _timer = new Model.Timer();
+            _timerMock = new M.Mock<ITimer>();
+            _timerModel = new TimerModel(_timerMock.Object);
             _navigatorMock = new M.Mock<INavigator>();
             _speechSynthesiserMock = new M.Mock<ISpeechSynthesiser>();
-            _subject = new TimerIntentHandler(_speechSynthesiserMock.Object, _navigatorMock.Object, _timer);
+            _subject = new TimerIntentHandler(_speechSynthesiserMock.Object, _navigatorMock.Object, _timerModel);
         };
 
         class Successful_Request : TimerIntentHandlerTests
@@ -58,7 +61,7 @@ namespace PowerPuff.Features.Timer.Tests.Speech
                   ""resolution"": {
                     ""duration"": ""PT2H""
                   }
-    }
+                }
               ]
             }
           ]
@@ -93,7 +96,9 @@ namespace PowerPuff.Features.Timer.Tests.Speech
 
             It responds_with_speech = () => _speechSynthesiserMock.Verify(ss => ss.Speak("Setting timer for 2 hours"));
 
-            It updated_the_timer = () => _timer.Duration.ShouldEqual(new TimeSpan(2, 0, 0));
+            It updated_the_timer = () => _timerModel.Duration.ShouldEqual(new TimeSpan(2, 0, 0));
+
+            It starts_the_countdown = () => _timerMock.Verify(t => t.Start());
         }
 
         class Incomplete_Request
