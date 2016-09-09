@@ -59,8 +59,8 @@
                 Visibility="{Binding IsStartable, Converter={StaticResource TrueToVisibleConverter}}" 
                 Height="54"/>
 
-        <Button x:Name="btn_Stop"
-                Content="Stop"
+        <Button x:Name="btn_Pause"
+                Content="Pause"
                 HorizontalAlignment="Center"
                 Margin="94,326,96,50"
                 Grid.Row="1"

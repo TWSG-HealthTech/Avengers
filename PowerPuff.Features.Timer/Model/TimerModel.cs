@@ -18,7 +18,7 @@ namespace PowerPuff.Features.Timer.Model
             if (timeRemaining <= TimeSpan.Zero)
             {
                 OnCompleted?.Invoke();
-                _timer.Stop();
+                _timer.Pause();
                 return;
             }
             OnTick?.Invoke(timeRemaining);
@@ -38,7 +38,7 @@ namespace PowerPuff.Features.Timer.Model
 
         public virtual event Action<TimeSpan> OnDurationChanged;
         public virtual event Action OnStarted;
-        public virtual event Action<TimeSpan> OnStopped;
+        public virtual event Action<TimeSpan> OnPaused;
         public virtual event Action<TimeSpan> OnTick;
         public virtual event Action OnCompleted;
         public virtual event Action<TimeSpan> OnReset;
@@ -50,10 +50,10 @@ namespace PowerPuff.Features.Timer.Model
             OnStarted?.Invoke();
         }
 
-        public virtual void Stop()
+        public virtual void Pause()
         {
-            var elapsed = _timer.Stop();
-            OnStopped?.Invoke(_duration - elapsed);  
+            var elapsed = _timer.Pause();
+            OnPaused?.Invoke(_duration - elapsed);  
         }
 
         public virtual void Reset()
@@ -73,7 +73,7 @@ namespace PowerPuff.Features.Timer.Model
 
         }
 
-        public TimeSpan Stop()
+        public TimeSpan Pause()
         {
             return TimeSpan.Zero;
         }
@@ -87,7 +87,7 @@ namespace PowerPuff.Features.Timer.Model
     public interface ITimer
     {
         void Start();
-        TimeSpan Stop();
+        TimeSpan Pause();
         event Action<TimeSpan> OnTick;
         void Reset();
     }

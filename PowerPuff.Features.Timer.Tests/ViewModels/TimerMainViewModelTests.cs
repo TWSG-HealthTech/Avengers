@@ -37,14 +37,14 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels
         {
             Because of = () => _subject.StartTimerButton.Execute();
 
-            It tell_the_timer_to_start = () => _timerMock.Verify(t => t.Start());
+            It tells_the_timer_to_start = () => _timerMock.Verify(t => t.Start());
         }
 
-        class When_Stop_Button_is_Clicked
+        class When_Pause_Button_is_Clicked
         {
-            Because of = () => _subject.StopTimerButton.Execute();
+            Because of = () => _subject.PauseTimerButton.Execute();
 
-            It tell_the_timer_to_stop = () => _timerMock.Verify(t => t.Stop());
+            It tells_the_timer_to_pause = () => _timerMock.Verify(t => t.Pause());
         }
 
         class OnDurtionChanged

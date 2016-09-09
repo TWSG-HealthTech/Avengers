@@ -12,7 +12,7 @@ namespace PowerPuff.Features.Timer.Tests.model
     {
         private static TimerModel _timerModel;
         private static IList<TimeSpan> _updatedValues;
-        private static IList<TimeSpan> _stopTimes;
+        private static IList<TimeSpan> _pauseTimes;
         private static IList<TimeSpan> _tickTimes;
         private static IList<TimeSpan> _resetTimes;
         private static Mock<ITimer> _timerMock;
@@ -25,14 +25,14 @@ namespace PowerPuff.Features.Timer.Tests.model
             _startedInvokationCount = 0;
             _timerMock = new Mock<ITimer>();
             _updatedValues = new List<TimeSpan>();
-            _stopTimes = new List<TimeSpan>();
+            _pauseTimes = new List<TimeSpan>();
             _tickTimes = new List<TimeSpan>();
             _resetTimes = new List<TimeSpan>();
             _timerModel = new TimerModel(_timerMock.Object);
 
             _timerModel.OnDurationChanged += _updatedValues.Add;
             _timerModel.OnStarted += () => ++_startedInvokationCount;
-            _timerModel.OnStopped += _stopTimes.Add;
+            _timerModel.OnPaused += _pauseTimes.Add;
             _timerModel.OnTick += _tickTimes.Add;
             _timerModel.OnCompleted += () => ++_completedInvokationCount;
             _timerModel.OnReset += _resetTimes.Add;
@@ -83,19 +83,19 @@ namespace PowerPuff.Features.Timer.Tests.model
             It does_not_fire_started_event = () => _startedInvokationCount.ShouldEqual(0);
         }
 
-        class Stop
+        class Pause
         {
             private Establish context = () =>
             {
                 _timerModel.Duration = TimeSpan.FromMinutes(1);
-                _timerMock.Setup(t => t.Stop()).Returns(TimeSpan.FromSeconds(20));
+                _timerMock.Setup(t => t.Pause()).Returns(TimeSpan.FromSeconds(20));
             };
 
-            Because of = () => _timerModel.Stop();
+            Because of = () => _timerModel.Pause();
 
-            It stops_the_timer = () => _timerMock.Verify(t => t.Stop());
+            It pauses_the_timer = () => _timerMock.Verify(t => t.Pause());
 
-            It fires_stopped_event_with_remaining_time = () => _stopTimes.ShouldContainOnly(TimeSpan.FromSeconds(40));
+            It fires_paused_event_with_remaining_time = () => _pauseTimes.ShouldContainOnly(TimeSpan.FromSeconds(40));
         }
 
         class Tick
@@ -121,7 +121,7 @@ namespace PowerPuff.Features.Timer.Tests.model
 
             It fires_no_tick_event = () => _tickTimes.ShouldContainOnly();
             It fires_completed_event = () => _completedInvokationCount.ShouldEqual(1);
-            It stops_the_timer = () => _timerMock.Verify(t => t.Stop());
+            It pauses_the_timer = () => _timerMock.Verify(t => t.Pause());
         }
 
         class Reset

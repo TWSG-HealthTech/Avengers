@@ -41,7 +41,7 @@ namespace PowerPuff.Features.Timer.ViewModels
             UpdatePropertiesForTimerDisplay(_timerModel.Duration);
 
             StartTimerButton = new DelegateCommand(_timerModel.Start);
-            StopTimerButton = new DelegateCommand(_timerModel.Stop);
+            PauseTimerButton = new DelegateCommand(_timerModel.Pause);
             AddSecondsButton = new DelegateCommand(IncreaseSecond);
             SubtractSecondsButton = new DelegateCommand(DecreaseSecond);
             AddMinutesButton = new DelegateCommand(IncreaseMinute);
@@ -74,7 +74,7 @@ namespace PowerPuff.Features.Timer.ViewModels
        
         public DelegateCommand StartTimerButton { get; private set; }
 
-        public DelegateCommand StopTimerButton { get; private set; }
+        public DelegateCommand PauseTimerButton { get; private set; }
 
         public DelegateCommand AddSecondsButton { get; private set; }
 
