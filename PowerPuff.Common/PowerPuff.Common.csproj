@@ -94,6 +94,7 @@
     <Compile Include="Settings\MenuSettingsRepository.cs" />
     <Compile Include="Speech\IIntentHandler.cs" />
     <Compile Include="Speech\ISpeechSynthesiser.cs" />
+    <Compile Include="ValidatableBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

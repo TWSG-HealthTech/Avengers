@@ -40,7 +40,6 @@ namespace PowerPuff.Features.VideoCall.ViewModels
         }
 
         public DelegateCommand CallCommand { get; private set; }
-
         private void Call()
         {
             _videoCallService.Call(SelectedConnection, () => {});

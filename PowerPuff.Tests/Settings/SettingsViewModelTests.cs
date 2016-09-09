@@ -8,7 +8,7 @@ using PowerPuff.Settings;
 using Prism.Regions;
 using It = Machine.Specifications.It;
 
-namespace PowerPuff.Tests.ViewModels
+namespace PowerPuff.Tests.Settings
 {
     [Subject(typeof(SettingsViewModel))]
     public class SettingsViewModelTests
@@ -60,8 +60,6 @@ namespace PowerPuff.Tests.ViewModels
                 () =>
                     _scopedRegionManagerMock.Verify(m => m.RequestNavigate(RegionNames.SettingContentRegion,
                         "someViewId"));
-
-            
         }
     }
 }

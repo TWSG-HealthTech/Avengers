@@ -16,5 +16,14 @@ namespace PowerPuff.Settings.Services
         {
             return GetAsync<Profile>($"main/api/profile/{profileId}");
         }
+
+        public Task UpdateConnection(string profileId, SocialConnection connection)
+        {
+            return PutAsync($"main/api/profile/{profileId}/connection/{connection.Id}", new
+            {
+                connection.Name,
+                connection.Aliases
+            });
+        }
     }
 }

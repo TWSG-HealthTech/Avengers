@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Threading.Tasks;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -9,7 +10,6 @@ namespace PowerPuff.Settings
         private readonly IProfileGateway _profileGateway;
 
         private Profile _profile;
-
         public Profile Profile
         {
             get { return _profile; }
@@ -23,9 +23,40 @@ namespace PowerPuff.Settings
             set { SetProperty(ref _isLoading, value); }
         }
 
+        private string _message;
+        public string Message
+        {
+            get { return _message; }
+            set { SetProperty(ref _message, value); }
+        }
+
+        private SocialConnection _selectedConnection;
+        public SocialConnection SelectedConnection
+        {
+            get { return _selectedConnection; }
+            set { SetProperty(ref _selectedConnection, value); }
+        }
+
         public ProfileSettingsViewModel(IProfileGateway profileGateway)
         {
             _profileGateway = profileGateway;
+
+            UpdateConnectionCommand = DelegateCommand.FromAsyncHandler(UpdateConnection);
+        }
+
+        public DelegateCommand UpdateConnectionCommand { get; private set; }
+        private async Task UpdateConnection()
+        {
+            if (SelectedConnection.IsValid())
+            {
+                await _profileGateway.UpdateConnection("a111222a", SelectedConnection);
+
+                Message = "Connection Updated";
+            }
+            else
+            {
+                Message = "";
+            }
         }
 
         public async void OnNavigatedTo(NavigationContext navigationContext)

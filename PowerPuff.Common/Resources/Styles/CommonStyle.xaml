@@ -177,4 +177,36 @@
         <Setter Property="VerticalAlignment"
                 Value="Center" />
     </Style>
+    
+    <Style x:Key="ValidatableTextBoxStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <StackPanel>
+                        <!-- Placeholder for the TextBox itself -->
+                        <AdornedElementPlaceholder>
+                            <Border BorderBrush="Red"
+                                    BorderThickness="2" />
+                        </AdornedElementPlaceholder>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!-- Icon -->
+    <Style x:Key="CrossIconStyle"
+           TargetType="{x:Type Path}">
+        <Setter Property="Width"
+                Value="40"></Setter>
+        <Setter Property="Height"
+                Value="40"></Setter>
+        <Setter Property="Fill"
+                Value="{StaticResource PrimaryBackgroundBrush}"></Setter>
+        <Setter Property="Data"
+                Value="M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0
+	c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697c0.469-0.469,1.228-0.469,1.697,0
+	L10,8.183l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0c0.469,0.469,0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15
+	C14.817,13.62,14.817,14.38,14.348,14.849z"></Setter>
+    </Style>
 </ResourceDictionary>

@@ -45,14 +45,17 @@
                                             Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Text="{Binding Skype,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                                <TextBox Margin="5"
+                                    Text="{Binding Skype,UpdateSourceTrigger=PropertyChanged}"></TextBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="200">
+                    <DataGridTemplateColumn Width="150">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Command="{Binding DataContext.UpdateSkypeCommand, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type DataGrid}}}">Update</Button>
+                                <Button Margin="5"
+                                        Width="100"
+                                        Command="{Binding DataContext.UpdateSkypeCommand, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type DataGrid}}}">Update</Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

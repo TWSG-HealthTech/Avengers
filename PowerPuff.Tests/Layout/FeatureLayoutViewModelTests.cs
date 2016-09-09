@@ -6,7 +6,7 @@ using PowerPuff.Layout;
 using Prism.Regions;
 using It = Machine.Specifications.It;
 
-namespace PowerPuff.Tests.ViewModels
+namespace PowerPuff.Tests.Layout
 {
     public class FeatureLayoutViewModelTests
     {
