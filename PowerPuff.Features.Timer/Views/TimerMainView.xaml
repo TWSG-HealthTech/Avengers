@@ -67,7 +67,7 @@
                 VerticalAlignment="Center"
                 Width="610" 
                 Visibility="{Binding IsStartable, Converter={StaticResource FalseToVisibleConverter}}" 
-                Command="{Binding StopTimerButton}" Height="54"/>
+                Command="{Binding PauseTimerButton}" Height="54"/>
         <Button x:Name="incrSeconds" 
                 Content="/\"
                 HorizontalAlignment="Center" 

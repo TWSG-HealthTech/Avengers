@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Windows.Threading;
 
 namespace PowerPuff.Features.Timer.Model
 {
@@ -66,21 +68,35 @@ namespace PowerPuff.Features.Timer.Model
 
     public class Timer : ITimer
     {
+        private Stopwatch _stopWatch = new Stopwatch();
+        private System.Threading.Timer _timer;
+
         public event Action<TimeSpan> OnTick;
 
         public void Start()
         {
-
+            if (_stopWatch.IsRunning) return;
+            _stopWatch.Start();
+            _timer = new System.Threading.Timer(state =>
+            {
+                OnTick?.Invoke(_stopWatch.Elapsed);
+            }, null, TimeSpan.FromMilliseconds(50), TimeSpan.FromMilliseconds(50));
+            
         }
 
         public TimeSpan Pause()
         {
-            return TimeSpan.Zero;
+            _timer?.Dispose();
+            _timer = null;
+            _stopWatch.Stop();
+            return _stopWatch.Elapsed;
         }
 
         public void Reset()
         {
-            
+            _timer?.Dispose();
+            _timer = null;
+            _stopWatch.Reset();
         }
     }
 

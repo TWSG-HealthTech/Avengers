@@ -38,7 +38,8 @@ namespace PowerPuff.Features.Timer
         {
             var updater = new ContainerBuilder();
 
-            updater.RegisterType<TimerMainButtonViewModel>();
+            updater.RegisterType<TimerMainViewModel>().SingleInstance();
+            updater.RegisterType<TimerMainButtonViewModel>().SingleInstance();
             updater.RegisterType<TimerIntentHandler>().As<IIntentHandler>().SingleInstance();
             updater.RegisterType<TimerModel>().SingleInstance();
             updater.RegisterType<Model.Timer>().As<ITimer>().SingleInstance();
