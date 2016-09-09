@@ -97,6 +97,13 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels
             It tells_the_timer_to_pause = () => _timerMock.Verify(t => t.Pause());
         }
 
+        class When_Reset_Button_is_Clicked
+        {
+            Because of = () => _subject.ResetTimerButton.Execute();
+
+            It tells_the_timer_to_reset = () => _timerMock.Verify(t => t.Reset());
+        }
+
         class OnDurtionChanged
         {
             Because of = () => _timerMock.Raise(t => t.OnDurationChanged += null, new TimeSpan(1, 2, 3));

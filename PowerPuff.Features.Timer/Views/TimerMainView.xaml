@@ -138,6 +138,15 @@
             Width="148"
             Visibility="{Binding IsModifiable, Converter={StaticResource TrueToVisibleConverter}}" 
             Command="{Binding SubtractHoursButton}" Height="34"/>
+        <Button x:Name="btn_Reset"
+            Content="Reset"
+            HorizontalAlignment="Center"
+            Margin="435,390,96,10"
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            Width="269" 
+            Visibility="{Binding IsModifiable, Converter={StaticResource FalseToVisibleConverter}}" 
+            Command="{Binding ResetTimerButton}" Height="30"/>
 
     </Grid>
 </UserControl>
