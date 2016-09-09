@@ -32,12 +32,13 @@ namespace PowerPuff.Features.Timer.Speech
                 .Resolution["duration"] as string;
             if (resolution == null) return Task.FromResult(false);
 
-            var duration = System.Xml.XmlConvert.ToTimeSpan(resolution);
+            _navigator.GoToPage(NavigableViews.Timer.MainView.GetFullName());
 
+            var duration = System.Xml.XmlConvert.ToTimeSpan(resolution);
+            _timerModel.Reset();
             _timerModel.Duration = duration;
             _timerModel.Start();
 
-            _navigator.GoToPage(NavigableViews.Timer.MainView.GetFullName());
             _speechSynthesiser.Speak($"Setting timer for{Speechify(duration)}");
             return Task.FromResult(true);
         }

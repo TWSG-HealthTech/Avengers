@@ -96,6 +96,8 @@ namespace PowerPuff.Features.Timer.Tests.Speech
 
             It responds_with_speech = () => _speechSynthesiserMock.Verify(ss => ss.Speak("Setting timer for 2 hours"));
 
+            It reset_the_timer = () => _timerMock.Verify(t => t.Reset());
+
             It updated_the_timer = () => _timerModel.Duration.ShouldEqual(new TimeSpan(2, 0, 0));
 
             It starts_the_countdown = () => _timerMock.Verify(t => t.Start());
