@@ -1,6 +1,7 @@
 ﻿using Machine.Specifications;
 using Moq;
 using PowerPuff.Features.Timer.Model;
+using PowerPuff.Features.Timer.Sound;
 using PowerPuff.Features.Timer.ViewModels;
 using System;
 using It = Machine.Specifications.It;
@@ -12,11 +13,13 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels
     {
         private static TimerMainViewModel _subject;
         private static Mock<TimerModel> _timerMock;
+        private static Mock<IAlerter> _alerter;
 
         Establish baseContext = () =>
         {
+            _alerter = new Mock<IAlerter>();
             _timerMock = new Mock<TimerModel>(new Mock<ITimer>().Object);
-            _subject = new TimerMainViewModel(_timerMock.Object);
+            _subject = new TimerMainViewModel(_timerMock.Object, _alerter.Object);
         };
 
         class OnInitialisation
@@ -31,6 +34,53 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels
 
             It is_not_modifiable = () => _subject.IsModifiable.ShouldBeFalse();
             It is_not_startable = () => _subject.IsStartable.ShouldBeFalse();
+        }
+
+        class OnPaused
+        {
+            Because of = () => _timerMock.Raise(t => t.OnPaused += null, new TimeSpan(1, 2, 3));
+
+            It should_update_the_hours = () => _subject.Hours.ShouldEqual($"{1:D2}");
+            It should_update_the_minutes = () => _subject.Minutes.ShouldEqual($"{2:D2}");
+            It should_update_the_seconds = () => _subject.Seconds.ShouldEqual($"{3:D2}");
+
+            It is_not_modifiable = () => _subject.IsModifiable.ShouldBeFalse();
+            It is_startable = () => _subject.IsStartable.ShouldBeTrue();
+        }
+
+        class OnTick
+        {
+            Because of = () => _timerMock.Raise(t => t.OnTick += null, new TimeSpan(1, 2, 3));
+
+            It should_update_the_hours = () => _subject.Hours.ShouldEqual($"{1:D2}");
+            It should_update_the_minutes = () => _subject.Minutes.ShouldEqual($"{2:D2}");
+            It should_update_the_seconds = () => _subject.Seconds.ShouldEqual($"{3:D2}");
+        }
+
+        class OnReset
+        {
+            Because of = () => _timerMock.Raise(t => t.OnReset += null, new TimeSpan(1, 2, 3));
+
+            It should_update_the_hours = () => _subject.Hours.ShouldEqual($"{1:D2}");
+            It should_update_the_minutes = () => _subject.Minutes.ShouldEqual($"{2:D2}");
+            It should_update_the_seconds = () => _subject.Seconds.ShouldEqual($"{3:D2}");
+
+            It is_modifiable = () => _subject.IsModifiable.ShouldBeTrue();
+            It is_startable = () => _subject.IsStartable.ShouldBeTrue();
+        }
+
+        class OnCompleted
+        {
+            Because of = () => _timerMock.Raise(t => t.OnCompleted += null);
+
+            It should_update_the_hours = () => _subject.Hours.ShouldEqual($"{0:D2}");
+            It should_update_the_minutes = () => _subject.Minutes.ShouldEqual($"{0:D2}");
+            It should_update_the_seconds = () => _subject.Seconds.ShouldEqual($"{0:D2}");
+
+            It is_not_modifiable = () => _subject.IsModifiable.ShouldBeFalse();
+            It is_not_startable = () => _subject.IsStartable.ShouldBeFalse();
+
+            It plays_an_alert_sound = () => _alerter.Verify(a => a.Alert());
         }
 
         class When_Start_Button_is_Clicked

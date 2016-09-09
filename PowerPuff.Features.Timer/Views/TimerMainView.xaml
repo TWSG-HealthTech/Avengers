@@ -75,7 +75,7 @@
                 Grid.Row="1" 
                 VerticalAlignment="Center" 
                 Width="147"
-                Visibility="{Binding IsModifiable, Converter={StaticResource ToVisibleConverter}}" 
+                Visibility="{Binding IsModifiable, Converter={StaticResource TrueToVisibleConverter}}" 
                 Command="{Binding AddSecondsButton}" Height="34"/>
         <Button x:Name="decrSeconds" 
             Content="\/"
@@ -84,7 +84,7 @@
             Grid.Row="1" 
             VerticalAlignment="Center" 
             Width="147"
-            Visibility="{Binding IsModifiable, Converter={StaticResource ToVisibleConverter}}" 
+            Visibility="{Binding IsModifiable, Converter={StaticResource TrueToVisibleConverter}}" 
             Command="{Binding SubtractSecondsButton}" Height="34"/>
         <TextBlock x:Name="HhMmSeparator"
                    HorizontalAlignment="Center"
@@ -109,7 +109,7 @@
             Grid.Row="1" 
             VerticalAlignment="Center" 
             Width="146"
-            Visibility="{Binding IsModifiable, Converter={StaticResource ToVisibleConverter}}" 
+            Visibility="{Binding IsModifiable, Converter={StaticResource TrueToVisibleConverter}}" 
             Command="{Binding AddMinutesButton}" Height="34"/>
         <Button x:Name="decrMinutes" 
             Content="\/"
@@ -118,7 +118,7 @@
             Grid.Row="1" 
             VerticalAlignment="Center" 
             Width="146"
-            Visibility="{Binding IsModifiable, Converter={StaticResource ToVisibleConverter}}" 
+            Visibility="{Binding IsModifiable, Converter={StaticResource TrueToVisibleConverter}}" 
             Command="{Binding SubtractMinutesButton}" Height="34"/>
         <Button x:Name="incrHours" 
             Content="/\"
@@ -127,7 +127,7 @@
             Grid.Row="1" 
             VerticalAlignment="Center" 
             Width="148"
-            Visibility="{Binding IsModifiable, Converter={StaticResource ToVisibleConverter}}" 
+            Visibility="{Binding IsModifiable, Converter={StaticResource TrueToVisibleConverter}}" 
             Command="{Binding AddHoursButton}" Height="34"/>
         <Button x:Name="decrHours" 
             Content="\/"
@@ -136,7 +136,7 @@
             Grid.Row="1" 
             VerticalAlignment="Center" 
             Width="148"
-            Visibility="{Binding IsModifiable, Converter={StaticResource ToVisibleConverter}}" 
+            Visibility="{Binding IsModifiable, Converter={StaticResource TrueToVisibleConverter}}" 
             Command="{Binding SubtractHoursButton}" Height="34"/>
 
     </Grid>

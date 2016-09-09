@@ -1,15 +1,14 @@
-﻿using Prism.Commands;
+﻿using PowerPuff.Features.Timer.Model;
+using PowerPuff.Features.Timer.Sound;
+using Prism.Commands;
 using Prism.Mvvm;
 using System;
-using System.Media;
-using System.Windows.Threading;
 
 namespace PowerPuff.Features.Timer.ViewModels
 {
     public class TimerMainViewModel : BindableBase
     {
-        private DispatcherTimer _timerObject;
-        private Model.TimerModel _timerModel;
+        private TimerModel _timerModel;
 
         private bool _isModifiable = true;
         public bool IsModifiable
@@ -25,12 +24,8 @@ namespace PowerPuff.Features.Timer.ViewModels
             set { SetProperty(ref _isStartable, value); }
         }
 
-        public TimerMainViewModel (Model.TimerModel timerModel)
+        public TimerMainViewModel (TimerModel timerModel, IAlerter alerter)
         {
-            _timerObject = new DispatcherTimer();
-            _timerObject.Interval = TimeSpan.FromSeconds(1);
-            _timerObject.Tick += new EventHandler(timerTick);
-
             _timerModel = timerModel;
             _timerModel.OnDurationChanged += UpdatePropertiesForTimerDisplay;
             _timerModel.OnStarted += () =>
@@ -38,6 +33,29 @@ namespace PowerPuff.Features.Timer.ViewModels
                 IsModifiable = false;
                 IsStartable = false;
             };
+            _timerModel.OnPaused += timeRemaining =>
+            {
+                UpdatePropertiesForTimerDisplay(timeRemaining);
+                IsStartable = true;
+                IsModifiable = false;
+            };
+            _timerModel.OnTick += UpdatePropertiesForTimerDisplay;
+
+            _timerModel.OnReset += duration =>
+            {
+                UpdatePropertiesForTimerDisplay(duration);
+                IsStartable = true;
+                IsModifiable = true;
+            };
+
+            _timerModel.OnCompleted += () =>
+            {
+                UpdatePropertiesForTimerDisplay(TimeSpan.Zero);
+                IsModifiable = false;
+                IsStartable = false;
+                alerter.Alert();
+            };
+
             UpdatePropertiesForTimerDisplay(_timerModel.Duration);
 
             StartTimerButton = new DelegateCommand(_timerModel.Start);
@@ -117,16 +135,6 @@ namespace PowerPuff.Features.Timer.ViewModels
         private void DecreaseHour()
         {
             _timerModel.Duration = _timerModel.Duration.Subtract(new TimeSpan(1, 0, 0));
-        }
-
-        private void timerTick(object obj, EventArgs e)
-        {
-            DecreaseSecond();
-            if (_timerModel.Duration <= TimeSpan.Zero)
-            {
-                SoundPlayer player = new SoundPlayer(Properties.Resources.timesup);
-                player.Play(); 
-            }
         }
 
         private void UpdatePropertiesForTimerDisplay(TimeSpan timeSpan)
