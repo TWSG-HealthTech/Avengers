@@ -19,23 +19,32 @@ namespace PowerPuff.Features.Timer.Tests.ViewModels
             _subject = new TimerMainViewModel(_timerMock.Object);
         };
 
+        class OnInitialisation
+        {
+            It is_modifiable = () => _subject.IsModifiable.ShouldBeTrue();
+            It is_startable = () => _subject.IsStartable.ShouldBeTrue();
+        }
+
+        class OnStarted
+        {
+            Because of = () => _timerMock.Raise(t => t.OnStarted += null);
+
+            It is_not_modifiable = () => _subject.IsModifiable.ShouldBeFalse();
+            It is_not_startable = () => _subject.IsStartable.ShouldBeFalse();
+        }
+
         class When_Start_Button_is_Clicked
         {
             Because of = () => _subject.StartTimerButton.Execute();
 
-            It should_toggle_timer_to_be_enabled = () => _subject.IsTimerEnabled.ShouldEqual(true);
+            It tell_the_timer_to_start = () => _timerMock.Verify(t => t.Start());
         }
 
         class When_Stop_Button_is_Clicked
         {
-            Establish context = () =>
-            {
-                _subject.StartTimerButton.Execute();
-            };
-
             Because of = () => _subject.StopTimerButton.Execute();
 
-            It should_toggle_timer_to_be_disabled = () => _subject.IsTimerEnabled.ShouldEqual(false);
+            It tell_the_timer_to_stop = () => _timerMock.Verify(t => t.Stop());
         }
 
         class OnDurtionChanged

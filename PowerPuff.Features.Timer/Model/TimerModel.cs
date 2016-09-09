@@ -37,7 +37,7 @@ namespace PowerPuff.Features.Timer.Model
         }
 
         public virtual event Action<TimeSpan> OnDurationChanged;
-        public virtual event Action<TimeSpan> OnStarted;
+        public virtual event Action OnStarted;
         public virtual event Action<TimeSpan> OnStopped;
         public virtual event Action<TimeSpan> OnTick;
         public virtual event Action OnCompleted;
@@ -47,7 +47,7 @@ namespace PowerPuff.Features.Timer.Model
         {
             if (_duration <= TimeSpan.Zero) return;
             _timer.Start();
-            OnStarted?.Invoke(_duration);
+            OnStarted?.Invoke();
         }
 
         public virtual void Stop()

@@ -11,11 +11,18 @@ namespace PowerPuff.Features.Timer.ViewModels
         private DispatcherTimer _timerObject;
         private Model.TimerModel _timerModel;
 
-        private bool _isTimerEnabled;
-        public bool IsTimerEnabled
+        private bool _isModifiable = true;
+        public bool IsModifiable
         {
-            get { return _isTimerEnabled; }
-            set { SetProperty(ref _isTimerEnabled, value); }
+            get { return _isModifiable; }
+            set { SetProperty(ref _isModifiable, value); }
+        }
+
+        private bool _isStartable = true;
+        public bool IsStartable
+        {
+            get { return _isStartable; }
+            set { SetProperty(ref _isStartable, value); }
         }
 
         public TimerMainViewModel (Model.TimerModel timerModel)
@@ -26,12 +33,15 @@ namespace PowerPuff.Features.Timer.ViewModels
 
             _timerModel = timerModel;
             _timerModel.OnDurationChanged += UpdatePropertiesForTimerDisplay;
+            _timerModel.OnStarted += () =>
+            {
+                IsModifiable = false;
+                IsStartable = false;
+            };
             UpdatePropertiesForTimerDisplay(_timerModel.Duration);
 
-            IsTimerEnabled = _timerObject.IsEnabled;
-
-            StartTimerButton = new DelegateCommand(StartTimer);
-            StopTimerButton = new DelegateCommand(StopTimer);
+            StartTimerButton = new DelegateCommand(_timerModel.Start);
+            StopTimerButton = new DelegateCommand(_timerModel.Stop);
             AddSecondsButton = new DelegateCommand(IncreaseSecond);
             SubtractSecondsButton = new DelegateCommand(DecreaseSecond);
             AddMinutesButton = new DelegateCommand(IncreaseMinute);
@@ -64,19 +74,7 @@ namespace PowerPuff.Features.Timer.ViewModels
        
         public DelegateCommand StartTimerButton { get; private set; }
 
-        private void StartTimer()
-        {
-            _timerObject.Start();
-            IsTimerEnabled = _timerObject.IsEnabled;
-        }
-
         public DelegateCommand StopTimerButton { get; private set; }
-
-        private void StopTimer()
-        {
-            _timerObject.Stop();
-            IsTimerEnabled = _timerObject.IsEnabled;
-        }
 
         public DelegateCommand AddSecondsButton { get; private set; }
 
@@ -128,7 +126,6 @@ namespace PowerPuff.Features.Timer.ViewModels
             {
                 SoundPlayer player = new SoundPlayer(Properties.Resources.timesup);
                 player.Play(); 
-                StopTimer();
             }
         }
 
