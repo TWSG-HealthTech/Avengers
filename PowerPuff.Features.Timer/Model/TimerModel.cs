@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Windows.Threading;
 
 namespace PowerPuff.Features.Timer.Model
 {

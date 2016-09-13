@@ -20,7 +20,7 @@
 
         <TextBlock Grid.Row="0"
                    Style="{StaticResource ViewHeaderStyle}">
-            TimerModel
+            Timer
         </TextBlock>
 
         <TextBlock x:Name="textBlock_HH"
