@@ -20,5 +20,10 @@
         {
             MainView
         }
+
+        public enum Medication
+        {
+            MainView
+        }
     }    
 }

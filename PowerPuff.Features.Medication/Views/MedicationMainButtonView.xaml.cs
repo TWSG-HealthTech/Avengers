@@ -20,9 +20,10 @@ namespace PowerPuff.Features.Medication.Views
     /// </summary>
     public partial class MedicationMainButtonView
     {
-        public MedicationMainButtonView()
+        public MedicationMainButtonView(MedicationMainButtonViewModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
     }
 }

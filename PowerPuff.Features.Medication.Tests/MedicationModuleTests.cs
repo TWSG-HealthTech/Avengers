@@ -12,7 +12,7 @@ namespace PowerPuff.Features.Medication.Tests
     public class MedicationModuleTests
     {
         [Subject(typeof(MedicationModule))]
-        public class When_initialize_medication_module
+        class When_initialize_medication_module
         {
             private static MedicationModule _subject;
             private static Mock<IRegionManager> _regionManagerMock;

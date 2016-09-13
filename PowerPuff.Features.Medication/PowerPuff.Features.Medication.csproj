@@ -72,6 +72,7 @@
     <Compile Include="Views\MedicationMainButtonView.xaml.cs">
       <DependentUpon>MedicationMainButtonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MedicationMainButtonViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
