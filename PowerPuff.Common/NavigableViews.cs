@@ -25,5 +25,11 @@
         {
             MainView
         }
+
+        public enum MotionDetection
+        {
+            MainView,
+            SettingsView
+        }
     }    
 }

@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff", "PowerPuff\PowerPuff.csproj", "{6E0FD199-31B5-4361-AE08-E5D07603D0AA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C965D94B-53D4-47CF-BA07-7438FEDB01BD} = {C965D94B-53D4-47CF-BA07-7438FEDB01BD}
+		{D6045281-1F32-4581-9BCD-4EDB8D27D96D} = {D6045281-1F32-4581-9BCD-4EDB8D27D96D}
 		{39FD3CCE-588D-4E7C-9D16-3E47ABAEED15} = {39FD3CCE-588D-4E7C-9D16-3E47ABAEED15}
 		{B86475F4-C131-467C-8F80-F2F5BD480C25} = {B86475F4-C131-467C-8F80-F2F5BD480C25}
 	EndProjectSection
@@ -47,6 +48,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff.Features.Medication", "PowerPuff.Features.Medication\PowerPuff.Features.Medication.csproj", "{39FD3CCE-588D-4E7C-9D16-3E47ABAEED15}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff.Features.Medication.Tests", "PowerPuff.Features.Medication.Tests\PowerPuff.Features.Medication.Tests.csproj", "{A2701A20-B0EA-46AC-97C4-1E74ACC946BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPuff.Features.MotionDetection", "PowerPuff.Features.MotionDetection\PowerPuff.Features.MotionDetection.csproj", "{D6045281-1F32-4581-9BCD-4EDB8D27D96D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -122,6 +125,12 @@ Global
 		{A2701A20-B0EA-46AC-97C4-1E74ACC946BB}.Release|Any CPU.ActiveCfg = Release|x64
 		{A2701A20-B0EA-46AC-97C4-1E74ACC946BB}.Release|x64.ActiveCfg = Release|x64
 		{A2701A20-B0EA-46AC-97C4-1E74ACC946BB}.Release|x64.Build.0 = Release|x64
+		{D6045281-1F32-4581-9BCD-4EDB8D27D96D}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{D6045281-1F32-4581-9BCD-4EDB8D27D96D}.Debug|x64.ActiveCfg = Debug|x64
+		{D6045281-1F32-4581-9BCD-4EDB8D27D96D}.Debug|x64.Build.0 = Debug|x64
+		{D6045281-1F32-4581-9BCD-4EDB8D27D96D}.Release|Any CPU.ActiveCfg = Release|x64
+		{D6045281-1F32-4581-9BCD-4EDB8D27D96D}.Release|x64.ActiveCfg = Release|x64
+		{D6045281-1F32-4581-9BCD-4EDB8D27D96D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,5 +149,6 @@ Global
 		{566781A8-417F-4F60-B77A-D76982803FB2} = {38E2E016-3AA3-41B6-B364-89BBD64AD69D}
 		{39FD3CCE-588D-4E7C-9D16-3E47ABAEED15} = {7C4E2D18-0AF4-4165-B6EB-43A090120673}
 		{A2701A20-B0EA-46AC-97C4-1E74ACC946BB} = {5209C531-1A9B-4BF8-91AF-884B53D950CA}
+		{D6045281-1F32-4581-9BCD-4EDB8D27D96D} = {7C4E2D18-0AF4-4165-B6EB-43A090120673}
 	EndGlobalSection
 EndGlobal
