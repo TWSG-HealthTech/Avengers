@@ -7,10 +7,12 @@ namespace PowerPuff.Features.MotionDetection.Models
     public class MotionDetectionModel : IMotionDetectionModel
     {
         private readonly IDateTimeProvider _dateTimeProvider;
+        private readonly ITimer _timer;
 
-        public MotionDetectionModel(IMotionDetector motionDetector, IDateTimeProvider dateTimeProvider)
+        public MotionDetectionModel(IMotionDetector motionDetector, IDateTimeProvider dateTimeProvider, ITimer timer)
         {
             _dateTimeProvider = dateTimeProvider;
+            _timer = timer;
             LastMotionTime = _dateTimeProvider.Now;
             motionDetector.MotionDetected += MotionDetectorOnMotionDetected;
         }
@@ -18,9 +20,10 @@ namespace PowerPuff.Features.MotionDetection.Models
         private void MotionDetectorOnMotionDetected()
         {
             LastMotionTime = _dateTimeProvider.Now;
+            _timer.Reset(TimeOut);
         }
 
-        public TimeSpan TimeOut { get; set; }
+        public TimeSpan TimeOut { get; set; } = TimeSpan.FromHours(10);
         public DateTime LastMotionTime { get; private set; }
     }
 }
