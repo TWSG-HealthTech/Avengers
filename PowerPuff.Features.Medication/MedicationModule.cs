@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
+using PowerPuff.Features.Medication.Services;
+using PowerPuff.Features.Medication.ViewModels;
 using PowerPuff.Features.Medication.Views;
 using Prism.Autofac;
 using Prism.Modularity;
@@ -33,6 +35,7 @@ namespace PowerPuff.Features.Medication
         {
             var updater = new ContainerBuilder();
 
+            updater.RegisterType<PrescriptionService>().As<IPrescriptionService>();
             updater.RegisterTypeForNavigation<MedicationMainView>(NavigableViews.Medication.MainView.GetFullName());
 
             updater.Update(_container);

@@ -11,17 +11,21 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <TextBlock Grid.Row="0" 
                    Style="{StaticResource ViewHeaderStyle}" 
                    Text="Your Medication Schedule"/>
-        
-        <ListView Grid.Row="1" ItemsSource="{Binding MedicationList}">
+
+        <ListView Grid.Row="1" ItemsSource="{Binding DrugOrders}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                        <TextBlock Text="{Binding Time}"></TextBlock>
+                        <TextBlock Text="{Binding DrugName}"></TextBlock>
+                        <TextBlock Text="{Binding Dose}"></TextBlock>
+                        <TextBlock Text="{Binding DoseUnit}"></TextBlock>
+                        <TextBlock Text="{Binding Frequency}"></TextBlock>
+                        <TextBlock Text="{Binding StartDate}"></TextBlock>
+                        <TextBlock Text="{Binding EndDate}"></TextBlock>
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

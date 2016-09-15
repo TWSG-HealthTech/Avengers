@@ -5,11 +5,11 @@ namespace PowerPuff.Features.Medication.Models
 {
     public class DrugOrder : BindableBase
     {
-        private String _name;
-        public String Name
+        private String _drugName;
+        public String DrugName
         {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
+            get { return _drugName; }
+            set { SetProperty(ref _drugName, value); }
         }
 
         private String _dose;
