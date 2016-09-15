@@ -1,24 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using PowerPuff.Features.MotionDetection.Models;
 using Prism.Commands;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PowerPuff.Features.MotionDetection.ViewModels
 {
     public class SettingsViewModel
     {
-        public SettingsViewModel()
+        private readonly IMotionDetectionModel _motionDetectionModel;
+
+        public SettingsViewModel(IMotionDetectionModel motionDetectionModel)
         {
-            var tenHours = new DurationOption { TimeText = "10 Hours", Duration = TimeSpan.FromHours(10) };
+            _motionDetectionModel = motionDetectionModel;
             Durations.Add(new DurationOption {TimeText = "10 Seconds", Duration = TimeSpan.FromSeconds(10)});
             Durations.Add(new DurationOption {TimeText = "10 Minutes", Duration = TimeSpan.FromMinutes(10)});
             Durations.Add(new DurationOption {TimeText = "30 Minutes", Duration = TimeSpan.FromMinutes(30)});
             Durations.Add(new DurationOption {TimeText = "1 Hour", Duration = TimeSpan.FromHours(1)});
-            Durations.Add(tenHours);
+            Durations.Add(new DurationOption {TimeText = "10 Hours", Duration = TimeSpan.FromHours(10)});
             Durations.Add(new DurationOption {TimeText = "24 Hours", Duration = TimeSpan.FromHours(24)});
             Durations.Add(new DurationOption {TimeText = "48 Hours", Duration = TimeSpan.FromHours(48)});
-            SelectedDuration = tenHours;
+
+            SelectedDuration = Durations.FirstOrDefault(d => d.Duration == _motionDetectionModel.TimeOut);
 
             DurationSelectionChanged = DelegateCommand.FromAsyncHandler(UpdateSelection);
         }
@@ -27,7 +31,7 @@ namespace PowerPuff.Features.MotionDetection.ViewModels
 
         private Task UpdateSelection()
         {
-            Console.WriteLine(SelectedDuration.TimeText);
+            _motionDetectionModel.TimeOut = SelectedDuration.Duration;
             return Task.CompletedTask;
         }
 

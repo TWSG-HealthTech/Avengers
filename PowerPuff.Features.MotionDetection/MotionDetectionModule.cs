@@ -4,6 +4,8 @@ using Prism.Regions;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using PowerPuff.Common.Settings;
+using PowerPuff.Features.MotionDetection.Models;
+using PowerPuff.Features.MotionDetection.Services;
 using PowerPuff.Features.MotionDetection.ViewModels;
 using PowerPuff.Features.MotionDetection.Views;
 using Prism.Autofac;
@@ -29,7 +31,9 @@ namespace PowerPuff.Features.MotionDetection
         {
             var updater = new ContainerBuilder();
 
-            updater.RegisterType<SettingsViewModel>().SingleInstance();
+            updater.RegisterType<MotionDetectionModel>().As<IMotionDetectionModel>().SingleInstance();
+            updater.RegisterType<SettingsViewModel>();
+            updater.RegisterType<MotionDetector>().As<IMotionDetector>().SingleInstance();
 
             updater.RegisterTypeForNavigation<SettingsView>(NavigableViews.MotionDetection.SettingsView.GetFullName());
 

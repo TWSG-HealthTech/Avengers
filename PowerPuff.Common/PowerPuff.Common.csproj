@@ -77,6 +77,7 @@
     <Compile Include="Gateway\ServerGatewayBase.cs" />
     <Compile Include="Helpers\EnumExtensions.cs" />
     <Compile Include="Helpers\IDispatcher.cs" />
+    <Compile Include="Helpers\IDateTimeProvider.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\NLogAdapter.cs" />
     <Compile Include="NavigableViews.cs" />
