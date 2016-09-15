@@ -4,6 +4,7 @@ using Prism.Regions;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using PowerPuff.Common.Settings;
+using PowerPuff.Features.MotionDetection.ViewModels;
 using PowerPuff.Features.MotionDetection.Views;
 using Prism.Autofac;
 
@@ -12,11 +13,9 @@ namespace PowerPuff.Features.MotionDetection
     public class MotionDetectionModule : IModule
     {
         private readonly IContainer _container;
-        private readonly IRegionManager _regionManager;
 
-        public MotionDetectionModule(IRegionManager regionManager, IContainer container)
+        public MotionDetectionModule(IContainer container)
         {
-            _regionManager = regionManager;
             _container = container;
         }
 
@@ -29,6 +28,8 @@ namespace PowerPuff.Features.MotionDetection
         private void ConfigureDependencies()
         {
             var updater = new ContainerBuilder();
+
+            updater.RegisterType<SettingsViewModel>().SingleInstance();
 
             updater.RegisterTypeForNavigation<SettingsView>(NavigableViews.MotionDetection.SettingsView.GetFullName());
 

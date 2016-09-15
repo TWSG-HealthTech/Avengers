@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PowerPuff.Features.MotionDetection.ViewModels;
 
 namespace PowerPuff.Features.MotionDetection.Views
 {
@@ -20,9 +21,11 @@ namespace PowerPuff.Features.MotionDetection.Views
     /// </summary>
     public partial class SettingsView : UserControl
     {
-        public SettingsView()
+        public SettingsView(SettingsViewModel settingsViewModel)
         {
             InitializeComponent();
+
+            DataContext = settingsViewModel;
         }
     }
 }
