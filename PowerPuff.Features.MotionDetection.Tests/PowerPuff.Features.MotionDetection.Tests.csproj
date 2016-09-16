@@ -66,6 +66,7 @@
     <Compile Include="Model\MotionDetectionModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AlerterTests.cs" />
+    <Compile Include="ViewModels\AlarmViewModelTests.cs" />
     <Compile Include="ViewModels\SettingViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -38,7 +38,10 @@ namespace PowerPuff.Features.MotionDetection
             updater.RegisterType<Timer>().As<ITimer>().SingleInstance();
             updater.RegisterType<Alerter>().SingleInstance();
 
+            updater.RegisterType<AlarmViewModel>();
+
             updater.RegisterTypeForNavigation<SettingsView>(NavigableViews.MotionDetection.SettingsView.GetFullName());
+            updater.RegisterTypeForNavigation<AlarmView>(NavigableViews.MotionDetection.AlarmView.GetFullName());
 
             updater.Update(_container);
         }
