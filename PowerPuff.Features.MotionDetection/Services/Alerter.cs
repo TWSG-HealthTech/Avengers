@@ -1,27 +1,27 @@
-﻿using PowerPuff.Common.Navigation;
+﻿using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
+using PowerPuff.Common.Navigation;
 using PowerPuff.Features.MotionDetection.Models;
 using System;
-using System.Media;
-using PowerPuff.Common;
-using PowerPuff.Common.Helpers;
 
 namespace PowerPuff.Features.MotionDetection.Services
 {
     public class Alerter
     {
         private readonly INavigator _navigator;
+        private readonly ISoundPlayer _soundPlayer;
 
-        public Alerter(IMotionDetectionModel motionDetectionModel, INavigator navigator)
+        public Alerter(IMotionDetectionModel motionDetectionModel, INavigator navigator, ISoundPlayer soundPlayer)
         {
             _navigator = navigator;
+            _soundPlayer = soundPlayer;
             motionDetectionModel.Alarm += MotionDetectionModelOnAlarm;
         }
 
         private void MotionDetectionModelOnAlarm(DateTime lastSeenTime)
         {
             _navigator.GoToPage(NavigableViews.MotionDetection.AlarmView.GetFullName());
-            var player = new SoundPlayer(Properties.Resources.warning);
-            player.Play();
+            _soundPlayer.Play(Properties.Resources.warning);
         }
     }
 }

@@ -78,6 +78,7 @@
     <Compile Include="Helpers\EnumExtensions.cs" />
     <Compile Include="Helpers\IDispatcher.cs" />
     <Compile Include="Helpers\IDateTimeProvider.cs" />
+    <Compile Include="Helpers\ISoundPlayer.cs" />
     <Compile Include="Helpers\JsonFileUtils.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\NLogAdapter.cs" />

@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="model\TimerModelTests.cs" />
+    <Compile Include="Sound\AlerterTests.cs" />
     <Compile Include="Speech\TimerIntentHandlerTests.cs" />
     <Compile Include="TimerModuleTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

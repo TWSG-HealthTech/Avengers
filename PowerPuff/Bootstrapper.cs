@@ -82,6 +82,7 @@ namespace PowerPuff
             builder.RegisterType<ScopedRegionNavigationContentLoader>().As<IRegionNavigationContentLoader>().SingleInstance();
             builder.RegisterType<PassiveListener>().As<IPassiveListener>().SingleInstance();
 
+            builder.RegisterType<SoundPlayer>().As<ISoundPlayer>();
             builder.RegisterType<SpeechSynthesiser>().As<ISpeechSynthesiser>().SingleInstance();
             builder.RegisterType<NoneIntentHandler>().As<IIntentHandler>().SingleInstance();
             builder.RegisterType<JokeIntentHandler>().As<IIntentHandler>().SingleInstance();
