@@ -32,11 +32,24 @@ namespace PowerPuff.Features.MotionDetection.Tests.Model
         {
             It sets_the_LastMotionTime_to_now = () => _subject.LastMotionTime.ShouldEqual(_now);
             It sets_the_default_timeout_to_ten_hours = () => _subject.TimeOut.ShouldEqual(TimeSpan.FromHours(10));
+            It resets_the_timer = () => _timer.Verify(t => t.Reset(TimeSpan.FromHours(10)));
+        }
+
+        class set_Timeout
+        {
+            Because of = () => _subject.TimeOut = TimeSpan.FromHours(20);
+
+            It sets_the_default_timeout_to_ten_hours = () => _subject.TimeOut.ShouldEqual(TimeSpan.FromHours(20));
+            It resets_the_timer = () => _timer.Verify(t => t.Reset(TimeSpan.FromHours(20)));
         }
 
         class MotionDetected
         {
-            Establish context = () => _testTimeProvider.Now = _newNow;
+            Establish context = () =>
+            {
+                M.MockExtensions.ResetCalls(_timer);
+                _testTimeProvider.Now = _newNow;
+            };
 
             Because of = () => _motionDetectorMock.Raise(m => m.MotionDetected += null);
 

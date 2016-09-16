@@ -1,6 +1,4 @@
 ﻿using Autofac;
-using Prism.Modularity;
-using Prism.Regions;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using PowerPuff.Common.Settings;
@@ -9,6 +7,7 @@ using PowerPuff.Features.MotionDetection.Services;
 using PowerPuff.Features.MotionDetection.ViewModels;
 using PowerPuff.Features.MotionDetection.Views;
 using Prism.Autofac;
+using Prism.Modularity;
 
 namespace PowerPuff.Features.MotionDetection
 {
@@ -25,6 +24,8 @@ namespace PowerPuff.Features.MotionDetection
         {
             ConfigureDependencies();
             ConfigureSettingMenu();
+
+            _container.Resolve<Alerter>();
         }
 
         private void ConfigureDependencies()
@@ -35,6 +36,7 @@ namespace PowerPuff.Features.MotionDetection
             updater.RegisterType<SettingsViewModel>();
             updater.RegisterType<MotionDetector>().As<IMotionDetector>().SingleInstance();
             updater.RegisterType<Timer>().As<ITimer>().SingleInstance();
+            updater.RegisterType<Alerter>().SingleInstance();
 
             updater.RegisterTypeForNavigation<SettingsView>(NavigableViews.MotionDetection.SettingsView.GetFullName());
 

@@ -8,9 +8,14 @@ namespace PowerPuff.Features.MotionDetection.Services
         event Action Timeout;
     }
 
-    public class Timer : ITimer {
+    public class Timer : ITimer
+    {
+        private System.Threading.Timer _timer;
+
         public void Reset(TimeSpan timeOut)
         {
+            _timer?.Dispose();
+            _timer = new System.Threading.Timer(state => Timeout?.Invoke(), null, timeOut, timeOut);
         }
 
         public event Action Timeout;
