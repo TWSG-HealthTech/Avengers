@@ -98,6 +98,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationDispatcher.cs" />
+    <Compile Include="Helpers\DateTimeProvider.cs" />
     <Compile Include="Modules\ActiveListenerModule.cs" />
     <Compile Include="Navigation\Navigator.cs" />
     <Compile Include="Settings\Services\ProfileGateway.cs" />

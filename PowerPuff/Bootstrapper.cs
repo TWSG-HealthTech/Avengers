@@ -6,6 +6,7 @@ using PowerPuff.Common.Navigation;
 using PowerPuff.Common.Prism;
 using PowerPuff.Common.Settings;
 using PowerPuff.Common.Speech;
+using PowerPuff.Helpers;
 using PowerPuff.Layout;
 using PowerPuff.Modules;
 using PowerPuff.Navigation;
@@ -86,6 +87,8 @@ namespace PowerPuff
             builder.RegisterType<JokeIntentHandler>().As<IIntentHandler>().SingleInstance();
 
             builder.RegisterType<IntentProcessor>().As<IIntentProcessor>().SingleInstance();
+
+            builder.RegisterType<DateTimeProvider>().As<IDateTimeProvider>().SingleInstance();
 
             builder.RegisterTypeForNavigation<MainButtonsView>(NavigableViews.Main.HomeView.GetFullName());
             builder.RegisterTypeForNavigation<SettingsView>(NavigableViews.Main.SettingsView.GetFullName());            
