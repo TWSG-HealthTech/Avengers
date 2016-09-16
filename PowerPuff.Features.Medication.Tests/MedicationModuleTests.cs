@@ -3,6 +3,7 @@ using Machine.Specifications;
 using Moq;
 using PowerPuff.Common;
 using PowerPuff.Features.Medication;
+using PowerPuff.Features.Medication.ViewModels;
 using PowerPuff.Features.Medication.Views;
 using Prism.Regions;
 using It = Machine.Specifications.It;

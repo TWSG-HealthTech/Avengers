@@ -23,7 +23,8 @@
 
         public enum Medication
         {
-            MainView
+            MainView,
+            ReminderView
         }
 
         public enum MotionDetection

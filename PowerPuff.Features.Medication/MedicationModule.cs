@@ -1,6 +1,9 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
+using PowerPuff.Common.Navigation;
+using PowerPuff.Features.Medication.Models;
 using PowerPuff.Features.Medication.Services;
 using PowerPuff.Features.Medication.ViewModels;
 using PowerPuff.Features.Medication.Views;
@@ -27,7 +30,7 @@ namespace PowerPuff.Features.Medication
             ConfigureDependencies();
 
             _regionManager.RegisterViewWithRegion(RegionNames.MainButtonsRegion, typeof(MedicationMainButtonView));
-
+            
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => _container.Resolve(type));
         }
 
@@ -36,6 +39,7 @@ namespace PowerPuff.Features.Medication
             var updater = new ContainerBuilder();
 
             updater.RegisterType<PrescriptionService>().As<IPrescriptionService>();
+            updater.RegisterType<MedicationScheduleService>().As<IMedicationScheduleService>().SingleInstance();
             updater.RegisterTypeForNavigation<MedicationMainView>(NavigableViews.Medication.MainView.GetFullName());
 
             updater.Update(_container);
