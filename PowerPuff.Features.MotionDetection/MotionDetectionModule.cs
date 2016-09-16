@@ -34,6 +34,7 @@ namespace PowerPuff.Features.MotionDetection
             updater.RegisterType<MotionDetectionModel>().As<IMotionDetectionModel>().SingleInstance();
             updater.RegisterType<SettingsViewModel>();
             updater.RegisterType<MotionDetector>().As<IMotionDetector>().SingleInstance();
+            updater.RegisterType<Timer>().As<ITimer>().SingleInstance();
 
             updater.RegisterTypeForNavigation<SettingsView>(NavigableViews.MotionDetection.SettingsView.GetFullName());
 

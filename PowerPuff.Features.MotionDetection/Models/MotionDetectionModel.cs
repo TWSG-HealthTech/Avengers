@@ -1,6 +1,6 @@
-﻿using System;
-using PowerPuff.Common.Helpers;
+﻿using PowerPuff.Common.Helpers;
 using PowerPuff.Features.MotionDetection.Services;
+using System;
 
 namespace PowerPuff.Features.MotionDetection.Models
 {
@@ -15,6 +15,7 @@ namespace PowerPuff.Features.MotionDetection.Models
             _timer = timer;
             LastMotionTime = _dateTimeProvider.Now;
             motionDetector.MotionDetected += MotionDetectorOnMotionDetected;
+            _timer.Timeout += () => Alarm?.Invoke(LastMotionTime);
         }
 
         private void MotionDetectorOnMotionDetected()
@@ -25,5 +26,6 @@ namespace PowerPuff.Features.MotionDetection.Models
 
         public TimeSpan TimeOut { get; set; } = TimeSpan.FromHours(10);
         public DateTime LastMotionTime { get; private set; }
+        public event Action<DateTime> Alarm;
     }
 }
