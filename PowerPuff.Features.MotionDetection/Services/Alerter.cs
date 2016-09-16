@@ -1,6 +1,7 @@
 ﻿using PowerPuff.Common.Navigation;
 using PowerPuff.Features.MotionDetection.Models;
 using System;
+using System.Media;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 
@@ -19,6 +20,8 @@ namespace PowerPuff.Features.MotionDetection.Services
         private void MotionDetectionModelOnAlarm(DateTime lastSeenTime)
         {
             _navigator.GoToPage(NavigableViews.MotionDetection.AlarmView.GetFullName());
+            var player = new SoundPlayer(Properties.Resources.warning);
+            player.Play();
         }
     }
 }
