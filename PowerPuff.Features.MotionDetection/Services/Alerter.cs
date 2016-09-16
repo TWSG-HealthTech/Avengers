@@ -1,19 +1,24 @@
-﻿using PowerPuff.Features.MotionDetection.Models;
+﻿using PowerPuff.Common.Navigation;
+using PowerPuff.Features.MotionDetection.Models;
 using System;
+using PowerPuff.Common;
+using PowerPuff.Common.Helpers;
 
 namespace PowerPuff.Features.MotionDetection.Services
 {
     public class Alerter
     {
+        private readonly INavigator _navigator;
 
-        public Alerter(IMotionDetectionModel motionDetectionModel)
+        public Alerter(IMotionDetectionModel motionDetectionModel, INavigator navigator)
         {
+            _navigator = navigator;
             motionDetectionModel.Alarm += MotionDetectionModelOnAlarm;
         }
 
         private void MotionDetectionModelOnAlarm(DateTime lastSeenTime)
         {
-            Console.WriteLine($"ALERT -- Last Seen at {lastSeenTime}");
+            _navigator.GoToPage(NavigableViews.MotionDetection.AlarmView.GetFullName());
         }
     }
 }
