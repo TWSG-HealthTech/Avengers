@@ -29,8 +29,8 @@
 
         public enum MotionDetection
         {
-            MainView,
-            SettingsView
+            SettingsView,
+            AlarmView
         }
     }    
 }
