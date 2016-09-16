@@ -17,18 +17,16 @@
                    Text="Your Medication Schedule"/>
 
         <ListView Grid.Row="1" ItemsSource="{Binding DrugOrders}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <WrapPanel>
-                        <TextBlock Text="{Binding DrugName}"></TextBlock>
-                        <TextBlock Text="{Binding Dose}"></TextBlock>
-                        <TextBlock Text="{Binding DoseUnit}"></TextBlock>
-                        <TextBlock Text="{Binding Frequency}"></TextBlock>
-                        <TextBlock Text="{Binding StartDate}"></TextBlock>
-                        <TextBlock Text="{Binding EndDate}"></TextBlock>
-                    </WrapPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Drug Name" Width="120" DisplayMemberBinding="{Binding DrugName}" />
+                    <GridViewColumn Header="Dose" Width="50" DisplayMemberBinding="{Binding Dose}" />
+                    <GridViewColumn Header="Dose Unit" Width="120" DisplayMemberBinding="{Binding DoseUnit}" />
+                    <GridViewColumn Header="Frequency" Width="120" DisplayMemberBinding="{Binding Frequency}" />
+                    <GridViewColumn Header="Start Date" Width="120" DisplayMemberBinding="{Binding StartDate}" />
+                    <GridViewColumn Header="End Date" Width="120" DisplayMemberBinding="{Binding EndDate}" />
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </UserControl>
