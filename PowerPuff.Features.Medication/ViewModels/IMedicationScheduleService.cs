@@ -9,6 +9,8 @@ namespace PowerPuff.Features.Medication.ViewModels
 {
     public interface IMedicationScheduleService
     {
-        void SetSchedule(Schedule schedule, DateTime time);
+        event Action<MedicationSchedule> OnMedicationSchedule;
+        void AddSchedule(MedicationSchedule schedule);
+        void RemoveSchedule(MedicationSchedule schedule);
     }
 }

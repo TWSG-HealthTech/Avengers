@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace PowerPuff.Features.Medication.Models
 {
-    public enum Schedule
+    public class MedicationSchedule
     {
-        Morning,
-        Lunch,
-        Afternoon,
-        Evening
+        public string Name;
+        public DateTime TimeInDay;
+        public IEnumerable<int> frequencies;
     }
 }

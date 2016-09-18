@@ -1,57 +1,68 @@
 ﻿using System;
+using System.Collections.Generic;
 using FluentScheduler;
-using PowerPuff.Common;
-using PowerPuff.Common.Helpers;
-using PowerPuff.Common.Navigation;
+using PowerPuff.Features.Medication.Models;
 using PowerPuff.Features.Medication.ViewModels;
-using Schedule = PowerPuff.Features.Medication.Models.Schedule;
 
 namespace PowerPuff.Features.Medication.Services
 {
     public class MedicationScheduleService : IMedicationScheduleService
     {
-        private readonly INavigator _navigator;
-        private readonly IScheduler _scheduler;
+        private readonly IJobScheduler _scheduler;
+        private readonly Dictionary<string, MedicationSchedule> _scheduleStore;
 
-        public Schedule CurrentSchedule { get; set; }
-
-        public MedicationScheduleService(INavigator navigator, IScheduler scheduler)
+        public MedicationScheduleService(IJobScheduler scheduler)
         {
-            _navigator = navigator;
             _scheduler = scheduler;
             _scheduler.OnSchedule += _scheduler_OnSchedule;
+            _scheduleStore = new Dictionary<string, MedicationSchedule>();
         }
 
-        private void _scheduler_OnSchedule(Schedule schedule)
+        public event Action<MedicationSchedule> OnMedicationSchedule;
+
+        private void _scheduler_OnSchedule(string scheduleId)
         {
-            CurrentSchedule = schedule;
-            _navigator.GoToPage(NavigableViews.Medication.ReminderView.GetFullName());
+            OnMedicationSchedule?.Invoke(_scheduleStore[scheduleId]);
         }
 
-        public void SetSchedule(Schedule schedule, DateTime time)
+        public void AddSchedule(MedicationSchedule schedule)
         {
-            _scheduler.SetSchedule(schedule, time);
+            _scheduleStore.Add(schedule.Name, schedule);
+            _scheduler.AddDailySchedule(schedule.Name, schedule.TimeInDay.Hour, schedule.TimeInDay.Minute);
         }
 
+        public void RemoveSchedule(MedicationSchedule schedule)
+        {
+            _scheduleStore.Remove(schedule.Name);
+            _scheduler.RemoveDailySchedule(schedule.Name);
+        }
+
+        public IEnumerable<MedicationSchedule> GetAllSchedules()
+        {
+            return _scheduleStore.Values;
+        }
     }
 
-    public class Scheduler : IScheduler
+    public class JobScheduler : IJobScheduler
     {
-        public event Action<Schedule> OnSchedule;
-        public void SetSchedule(Schedule schedule, DateTime time)
+        public event Action<string> OnSchedule;
+
+        public void AddDailySchedule(string id, int hour, int minute)
         {
-            JobManager.RemoveJob(schedule.GetFullName());
-            JobManager.AddJob(() =>
-            {
-                OnSchedule?.Invoke(schedule);
-            }, s => s.WithName(schedule.GetFullName()).ToRunOnceAt(time.Hour, time.Minute));
+            JobManager.AddJob(() => OnSchedule?.Invoke(id),
+                s => s.WithName(id).ToRunOnceAt(hour, minute).AndEvery(24).Hours());
         }
 
+        public void RemoveDailySchedule(string id)
+        {
+            JobManager.RemoveJob(id);
+        }
     }
 
-    public interface IScheduler
+    public interface IJobScheduler
     {
-        event Action<Schedule> OnSchedule;
-        void SetSchedule(Schedule schedule, DateTime time);
+        event Action<string> OnSchedule;
+        void AddDailySchedule(string id, int hour, int minute);
+        void RemoveDailySchedule(string id);
     }
 }
