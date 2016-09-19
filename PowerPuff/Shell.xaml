@@ -14,9 +14,6 @@
         <VisualBrush x:Key="BackgroundBrush">
             <VisualBrush.Visual>
                 <Image  Source="/Resources/Images/mountain.jpg" Opacity="0.85">
-                    <Image.Effect>
-                        <BlurEffect Radius="50"/>
-                    </Image.Effect>
                 </Image>
             </VisualBrush.Visual>
         </VisualBrush>
