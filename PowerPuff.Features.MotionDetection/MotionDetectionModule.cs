@@ -35,6 +35,7 @@ namespace PowerPuff.Features.MotionDetection
             updater.RegisterType<MotionDetectionModel>().As<IMotionDetectionModel>().SingleInstance();
             updater.RegisterType<SettingsViewModel>();
             updater.RegisterType<CameraMotionDetector>().As<IMotionDetector>().SingleInstance();
+//            updater.RegisterType<KinectMotionDetector>().As<IMotionDetector>().SingleInstance();
             updater.RegisterType<Timer>().As<ITimer>().SingleInstance();
             updater.RegisterType<Alerter>().SingleInstance();
 
