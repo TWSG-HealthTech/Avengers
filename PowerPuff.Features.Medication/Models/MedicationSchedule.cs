@@ -10,6 +10,6 @@ namespace PowerPuff.Features.Medication.Models
     {
         public string Name;
         public DateTime TimeInDay;
-        public IEnumerable<int> frequencies;
+        public IEnumerable<string> frequencies;
     }
 }
