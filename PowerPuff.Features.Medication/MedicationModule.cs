@@ -1,8 +1,6 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
-using PowerPuff.Features.Medication.Models;
 using PowerPuff.Features.Medication.Services;
 using PowerPuff.Features.Medication.ViewModels;
 using PowerPuff.Features.Medication.Views;
@@ -28,17 +26,8 @@ namespace PowerPuff.Features.Medication
         {
             ConfigureDependencies();
             ConfigureViews();
-            RunModuleInitialTasks();
-        }
 
-        private void RunModuleInitialTasks()
-        {
-            var service = _container.Resolve<IMedicationScheduleService>();
-            service.OnMedicationSchedule +=
-                schedule =>
-                    Console.WriteLine(
-                        $"{DateTime.Now} Time to take medication: {schedule.Name} {schedule.TimeInDay} {schedule.frequencies}");
-            service.AddSchedule(new MedicationSchedule() {Name = "Lunch", TimeInDay = DateTime.Now.AddMinutes(1)});
+            _container.Resolve<MedicationReminder>();
         }
 
         private void ConfigureDependencies()
@@ -48,7 +37,10 @@ namespace PowerPuff.Features.Medication
             updater.RegisterType<PrescriptionService>().As<IPrescriptionService>();
             updater.RegisterType<MedicationScheduleService>().As<IMedicationScheduleService>().SingleInstance();
             updater.RegisterType<JobScheduler>().As<IJobScheduler>();
+            updater.RegisterType<MedicationReminder>();
             updater.RegisterTypeForNavigation<MedicationMainView>(NavigableViews.Medication.MainView.GetFullName());
+            updater.RegisterTypeForNavigation<MedicationReminderView>(
+                NavigableViews.Medication.ReminderView.GetFullName());
 
             updater.Update(_container);
         }
@@ -58,6 +50,5 @@ namespace PowerPuff.Features.Medication
             _regionManager.RegisterViewWithRegion(RegionNames.MainButtonsRegion, typeof(MedicationMainButtonView));
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => _container.Resolve(type));
         }
-
     }
 }
