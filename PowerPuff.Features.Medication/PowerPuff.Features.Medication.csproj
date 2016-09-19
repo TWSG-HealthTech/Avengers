@@ -79,6 +79,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MedicationReminder.cs" />
     <Compile Include="Services\MedicationScheduleService.cs" />
+    <Compile Include="Services\IPrescriptionCache.cs" />
+    <Compile Include="Services\PrescriptionFileCache.cs" />
     <Compile Include="Services\PrescriptionService.cs" />
     <Compile Include="ViewModels\IMedicationScheduleService.cs" />
     <Compile Include="ViewModels\IPrescriptionService.cs" />

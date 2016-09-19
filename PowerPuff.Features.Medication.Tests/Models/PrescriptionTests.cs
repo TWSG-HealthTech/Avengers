@@ -14,7 +14,6 @@ namespace PowerPuff.Features.Medication.Tests.Services
             private static DrugOrder _drugOne;
             private static DrugOrder _drugTwo;
             private static DrugOrder _drugThree;
-            private static DrugOrder _drugFour;
             private static IEnumerable<DrugOrder> _result;
 
             Establish context = () =>

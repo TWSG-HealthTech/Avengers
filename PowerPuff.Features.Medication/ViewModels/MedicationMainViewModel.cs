@@ -33,7 +33,8 @@ namespace PowerPuff.Features.Medication.ViewModels
             try
             {
                 IsLoading = true;
-                DrugOrders.AddRange(await _prescriptionService.GetDrugOrdersAsync());
+                var prescription = await _prescriptionService.GetPrescriptionAsync("patientId");
+                DrugOrders.AddRange(prescription.DrugOrders);
             }
             catch (HttpRequestException e)
             {

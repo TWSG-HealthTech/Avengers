@@ -10,26 +10,31 @@ using PowerPuff.Features.Medication.ViewModels;
 
 namespace PowerPuff.Features.Medication.Services
 {
-    public class PrescriptionService : ServerGatewayBase, IPrescriptionService
-    {
-        private const string Url = "medication/api/123";
-        private readonly string _localDrugOrdersPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DrugOrders.json");
+    public class PrescriptionService : IPrescriptionService
+    {        
+        private readonly IServerGateway _serverGateway;
+        private readonly IPrescriptionCache _prescriptionCache;
 
-        public PrescriptionService(IApplicationSettings applicationSettings) : base(applicationSettings)
+        public PrescriptionService(IServerGateway serverGateway, IPrescriptionCache prescriptionCache)
         {
+            _serverGateway = serverGateway;
+            _prescriptionCache = prescriptionCache;
         }
 
-        public async Task<List<DrugOrder>> GetDrugOrdersAsync()
+        public async Task<Prescription> GetPrescriptionAsync(string patientId)
         {
-            if (File.Exists(_localDrugOrdersPath))
+            if (_prescriptionCache.ExistPrescription(patientId))
             {
-                return await JsonFileUtils.ReadFromJsonFile<List<DrugOrder>>(_localDrugOrdersPath);
+                return await _prescriptionCache.RetrievePrescription(patientId);
             }
 
-            var drugOrders = await GetAsync<List<DrugOrder>>(Url);
-            await JsonFileUtils.WriteToJsonFile(_localDrugOrdersPath, drugOrders);
-
-            return drugOrders;
+            var drugOrders = await _serverGateway.GetAsync<List<DrugOrder>>($"medication/api/{patientId}");
+            var prescription = new Prescription()
+            {
+                DrugOrders = drugOrders
+            };
+            await _prescriptionCache.StorePrescription(patientId, prescription);
+            return prescription;
         }
     }
 }

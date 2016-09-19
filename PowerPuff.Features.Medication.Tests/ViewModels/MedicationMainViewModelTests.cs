@@ -16,7 +16,7 @@ namespace PowerPuff.Features.Medication.Tests.ViewModels
         Establish context = () =>
         {
             _prescriptionService = new Mock<IPrescriptionService>();
-            _prescriptionService.Setup(p => p.GetDrugOrdersAsync()).ReturnsAsync(new List<DrugOrder>());
+            _prescriptionService.Setup(p => p.GetPrescriptionAsync(Moq.It.IsAny<string>())).ReturnsAsync(new Prescription() {DrugOrders = new List<DrugOrder>()});
             _subject = new MedicationMainViewModel(_prescriptionService.Object);
         };
 
@@ -30,7 +30,7 @@ namespace PowerPuff.Features.Medication.Tests.ViewModels
         {
             Because of = () => _subject.LoadDrugOrders().Wait();
 
-            It should_load_drugs_with_prescription_service = () => _prescriptionService.Verify(p => p.GetDrugOrdersAsync());
+            It should_load_drugs_with_prescription_service = () => _prescriptionService.Verify(p => p.GetPrescriptionAsync(Moq.It.IsAny<string>()));
             It should_be_loaded = () => _subject.IsLoading.ShouldBeFalse();
         }
     }

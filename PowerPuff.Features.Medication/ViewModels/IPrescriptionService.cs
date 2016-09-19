@@ -6,6 +6,6 @@ namespace PowerPuff.Features.Medication.ViewModels
 {
     public interface IPrescriptionService
     {
-        Task<List<DrugOrder>> GetDrugOrdersAsync();
+        Task<Prescription> GetPrescriptionAsync(string patientId);
     }
 }

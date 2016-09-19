@@ -18,6 +18,7 @@ using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Windows;
+using PowerPuff.Common.Gateway;
 
 namespace PowerPuff
 {
@@ -75,6 +76,7 @@ namespace PowerPuff
 
             builder.RegisterType<ApplicationDispatcher>().As<IDispatcher>().SingleInstance();
 
+            builder.RegisterType<ServerGatewayBase>().As<IServerGateway>();
             builder.RegisterType<ProfileGateway>().As<IProfileGateway>();
 
             builder.RegisterType<MenuSettingsRepository>().As<IMenuSettingsRepository>().SingleInstance();

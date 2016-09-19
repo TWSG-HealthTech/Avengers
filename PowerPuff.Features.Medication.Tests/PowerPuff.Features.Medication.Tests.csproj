@@ -85,6 +85,7 @@
     <Compile Include="Services\MedicationReminderTests.cs" />
     <Compile Include="Services\MedicationScheduleServiceTests.cs" />
     <Compile Include="Models\PrescriptionTests.cs" />
+    <Compile Include="Services\PrescriptionServiceTests.cs" />
     <Compile Include="ViewModels\MedicationMainButtonViewModelTests.cs" />
     <Compile Include="ViewModels\MedicationMainViewModelTests.cs" />
   </ItemGroup>

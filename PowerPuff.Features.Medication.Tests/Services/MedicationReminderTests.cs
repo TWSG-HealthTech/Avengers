@@ -23,6 +23,7 @@ namespace PowerPuff.Features.Medication.Tests.Services
             _navigatorMock = new Mock<INavigator>();
             _scheduleServiceMock = new Mock<IMedicationScheduleService>();
             _subject = new MedicationReminder(_navigatorMock.Object, _scheduleServiceMock.Object);
+            _schedule = new MedicationSchedule();
         };
 
         Because of = () => _scheduleServiceMock.Raise(s => s.OnMedicationSchedule += null, _schedule);

@@ -34,6 +34,7 @@ namespace PowerPuff.Features.Medication
         {
             var updater = new ContainerBuilder();
 
+            updater.RegisterType<PrescriptionFileCache>().As<IPrescriptionCache>();
             updater.RegisterType<PrescriptionService>().As<IPrescriptionService>();
             updater.RegisterType<MedicationScheduleService>().As<IMedicationScheduleService>().SingleInstance();
             updater.RegisterType<JobScheduler>().As<IJobScheduler>();
