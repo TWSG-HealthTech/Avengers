@@ -11,7 +11,15 @@
         WindowState="Maximized"
         Title="PowerPuff" Height="720" Width="1280">
     <Window.Resources>
-        <ImageBrush x:Key="BackgroundBrush" ImageSource="/Resources/Images/cat.jpg" Opacity="0.5"/>
+        <VisualBrush x:Key="BackgroundBrush">
+            <VisualBrush.Visual>
+                <Image  Source="/Resources/Images/mountain.jpg" Opacity="0.85">
+                    <Image.Effect>
+                        <BlurEffect Radius="50"/>
+                    </Image.Effect>
+                </Image>
+            </VisualBrush.Visual>
+        </VisualBrush>
     </Window.Resources>
     <Grid Background="{StaticResource BackgroundBrush}">
         <Grid.RowDefinitions>
