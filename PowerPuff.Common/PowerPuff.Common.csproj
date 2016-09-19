@@ -74,6 +74,7 @@
       <DependentUpon>CircularProgressBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BoolToValueConverter.cs" />
+    <Compile Include="Gateway\IServerGateway.cs" />
     <Compile Include="Gateway\ServerGatewayBase.cs" />
     <Compile Include="Helpers\EnumExtensions.cs" />
     <Compile Include="Helpers\IDispatcher.cs" />

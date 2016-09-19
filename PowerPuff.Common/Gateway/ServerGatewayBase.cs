@@ -7,7 +7,7 @@ using PowerPuff.Common.Settings;
 
 namespace PowerPuff.Common.Gateway
 {
-    public class ServerGatewayBase
+    public class ServerGatewayBase : IServerGateway
     {
         private readonly IApplicationSettings _applicationSettings;
 
@@ -16,19 +16,19 @@ namespace PowerPuff.Common.Gateway
             _applicationSettings = applicationSettings;
         }
 
-        protected Task<T> GetAsync<T>(string path)
+        public Task<T> GetAsync<T>(string path)
         {
             return Execute<T>(httpClient => httpClient.GetAsync(ResolveFullUrl(path)));
         }
 
-        protected Task<T> PutAsync<T>(string path, object parameter)
+        public Task<T> PutAsync<T>(string path, object parameter)
         {
             var httpContent = ToJsonContent(parameter);
 
             return Execute<T>(httpClient => httpClient.PutAsync(ResolveFullUrl(path), httpContent));
         }
 
-        protected Task PutAsync(string path, object parameter)
+        public Task PutAsync(string path, object parameter)
         {
             var httpContent = ToJsonContent(parameter);
 
