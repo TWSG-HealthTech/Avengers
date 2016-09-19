@@ -115,7 +115,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y /d  "$(TargetDir)$(TargetName).dll" "$(SolutionDir)PowerPuff\$(OutDir)Features\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y /d  "$(TargetDir)$(TargetName).dll" "$(SolutionDir)PowerPuff\$(OutDir)Features\"
+xcopy /y /d  "$(TargetDir)FluentScheduler.dll" "$(SolutionDir)PowerPuff\$(OutDir)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

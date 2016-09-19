@@ -2,7 +2,6 @@
 using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
-using PowerPuff.Common.Navigation;
 using PowerPuff.Features.Medication.Models;
 using PowerPuff.Features.Medication.Services;
 using PowerPuff.Features.Medication.ViewModels;
@@ -28,10 +27,18 @@ namespace PowerPuff.Features.Medication
         public void Initialize()
         {
             ConfigureDependencies();
+            ConfigureViews();
+            RunModuleInitialTasks();
+        }
 
-            _regionManager.RegisterViewWithRegion(RegionNames.MainButtonsRegion, typeof(MedicationMainButtonView));
-            
-            ViewModelLocationProvider.SetDefaultViewModelFactory(type => _container.Resolve(type));
+        private void RunModuleInitialTasks()
+        {
+            var service = _container.Resolve<IMedicationScheduleService>();
+            service.OnMedicationSchedule +=
+                schedule =>
+                    Console.WriteLine(
+                        $"{DateTime.Now} Time to take medication: {schedule.Name} {schedule.TimeInDay} {schedule.frequencies}");
+            service.AddSchedule(new MedicationSchedule() {Name = "Lunch", TimeInDay = DateTime.Now.AddMinutes(1)});
         }
 
         private void ConfigureDependencies()
@@ -40,9 +47,17 @@ namespace PowerPuff.Features.Medication
 
             updater.RegisterType<PrescriptionService>().As<IPrescriptionService>();
             updater.RegisterType<MedicationScheduleService>().As<IMedicationScheduleService>().SingleInstance();
+            updater.RegisterType<JobScheduler>().As<IJobScheduler>();
             updater.RegisterTypeForNavigation<MedicationMainView>(NavigableViews.Medication.MainView.GetFullName());
 
             updater.Update(_container);
         }
+
+        private void ConfigureViews()
+        {
+            _regionManager.RegisterViewWithRegion(RegionNames.MainButtonsRegion, typeof(MedicationMainButtonView));
+            ViewModelLocationProvider.SetDefaultViewModelFactory(type => _container.Resolve(type));
+        }
+
     }
 }
