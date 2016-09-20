@@ -85,6 +85,7 @@
     <Compile Include="ViewModels\IMedicationScheduleService.cs" />
     <Compile Include="ViewModels\IPrescriptionService.cs" />
     <Compile Include="ViewModels\MedicationReminderViewModel.cs" />
+    <Compile Include="ViewModels\MedicationSettingsViewModel.cs" />
     <Compile Include="Views\MedicationMainButtonView.xaml.cs">
       <DependentUpon>MedicationMainButtonView.xaml</DependentUpon>
     </Compile>
@@ -95,6 +96,9 @@
     <Compile Include="ViewModels\MedicationMainViewModel.cs" />
     <Compile Include="Views\MedicationReminderView.xaml.cs">
       <DependentUpon>MedicationReminderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MedicationSettingsView.xaml.cs">
+      <DependentUpon>MedicationSettingsView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +117,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MedicationReminderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MedicationSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

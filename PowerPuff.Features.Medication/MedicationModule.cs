@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
+using PowerPuff.Common.Settings;
 using PowerPuff.Features.Medication.Services;
 using PowerPuff.Features.Medication.ViewModels;
 using PowerPuff.Features.Medication.Views;
@@ -26,6 +27,7 @@ namespace PowerPuff.Features.Medication
         {
             ConfigureDependencies();
             ConfigureViews();
+            ConfigureSettingsMenu();
 
             _container.Resolve<MedicationReminder>();
         }
@@ -40,8 +42,8 @@ namespace PowerPuff.Features.Medication
             updater.RegisterType<JobScheduler>().As<IJobScheduler>();
             updater.RegisterType<MedicationReminder>().SingleInstance();
             updater.RegisterTypeForNavigation<MedicationMainView>(NavigableViews.Medication.MainView.GetFullName());
-            updater.RegisterTypeForNavigation<MedicationReminderView>(
-                NavigableViews.Medication.ReminderView.GetFullName());
+            updater.RegisterTypeForNavigation<MedicationReminderView>(NavigableViews.Medication.ReminderView.GetFullName());
+            updater.RegisterTypeForNavigation<MedicationSettingsView>(NavigableViews.Medication.SettingsView.GetFullName());
 
             updater.Update(_container);
         }
@@ -51,5 +53,12 @@ namespace PowerPuff.Features.Medication
             _regionManager.RegisterViewWithRegion(RegionNames.MainButtonsRegion, typeof(MedicationMainButtonView));
             ViewModelLocationProvider.SetDefaultViewModelFactory(type => _container.Resolve(type));
         }
+
+        private void ConfigureSettingsMenu()
+        {
+            var settingsRepository = _container.Resolve<IMenuSettingsRepository>();
+            settingsRepository.RegisterMenu("Medication", NavigableViews.Medication.SettingsView.GetFullName());
+        }
+
     }
 }
