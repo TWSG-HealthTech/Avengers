@@ -28,7 +28,7 @@ namespace PowerPuff.Features.Medication.Services
         public void AddSchedule(MedicationSchedule schedule)
         {
             _scheduleStore.Add(schedule.Name, schedule);
-            _scheduler.AddDailySchedule(schedule.Name, schedule.TimeInDay.Hour, schedule.TimeInDay.Minute);
+            _scheduler.AddDailySchedule(schedule.Name, schedule.Hour, schedule.Minute);
         }
 
         public void RemoveSchedule(MedicationSchedule schedule)

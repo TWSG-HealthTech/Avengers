@@ -3,20 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using PowerPuff.Features.Medication.Models;
+using PowerPuff.Features.Medication.Services;
+using Prism.Commands;
 
 namespace PowerPuff.Features.Medication.ViewModels
 {
     public class MedicationSettingsViewModel
     {
-        public List<MedicationSchedule> MedicationSchedules { get; set; }
+        private readonly IMedicationScheduleService _scheduleService;
 
-        public MedicationSettingsViewModel()
+        public List<MedicationSchedule> MedicationSchedules { get; set; }
+        public DelegateCommand UpdateMedicationSchedules { get; private set; }
+
+        public MedicationSettingsViewModel(IMedicationScheduleService scheduleService)
         {
+            _scheduleService = scheduleService;
+
             MedicationSchedules = new List<MedicationSchedule>();
-            MedicationSchedules.Add(new MedicationSchedule() {Name = "Morning", TimeInDay = new DateTime(1,1,1,8,30,0), Frequencies = new []{"3"}});
-            MedicationSchedules.Add(new MedicationSchedule() {Name = "Lunch", TimeInDay = new DateTime(1,1,1,12,0,0), Frequencies = new []{"3"}});
-            MedicationSchedules.Add(new MedicationSchedule() {Name = "Dinner", TimeInDay = new DateTime(1,1,1,19,00,0), Frequencies = new []{"3"}});
+            MedicationSchedules.AddRange(_scheduleService.GetAllSchedules());
+
+            UpdateMedicationSchedules = new DelegateCommand(_On_update_medication_schedules);
+        }
+
+        private void _On_update_medication_schedules()
+        {
+            foreach (var schedule in MedicationSchedules)
+            {
+                _scheduleService.RemoveSchedule(schedule);
+                _scheduleService.AddSchedule(schedule);
+            }
         }
     }
 }

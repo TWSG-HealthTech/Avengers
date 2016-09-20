@@ -12,5 +12,6 @@ namespace PowerPuff.Features.Medication.ViewModels
         event Action<MedicationSchedule> OnMedicationSchedule;
         void AddSchedule(MedicationSchedule schedule);
         void RemoveSchedule(MedicationSchedule schedule);
+        IEnumerable<MedicationSchedule> GetAllSchedules();
     }
 }

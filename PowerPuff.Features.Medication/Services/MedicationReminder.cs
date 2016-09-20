@@ -20,8 +20,9 @@ namespace PowerPuff.Features.Medication.Services
             _medicationScheduleService = medicationScheduleService;
             _medicationScheduleService.OnMedicationSchedule += _scheduleService_OnMedicationSchedule;
 
-            // TODO: maybe load schedules from settings
-            // _medicationScheduleService.AddSchedule(new MedicationSchedule() { Name = "Lunch", TimeInDay = DateTime.Now.AddMinutes(1), Frequencies = new []{"3"}});
+            _medicationScheduleService.AddSchedule(new MedicationSchedule() { Name = "Morning", Hour = 8, Minute = 30, Frequencies = new[] { "2", "3" } });
+            _medicationScheduleService.AddSchedule(new MedicationSchedule() { Name = "Lunch", Hour = 12, Minute = 0, Frequencies = new[] { "1", "3" } });
+            _medicationScheduleService.AddSchedule(new MedicationSchedule() { Name = "Dinner", Hour = 19, Minute = 0, Frequencies = new[] { "2", "3" } });
         }
 
         private void _scheduleService_OnMedicationSchedule(MedicationSchedule schedule)

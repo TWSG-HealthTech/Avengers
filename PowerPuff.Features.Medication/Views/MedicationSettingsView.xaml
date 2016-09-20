@@ -18,14 +18,15 @@
                 <DataTemplate>
                     <WrapPanel>
                         <TextBlock Text="{Binding Name}"/>
-                        <TextBox Text="{Binding TimeInDay}"/>
-                        <TextBox Text="{Binding TimeInDay}"/>
+                        <TextBox Text="{Binding Hour}"/>
+                        <TextBox Text="{Binding Minute}"/>
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <WrapPanel Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button>Save</Button>
+            <Button Content="Update" 
+                    Command="{Binding UpdateMedicationSchedules}"/>
         </WrapPanel>
     </Grid>
 </UserControl>

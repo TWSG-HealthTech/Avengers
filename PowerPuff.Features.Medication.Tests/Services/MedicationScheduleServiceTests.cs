@@ -25,7 +25,8 @@ namespace PowerPuff.Features.Medication.Tests.Services
             _schedule = new MedicationSchedule
             {
                 Name = "Morning",
-                TimeInDay = new DateTime(1, 1, 1, 12, 30, 0)
+                Hour = 12,
+                Minute = 30
             };
         };
 
@@ -38,7 +39,7 @@ namespace PowerPuff.Features.Medication.Tests.Services
             private It should_schedule_new_job_with_job_scheduler =
                 () =>
                     _schedulerMock.Verify(
-                        s => s.AddDailySchedule(_schedule.Name, _schedule.TimeInDay.Hour, _schedule.TimeInDay.Minute));
+                        s => s.AddDailySchedule(_schedule.Name, _schedule.Hour, _schedule.Minute));
         }
 
         private class When_schedule_is_triggered
