@@ -38,7 +38,7 @@ namespace PowerPuff.Features.Medication
             updater.RegisterType<PrescriptionService>().As<IPrescriptionService>();
             updater.RegisterType<MedicationScheduleService>().As<IMedicationScheduleService>().SingleInstance();
             updater.RegisterType<JobScheduler>().As<IJobScheduler>();
-            updater.RegisterType<MedicationReminder>();
+            updater.RegisterType<MedicationReminder>().SingleInstance();
             updater.RegisterTypeForNavigation<MedicationMainView>(NavigableViews.Medication.MainView.GetFullName());
             updater.RegisterTypeForNavigation<MedicationReminderView>(
                 NavigableViews.Medication.ReminderView.GetFullName());

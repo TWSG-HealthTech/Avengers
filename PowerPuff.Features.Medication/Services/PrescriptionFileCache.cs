@@ -11,6 +11,11 @@ namespace PowerPuff.Features.Medication.Services
 {
     class PrescriptionFileCache : IPrescriptionCache
     {
+        public PrescriptionFileCache()
+        {
+            Directory.CreateDirectory(GetPrescriptionFileDirectory());
+        }
+
         public bool ExistPrescription(string patientId)
         {
             return File.Exists(GetPrescriptionFilePath(patientId));
@@ -28,8 +33,13 @@ namespace PowerPuff.Features.Medication.Services
 
         private string GetPrescriptionFilePath(string patientId)
         {
+            return Path.Combine(GetPrescriptionFileDirectory(), $"{patientId}.json");
+        }
+
+        private string GetPrescriptionFileDirectory()
+        {
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CATE",
-                "Prescriptions", $"{patientId}.json");
+                "Prescriptions");
         }
     }
 }

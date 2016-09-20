@@ -12,7 +12,7 @@ namespace PowerPuff.Features.Medication.ViewModels
     {
         private readonly IPrescriptionService _prescriptionService;
 
-        public ObservableCollection<DrugOrder> DrugOrders { get; set; }
+        public ObservableCollection<DrugOrder> DrugOrders { get; private set; }
 
         private bool _isLoading;
         public bool IsLoading

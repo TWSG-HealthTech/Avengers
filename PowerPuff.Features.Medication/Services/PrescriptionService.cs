@@ -36,5 +36,11 @@ namespace PowerPuff.Features.Medication.Services
             await _prescriptionCache.StorePrescription(patientId, prescription);
             return prescription;
         }
+
+        public async Task<IEnumerable<DrugOrder>> GetDrugsToTake(string patientId, DateTime time, IEnumerable<string> frequencies)
+        {
+            var prescription = await GetPrescriptionAsync(patientId);
+            return prescription.GetDrugOrdersForDateTimeWithFrequencies(time, frequencies);
+        }
     }
 }

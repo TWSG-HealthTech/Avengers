@@ -5,7 +5,7 @@ namespace PowerPuff.Features.Medication.Models
 {
     public class MedicationSchedule
     {
-        public IEnumerable<string> frequencies;
+        public IEnumerable<string> Frequencies;
         public string Name;
         public DateTime TimeInDay;
     }

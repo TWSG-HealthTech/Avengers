@@ -88,6 +88,7 @@
     <Compile Include="Services\PrescriptionServiceTests.cs" />
     <Compile Include="ViewModels\MedicationMainButtonViewModelTests.cs" />
     <Compile Include="ViewModels\MedicationMainViewModelTests.cs" />
+    <Compile Include="ViewModels\MedicationReminderViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

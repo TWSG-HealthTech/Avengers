@@ -16,5 +16,16 @@
                    Style="{StaticResource ViewHeaderStyle}" 
                    Text="Time to Take Your Pills"/>
 
+        <ListView Grid.Row="1" ItemsSource="{Binding DrugsToTake}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding DrugName}"/>
+                        <TextBlock Text="{Binding Dose}"/>
+                        <TextBlock Text="{Binding DoseUnit}"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

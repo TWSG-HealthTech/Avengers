@@ -1,4 +1,5 @@
-﻿using PowerPuff.Common;
+﻿using System;
+using PowerPuff.Common;
 using PowerPuff.Common.Helpers;
 using PowerPuff.Common.Navigation;
 using PowerPuff.Features.Medication.Models;
@@ -11,6 +12,8 @@ namespace PowerPuff.Features.Medication.Services
         private readonly IMedicationScheduleService _medicationScheduleService;
         private readonly INavigator _navigator;
 
+        public MedicationSchedule ActiveSchedule { get; set; }
+
         public MedicationReminder(INavigator navigator, IMedicationScheduleService medicationScheduleService)
         {
             _navigator = navigator;
@@ -18,12 +21,14 @@ namespace PowerPuff.Features.Medication.Services
             _medicationScheduleService.OnMedicationSchedule += _scheduleService_OnMedicationSchedule;
 
             // TODO: maybe load schedules from settings
-            // _medicationScheduleService.AddSchedule(new MedicationSchedule() { Name = "Lunch", TimeInDay = DateTime.Now.AddMinutes(1) });
+            // _medicationScheduleService.AddSchedule(new MedicationSchedule() { Name = "Lunch", TimeInDay = DateTime.Now.AddMinutes(1), Frequencies = new []{"3"}});
         }
 
         private void _scheduleService_OnMedicationSchedule(MedicationSchedule schedule)
         {
+            ActiveSchedule = schedule;
             _navigator.GoToPage(NavigableViews.Medication.ReminderView.GetFullName());
         }
     }
+
 }
