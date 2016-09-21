@@ -15,6 +15,8 @@ namespace PowerPuff.Features.Medication.ViewModels
         private readonly IMedicationScheduleService _scheduleService;
 
         public List<MedicationSchedule> MedicationSchedules { get; set; }
+        public IEnumerable<int> SelectableHours { get; set; }
+        public IEnumerable<int> SelectableMinutes { get; set; }
         public DelegateCommand UpdateMedicationSchedules { get; private set; }
 
         public MedicationSettingsViewModel(IMedicationScheduleService scheduleService)
@@ -23,6 +25,9 @@ namespace PowerPuff.Features.Medication.ViewModels
 
             MedicationSchedules = new List<MedicationSchedule>();
             MedicationSchedules.AddRange(_scheduleService.GetAllSchedules());
+
+            SelectableHours = Enumerable.Range(0, 24).ToArray();
+            SelectableMinutes = Enumerable.Range(0, 60).ToArray();
 
             UpdateMedicationSchedules = new DelegateCommand(_On_update_medication_schedules);
         }

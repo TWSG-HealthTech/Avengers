@@ -27,13 +27,16 @@
                      Color="{StaticResource PrimaryBackgroundColor4}" />
     <SolidColorBrush x:Key="PrimaryBackgroundBrush5"
                      Color="{StaticResource PrimaryBackgroundColor5}" />
+    <SolidColorBrush x:Key="PrimaryBackgroundBrush6" 
+                     Color="{StaticResource PrimaryBackgroundColor}" 
+                     Opacity="0.8" />
     <SolidColorBrush x:Key="PrimaryForegroundBrush"
                      Color="{StaticResource PrimaryForegroundColor}" />
     <SolidColorBrush x:Key="PrimaryForegroundBrush2"
                      Color="{StaticResource PrimaryForegroundColor2}" />
     <SolidColorBrush x:Key="HoverBackgroundBrush"
                      Color="{StaticResource HoverBackgroundColor}" />
-    
+
     <Style x:Key="FeatureLayoutGridStyle" TargetType="{x:Type Grid}">
         <Setter Property="HorizontalAlignment"
                 Value="Stretch" />
